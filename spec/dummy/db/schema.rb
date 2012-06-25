@@ -11,10 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625031134) do
+ActiveRecord::Schema.define(:version => 20120625195959) do
 
   create_table "bootsy_images", :force => true do |t|
-    t.string   "caption"
     t.string   "image_file"
     t.integer  "bootsy_imageable_id"
     t.string   "bootsy_imageable_type"

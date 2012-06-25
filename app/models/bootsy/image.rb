@@ -4,7 +4,7 @@ module Bootsy
 
     mount_uploader :image_file, ImageUploader
 
-    attr_accessible :caption
+    attr_accessible :image_file
 
     validates_presence_of :bootsy_imageable_id, :image_file
   end
