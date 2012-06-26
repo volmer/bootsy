@@ -1,28 +1,14 @@
-<%= link_to 'Image Gallery', '#bootsy_images', :'data-toggle' => 'modal', :class => 'btn' %>
+<ul>
+  <% resource.bootsy_images.each do |image| %>
+    <li>
+      <%= image_tag image.image_file.thumb.url %>
+      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
 
-<div class="modal hide fade" id="bootsy_images">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Images</h3>
-  </div>
-  <div class="modal-body">
-    <ul>
-    <% resource.bootsy_images.each do |image| %>
-      <li>
-        <%= image.caption %>
-        <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
-      </li>
-    <% end %>
-    </ul>
+<br />
 
-    <br />
+<h1>New image</h1>
 
-    <h1>New image</h1>
-
-    <%= render 'bootsy/images/form', {:image => resource.bootsy_images.new } %>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
+<%= render 'bootsy/images/form', {:image => resource.bootsy_images.new } %>

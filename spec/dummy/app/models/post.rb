@@ -1,4 +1,4 @@
 class Post < ActiveRecord::Base
-  include Bootsy::Imageable
+  include Bootsy::MediaContainer
   attr_accessible :content, :title
 end

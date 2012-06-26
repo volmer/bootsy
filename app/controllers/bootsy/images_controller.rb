@@ -2,6 +2,18 @@ require_dependency "bootsy/application_controller"
 
 module Bootsy
   class ImagesController < ApplicationController
+    # GET /images
+    # GET /images.json
+    def index
+      @bootsy_imageable = find_imageable
+      @images = @bootsy_imageable.bootsy_images
+
+      respond_to do |format|
+        format.js
+        format.html # index.html.erb
+        format.json { render json: @images }
+      end
+    end
 
     # POST /images
     # POST /images.json
@@ -11,7 +23,7 @@ module Bootsy
   
       respond_to do |format|
         if @image.save
-          format.js { render action: 'create'}
+          format.js #{ render action: 'create'}
           format.json { render json: @image, status: :created, location: @image }
         else
           format.json { render json: @image.errors, status: :unprocessable_entity }

@@ -1,6 +1,6 @@
 require 'active_support/concern'
 
-module Bootsy::Imageable 
+module Bootsy::MediaContainer 
 
   extend ActiveSupport::Concern
   

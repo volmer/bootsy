@@ -48,7 +48,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   protected
   def md5
-    @md5 ||= Digest::MD5.hexdigest(model.image.read)
+    @md5 ||= Digest::MD5.hexdigest(model.image_file.read)
   end
 
 end
