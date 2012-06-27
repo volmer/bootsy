@@ -5,8 +5,8 @@ module Bootsy
     # GET /images
     # GET /images.json
     def index
-      @bootsy_imageable = find_imageable
-      @images = @bootsy_imageable.bootsy_images
+      @resource = find_resource
+      @images = @resource.bootsy_images
 
       respond_to do |format|
         format.js
@@ -19,7 +19,8 @@ module Bootsy
     # POST /images.json
     def create
       @image = Image.new(params[:image])
-      @image.bootsy_imageable = find_imageable
+      @resource = find_resource
+      @image.bootsy_imageable = @resource
   
       respond_to do |format|
         if @image.save
@@ -54,16 +55,20 @@ module Bootsy
       @image.destroy
   
       respond_to do |format|
+        format.js
         format.html { redirect_to images_url }
         format.json { head :no_content }
       end
     end
 
     private
-    def find_imageable
+    def find_resource
       params.each do |name, value|
         if name =~ /(.+)_id$/
           return $1.classify.constantize.find(value)
+        end
+        if value.is_a? Hash
+          return name.classify.constantize.find(value[:id]) unless value[:id].blank?
         end
       end
       nil

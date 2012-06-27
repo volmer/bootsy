@@ -6,10 +6,10 @@
     <h3>Images</h3>
   </div>
   <div class="modal-body">
-    <div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>
+    <div class="index"></div>
+    <%= link_to 'Refresh', bootsy.images_path(:"#{resource.class.name.underscore}_id" => resource.id), :remote => true, :class => 'btn btn-mini refresh_btn' %>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>

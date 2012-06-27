@@ -1,1 +1,4 @@
-alert("Yeah!");
+<%# unless @resource.persisted? %>
+  $('input#image_image_file').after("<%= j hidden_field(@image, :id) %>");
+<%# end %>
+bootsyRefreshIndex($('#bootsy_images'));

@@ -1,8 +1,8 @@
 <ul>
-  <% resource.bootsy_images.each do |image| %>
+  <% images.each do |image| %>
     <li>
       <%= image_tag image.image_file.thumb.url %>
-      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini destroy_btn' %>
     </li>
   <% end %>
 </ul>

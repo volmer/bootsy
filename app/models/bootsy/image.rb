@@ -6,6 +6,6 @@ module Bootsy
 
     attr_accessible :image_file
 
-    validates_presence_of :bootsy_imageable_id, :image_file
+    validates_presence_of :image_file
   end
 end
