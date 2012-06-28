@@ -1,13 +1,12 @@
-<%= link_to 'Image Gallery', '#bootsy_images', :'data-toggle' => 'modal', :class => 'btn' %>
+<%= link_to 'Image Gallery', '#bootsy_image_gallery', :'data-toggle' => 'modal', :class => 'btn' %>
 
-<div class="modal hide fade" id="bootsy_images">
+<div class="modal hide fade" id="bootsy_image_gallery">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Images</h3>
   </div>
   <div class="modal-body">
-    <div class="index"></div>
-    <%= link_to 'Refresh', bootsy.images_path(:"#{resource.class.name.underscore}_id" => resource.id), :remote => true, :class => 'btn btn-mini refresh_btn' %>
+    <%= refresh_btn resource.image_gallery, :images %>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Cancel</a>

@@ -1,4 +1,5 @@
 <%# unless @resource.persisted? %>
-  $('input#image_image_file').after("<%= j hidden_field(@image, :id) %>");
+  $('input#image_image_file').after("<%#= j hidden_field(@image, :id) %>");
 <%# end %>
-bootsyRefreshIndex($('#bootsy_images'));
+$('#bootsy_image_gallery div.modal-body').html("<%= j render 'bootsy/images/index', {images: @images, gallery: @gallery}%>");
+$('#bootsy_image_gallery a.refresh_btn').hide();

@@ -5,8 +5,8 @@ module Bootsy
     # GET /images
     # GET /images.json
     def index
-      @resource = find_resource
-      @images = @resource.bootsy_images
+      @gallery = find_gallery
+      @images = @gallery.images
 
       respond_to do |format|
         format.js
@@ -18,13 +18,14 @@ module Bootsy
     # POST /images
     # POST /images.json
     def create
-      @image = Image.new(params[:image])
-      @resource = find_resource
-      @image.bootsy_imageable = @resource
+      @gallery = find_gallery
+      @gallery.save! unless @gallery.persisted?
+      @image = @gallery.images.new params[:image]
   
       respond_to do |format|
         if @image.save
-          format.js #{ render action: 'create'}
+          @images = @gallery.images
+          format.js
           format.json { render json: @image, status: :created, location: @image }
         else
           format.json { render json: @image.errors, status: :unprocessable_entity }
@@ -62,6 +63,14 @@ module Bootsy
     end
 
     private
+    def find_gallery
+      begin 
+        return ImageGallery.find params[:image_gallery_id]
+      rescue
+        return ImageGallery.new
+      end
+    end
+
     def find_resource
       params.each do |name, value|
         if name =~ /(.+)_id$/

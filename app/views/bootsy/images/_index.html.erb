@@ -1,14 +1,15 @@
-<ul>
+<ul class="thumbnails">
   <% images.each do |image| %>
-    <li>
-      <%= image_tag image.image_file.thumb.url %>
+    <li class="span1">
+      <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail' %>
       <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini destroy_btn' %>
     </li>
   <% end %>
 </ul>
+<%= refresh_btn gallery, :images %>
 
 <br />
 
 <h1>New image</h1>
 
-<%= render 'bootsy/images/form', {:image => resource.bootsy_images.new } %>
+<%= render 'bootsy/images/form', {image: gallery.images.new } %>
