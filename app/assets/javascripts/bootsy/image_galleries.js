@@ -8,6 +8,9 @@ function bootsyRefreshGallery(element){
 
 $(document).ready(function(){
   element = $('#bootsy_image_gallery');
+  
+  element.parents('form').after(element);
+
   element.find('a.refresh_btn').live('click', function(e){
     $(this).hide();
     bootsyProgressBar(element);

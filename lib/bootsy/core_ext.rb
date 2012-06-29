@@ -5,10 +5,13 @@ module Bootsy
       if resource.nil?
         raise PedroError
       end
+
+      object_name = object.class.name.underscore
       
 
       output = self.render 'bootsy/images/modal', {resource: resource}
-      output += self.text_area object.class.name.underscore, method
+      output += self.text_area object_name, method
+      output += self.hidden_field object_name, :bootsy_image_gallery_id, :class => 'bootsy_image_gallery_id'
       output
     end
 
