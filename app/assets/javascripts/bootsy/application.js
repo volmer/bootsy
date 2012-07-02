@@ -1,4 +1,4 @@
-//= require jquery
-//= require jquery_ujs
 //= require jquery.remotipart
-//= require_tree .
+//= require bootsy/wysihtml5
+//= require bootsy/bootstrap-wysihtml5
+//= require bootsy/bootsy

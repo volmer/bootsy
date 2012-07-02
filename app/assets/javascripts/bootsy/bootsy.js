@@ -24,4 +24,6 @@ $(document).ready(function(){
   element.on('shown', function(){
     bootsyRefreshGallery(element);
   });
+
+  $('textarea.bootsy_text_area').wysihtml5();
 });
