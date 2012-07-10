@@ -2,7 +2,7 @@
   <% images.each do |image| %>
     <li class="span1">
       <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail' %>
-      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini destroy_btn' %>
+      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, :class => 'btn btn-mini destroy_btn' %>
     </li>
   <% end %>
 </ul>

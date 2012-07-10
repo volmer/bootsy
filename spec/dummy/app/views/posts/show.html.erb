@@ -1,17 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @post.title %>
-</p>
+<div class="page-header">
+  <h1><%= @post.title %></h1>
+</div>
 
-<p>
-  <b>Content:</b>
-  <%= @post.content %>
-</p>
+<div>
+  <%= raw @post.content %>
+</div>
 
-<%= bootsy_area @post, :content %>
+<hr />
 
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Edit', edit_post_path(@post), :class => 'btn' %>

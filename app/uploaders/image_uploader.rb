@@ -41,14 +41,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
-
-  def filename
-    @name ||= "#{md5}.png" if original_filename.present?
-  end
-
-  protected
-  def md5
-    @md5 ||= Digest::MD5.hexdigest(model.image_file.read)
-  end
-
 end

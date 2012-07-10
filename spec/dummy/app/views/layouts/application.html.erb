@@ -6,9 +6,31 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to 'Dummy', root_path, :class => 'brand' %>
+        </div>
+      </div>
+    </div>
 
-</body>
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <button class="close" data-dismiss="alert">×</button>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        </div>
+      <% end %>
+      
+      <%= yield %>
+
+      <hr>
+
+      <footer>
+        <p>Dummy application for <%= link_to 'Bootsy', 'http://github.com/volmer/bootsy', target: '_blank' %></p>
+      </footer>
+    </div>
+  </body>
 </html>
