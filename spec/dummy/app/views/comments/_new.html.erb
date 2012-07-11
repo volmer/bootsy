@@ -1,0 +1,28 @@
+<h3>Add comment</h3>
+
+<%= form_for([comment.post,comment]) do |f| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :author %></br>
+    <%= f.text_field :author, :class => 'span6' %>
+  </div>
+  <div class="field">
+    <%= f.label :content %></br>
+    <%= f.bootsy_area :content, rows: 8, :class => 'span6', resource: comment.post %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'btn' %>
+  </div>
+<% end %>

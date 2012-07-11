@@ -1,15 +1,22 @@
 <ul class="thumbnails">
   <% images.each do |image| %>
-    <li class="span1">
-      <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail' %>
-      <%= link_to 'Destroy', image, method: :delete, remote: true, data: { confirm: 'Are you sure?'}, :class => 'btn btn-mini destroy_btn' %>
+    <li class="span1 dropdown">
+      <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail', data: { toggle: 'dropdown'} %>
+      <ul class="dropdown-menu">
+        <li class="nav-header"><%= t 'bootsy.image.size' %></li>
+        <li><%= link_to t('bootsy.image.small'), '#', :class => 'insert', data: { :'image-size' => 'small'} %></li>
+        <li><%= link_to t('bootsy.image.medium'), '#', :class => 'insert', data: { :'image-size' => 'medium'} %></li>
+        <li><%= link_to t('bootsy.image.large'), '#', :class => 'insert', data: { :'image-size' => 'large'} %></li>
+        <li><%= link_to t('bootsy.image.original'), '#', :class => 'insert', data: { :'image-size' => 'original'} %></li>
+        <li class="divider"></li>
+        <li><%= link_to t('bootsy.action.destroy'), image, method: :delete, remote: true, data: { confirm: t('bootsy.image.confirm.destroy')}, :class => 'destroy_btn' %></li>
+      </ul>
     </li>
   <% end %>
 </ul>
+
 <%= refresh_btn gallery, :images %>
 
-<br />
+<hr />
 
-<h1>New image</h1>
-
-<%= render 'bootsy/images/form', {image: gallery.images.new } %>
+<%= render 'bootsy/images/new', {image: gallery.images.new } %>

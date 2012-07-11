@@ -46,7 +46,16 @@ $(document).ready(function(){
     e.stopPropagation();
   });
 
-  element.find('a.thumbnail').live('click', function(e){
-    bootsyInsertImage({src: $(this).children('img').attr('src').replace("/thumb_", "/full_"), alt: $(this).children('img').attr('alt')}, wysihtml5Editor);
+  element.find('ul.dropdown-menu a.insert').live('click', function(e){
+    var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
+    if($(this).attr('data-image-size') == 'original'){
+      imagePrefix = '/';
+    }
+    var img = $(this).parents('li.dropdown').find('img');
+    console.log($(this).parents('li.dropdown'));
+    var src = img.attr('src').replace("/thumb_", imagePrefix);
+    var alt = img.attr('alt');
+
+    bootsyInsertImage({src: src, alt: alt}, wysihtml5Editor);
   });
 });

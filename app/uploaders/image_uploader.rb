@@ -11,31 +11,26 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   def store_dir
-    "bootsy_uploads/#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
+    "uploads/#{model.class.to_s.underscore}/#{model.id}"
   end
 
   # Process files as they are uploaded:
-  process :resize_to_fit => [800, 800]
-  process :convert => 'png'
+  process :resize_to_limit => [940, 940]
 
-  version :full do
-    process :resize_to_fill => [600, 600]
-    process :convert => 'png'
+  version :large do
+    process :resize_to_fit => [600, 600]
   end
 
   version :medium do
-    process :resize_to_fill => [300, 300]
-    process :convert => 'png'
+    process :resize_to_fit => [300, 300]
   end
 
   version :small do
-    process :resize_to_fill => [160, 160]
-    process :convert => 'png'
+    process :resize_to_fit => [160, 160]
   end
 
   version :thumb do
     process :resize_to_fill => [60, 60]
-    process :convert => 'png'
   end
 
   def extension_white_list

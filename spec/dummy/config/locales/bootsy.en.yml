@@ -1,0 +1,19 @@
+en:
+  bootsy:
+    action:
+      refresh: Refresh
+      destroy: Destroy
+      close: Close
+      load: Load
+    image_gallery: Image Gallery
+    image:
+      s: Image
+      p: Images
+      size: Size
+      large: Large
+      medium: Medium
+      small: Small
+      original: Original
+      new: New image
+      confirm:
+        destroy: Are you sure you want do destroy this image?

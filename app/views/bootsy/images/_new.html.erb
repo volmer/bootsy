@@ -1,3 +1,5 @@
+<h3><%= t 'bootsy.image.new' %></h3>
+
 <%= form_for [bootsy, (image.image_gallery || Bootsy::ImageGallery), image], remote: true, html: {:class => 'bootsy'} do |f| %>
   <% if image.errors.any? %>
     <div id="error_explanation">
@@ -12,12 +14,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :image_file %>
-    <br />
     <%= f.file_field :image_file %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t('bootsy.action.load'), :class => 'btn' %>
   </div>
 <% end %>

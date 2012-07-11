@@ -1,0 +1,19 @@
+pt-BR:
+  bootsy:
+    action:
+      refresh: Atualizar
+      destroy: Apagar
+      close: Fechar
+      load: Carregar
+    image_gallery: Galeria de Imagens
+    image:
+      s: Imagem
+      p: Imagens
+      size: Tamanho
+      large: Grande
+      medium: Médio
+      small: Pequeno
+      original: Original
+      new: Nova imagem
+      confirm:
+        destroy: Tem certeza que deseja apagar esta imagem?
