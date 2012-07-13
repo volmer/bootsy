@@ -1,13 +1,15 @@
 Bootsy
 ==========
 
-*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) that includes image uploads via [Carrierwave](https://github.com/jnicklas/carrierwave).
+*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [Carrierwave](https://github.com/jnicklas/carrierwave).
+
 
 ## Requirements
 
 * Ruby MRI >= 1.9.3;
 * Rails >= 3.2.6;
 * Twitter Bootstrap properly integrated in your project's assets pipeline.
+
 
 ## Installation
 
@@ -23,14 +25,21 @@ Bootsy
   bundle install
   ```
 
-3. Run the install generator
+3. Run the install generator:
   ```console
   rails g bootsy:install
   ```
 
+4. Add and run migrations:
+  ```console
+  rake bootsy:install:migrations
+  rake db:migrate
+  ```
+
+
 ## Usage
 
-Just call the brand new method `bootsy_textarea` in your `FormBuilder` instances, in the same way that you call the basic 'textarea' method. For example:
+Just call the brand new method `bootsy_textarea` in your `FormBuilder` instances, in the same way that you call the basic `textarea` method. Example:
 
   ```erb
   <%= form_for(@post) do |f| %>
@@ -54,15 +63,16 @@ Bootsy will group the uploaded image files as galleries and associate them to on
   end
   ```
 
+
 ## I18n
 
-Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy to your desired language.
+Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy for your language.
+
 
 ## Mongoid support
 
-Par default, Bootsy only supports ActiveRecord. A Mongoid support is currently in development:
+Par default, Bootsy only supports ActiveRecord. A [Mongoid support](https://github.com/volmer/bootsy-mongoid) is currently in development.
 
-[bootsy-mongoid](https://github.com/volmer/bootsy-mongoid)
 
 ## License
 
