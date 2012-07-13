@@ -39,7 +39,7 @@ Bootsy
 
 ## Usage
 
-Just call the brand new method `bootsy_textarea` in your `FormBuilder` instances, in the same way that you call the basic `textarea` method. Example:
+Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in the same way that you call the basic `textarea` method. Example:
 
   ```erb
   <%= form_for(@post) do |f| %>
@@ -53,7 +53,7 @@ Just call the brand new method `bootsy_textarea` in your `FormBuilder` instances
   <% end %>
   ```
 
-Bootsy will group the uploaded image files as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_textarea` with it, then you should include the `MediaContainer` module:
+Bootsy will group the uploaded image files as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `MediaContainer` module:
 
   ```ruby
   class Post < ActiveRecord::Base

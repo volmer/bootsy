@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "bootsy"
   s.version     = Bootsy::VERSION
   s.authors     = ["Volmer Soares"]
-  s.email       = ["volmer@radicaos.com"]
+  s.email       = ["lrvolmer@gmail.com"]
   s.homepage    = "http://github.com/volmer/bootsy"
   s.summary     = "A beautiful wysiwig editor with image uploads for Rails."
   s.description = "Bootsy is a WYSIWIG editor for Rails applications based on WYSIHTML5 and Twitter Bootstrap. It integrates images uploads using Carrierwave, as an image gallery scoped in models of your application."
