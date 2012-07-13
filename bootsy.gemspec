@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A beautiful wysiwig editor with image uploads for Rails."
   s.description = "Bootsy is a WYSIWIG editor for Rails applications based on WYSIHTML5 and Twitter Bootstrap. It integrates images uploads using Carrierwave, as an image gallery scoped in models of your application."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 3.2.6"
   s.add_dependency "jquery-rails"
