@@ -19,8 +19,8 @@ module Bootsy
       end
 
       def add_assets
-        insert_into_file "app/assets/javascripts/application.js", "//= require bootsy\n", after: "jquery_ujs\n"
-        insert_into_file "app/assets/stylesheets/application.css", "*= require bootsy\n", after: "require_self\n"
+        insert_into_file "app/assets/javascripts/application.js", "//= require bootsy/application\n", after: "jquery_ujs\n"
+        insert_into_file "app/assets/stylesheets/application.css", "*= require bootsy/application\n", after: "require_self\n"
       end
     end
   end
