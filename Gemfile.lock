@@ -93,19 +93,20 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0.2)
-    rspec (2.10.0)
-      rspec-core (~> 2.10.0)
-      rspec-expectations (~> 2.10.0)
-      rspec-mocks (~> 2.10.0)
-    rspec-core (2.10.1)
-    rspec-expectations (2.10.0)
+    rmagick (2.13.1)
+    rspec (2.11.0)
+      rspec-core (~> 2.11.0)
+      rspec-expectations (~> 2.11.0)
+      rspec-mocks (~> 2.11.0)
+    rspec-core (2.11.0)
+    rspec-expectations (2.11.1)
       diff-lcs (~> 1.1.3)
-    rspec-mocks (2.10.1)
-    rspec-rails (2.10.1)
+    rspec-mocks (2.11.1)
+    rspec-rails (2.11.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec (~> 2.10.0)
+      rspec (~> 2.11.0)
     shoulda-matchers (1.2.0)
       activesupport (>= 3.0.0)
     sprockets (2.1.3)
@@ -129,6 +130,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   jquery-rails
+  rmagick
   rspec-rails
   shoulda-matchers (~> 1.0)
   sqlite3
