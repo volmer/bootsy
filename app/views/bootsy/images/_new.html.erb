@@ -1,6 +1,6 @@
 <h3><%= t 'bootsy.image.new' %></h3>
 
-<%= form_for [bootsy, (image.image_gallery || Bootsy::ImageGallery), image], remote: true, html: {:class => 'bootsy'} do |f| %>
+<%= form_for [bootsy, resource_or_nil(image.image_gallery), image], remote: true, html: {:class => 'bootsy'} do |f| %>
   <% if image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
