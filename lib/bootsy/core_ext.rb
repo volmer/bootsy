@@ -6,7 +6,7 @@ module Bootsy
       options.delete :resource
 
       if resource.nil? && (object.nil? || object.is_a?(String) || object.is_a?(Array) || object.is_a?(Symbol))
-        raise PedroError
+        raise 'Bootsy area needs a model or a resource as its option'
       end
 
       object_name = object.class.name.underscore

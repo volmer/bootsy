@@ -1,4 +1,5 @@
 module NavigationHelpers
+  include Bootsy::Engine.routes.url_helpers
   def path_to(page_name)
     case page_name
  
