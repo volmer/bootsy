@@ -1,7 +1,7 @@
 require_dependency "bootsy/application_controller"
 
 module Bootsy
-  class ImagesController < ActionController::Base
+  class ImagesController < Bootsy::ApplicationController
     # GET /images
     # GET /images.json
     def index

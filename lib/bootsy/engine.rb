@@ -15,9 +15,14 @@ module Bootsy
     end
 
     config.after_initialize do
-      puts 'volmer'
-      puts BOOTSY_ORM
-      case BOOTSY_ORM
+      if defined?(BOOTSY_ORM)
+        orm = BOOTSY_ORM
+      else
+        orm = :activerecord
+      end
+
+
+      case orm
       when :activerecord
         Dir[File.expand_path('../activerecord/*.rb', __FILE__)].each {|f| require f }
       end
