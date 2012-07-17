@@ -3,5 +3,6 @@ rvm:
   - 1.9.3
 before_script:
   - "cd spec/dummy"
+  - "rake db:migrate"
   - "rake db:test:prepare"
   - "cd ../.."
