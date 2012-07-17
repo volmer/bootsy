@@ -36,7 +36,7 @@ $(document).ready(function(){
     bootsyRefreshGallery(element);
   });
 
-  wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5({"image": false, "imageUpload": true, imageUploadCallback: bootsyOpenImageGallery}).data("wysihtml5").editor;
+  wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5({"image": false, "imageUpload": true, imageUploadCallback: bootsyOpenImageGallery, locale: "<%= I18n.default_locale %>"}).data("wysihtml5").editor;
 
   element.on('hide', function() {
     wysihtml5Editor.currentView.element.focus();

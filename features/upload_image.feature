@@ -1,4 +1,4 @@
-Feature: Image Upload
+Feature: Upload an image
   In order to illustrate my texts
   As a writer using Bootsy
   I want to upload images
