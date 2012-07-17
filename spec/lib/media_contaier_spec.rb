@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ActionView::Helpers::FormHelper do
+describe Bootsy::MediaContainer do
 
 
   before :each do
