@@ -22,18 +22,17 @@ end
 
 Bundler::GemHelper.install_tasks
 
+require "cucumber/rake/task"
 require 'rspec/core/rake_task'
-require 'cucumber'
-require 'cucumber/rake/task'
 
-desc "Run all examples"
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = %w[--color ]
+task :default => [:spec,:run]
+
+RSpec::Core::RakeTask.new(:spec)
+
+Cucumber::Rake::Task.new(:run) do |t|
+  t.cucumber_opts = ["-t","~@pending","features --format pretty"]
 end
 
-desc "Run cucumber features"
-Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format progress"
+Cucumber::Rake::Task.new(:wip) do |t|
+  t.cucumber_opts = ["-t","@wip","features"]
 end
-
-task :default => [:spec, :features]
