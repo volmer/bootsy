@@ -1,7 +1,7 @@
 Bootsy
 ==========
 
-*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [Carrierwave](https://github.com/jnicklas/carrierwave).
+*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [CarrierWave](https://github.com/jnicklas/carrierwave).
 
 
 ## Requirements
@@ -71,7 +71,7 @@ Bootsy defines some i18n keys. The english translation is automatically added to
 
 ## Mongoid support
 
-Par default, Bootsy only supports ActiveRecord. A [Mongoid support](https://github.com/volmer/bootsy-mongoid) is currently in development.
+Par default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use [bootsy-mongoid](https://github.com/volmer/bootsy-mongoid) instead.
 
 
 ## License

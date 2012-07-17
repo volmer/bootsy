@@ -1,9 +1,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-# Maintain your gem's version:
 require "bootsy/version"
 
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "bootsy"
   s.version     = Bootsy::VERSION
@@ -11,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["lrvolmer@gmail.com"]
   s.homepage    = "http://github.com/volmer/bootsy"
   s.summary     = "A beautiful wysiwig editor with image uploads for Rails."
-  s.description = "Bootsy is a WYSIWIG editor for Rails applications based on WYSIHTML5 and Twitter Bootstrap. It integrates images uploads using Carrierwave, as an image gallery scoped in models of your application."
+  s.description = "Bootsy is a WYSIWIG editor for Rails applications based on WYSIHTML5 and Twitter Bootstrap. It integrates images uploads using CarrierWave, as an image gallery scoped in models of your application."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
