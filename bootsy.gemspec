@@ -13,14 +13,14 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "mini_magick"
-  s.add_dependency "carrierwave"
-  s.add_dependency "remotipart"
+  s.add_dependency "mini_magick", ">= 3.4"
+  s.add_dependency "carrierwave", ">= 0.6.2"
+  s.add_dependency "remotipart", ">= 1.0.2"
 
-  s.add_development_dependency "rails", "~> 3.2.6"
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "factory_girl_rails"
-  s.add_development_dependency "database_cleaner"
-  s.add_development_dependency "cucumber-rails"
+  s.add_development_dependency "rails", ">= 3.2.6"
+  s.add_development_dependency "sqlite3", ">= 1.3.6"
+  s.add_development_dependency "rspec-rails", ">= 2.11.0"
+  s.add_development_dependency "factory_girl_rails", ">= 3.5.0"
+  s.add_development_dependency "database_cleaner", ">= 0.8.0"
+  s.add_development_dependency "cucumber-rails", ">= 1.2.1"
 end
