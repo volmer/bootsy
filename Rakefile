@@ -30,7 +30,7 @@ task :default => [:spec,:run]
 RSpec::Core::RakeTask.new(:spec)
 
 Cucumber::Rake::Task.new(:run) do |t|
-  t.cucumber_opts = ["-t","~@pending","features --format pretty"]
+  t.cucumber_opts = ["-t","~@pending","features --format pretty","-s"]
 end
 
 Cucumber::Rake::Task.new(:wip) do |t|
