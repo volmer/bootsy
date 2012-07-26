@@ -1,5 +1,5 @@
 Description:
-    Adds Bootsy routes and locale files to your application.
+    Adds Bootsy routes, locale and assets to your application.
 
 Example:
     rails generate bootsy:install
