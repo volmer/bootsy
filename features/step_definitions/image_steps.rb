@@ -41,9 +41,9 @@ Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text are
   img_src = "/#{size}_#{image_file}"
   img_src = "/#{image_file}" if size == 'original'
 
-  #content =  page.evaluate_script('wysihtml5Editor.getValue()')
-  wait_until { !find('textarea.bootsy_text_area').value.blank? }
-  content = find('textarea.bootsy_text_area').value
+  content =  page.evaluate_script('wysihtml5Editor.getValue()')
+  #wait_until { !find('textarea.bootsy_text_area').value.blank? }
+  #content = find('textarea.bootsy_text_area').value
 
-  content.should be_a_include(img_src)
+  content.should include(img_src)
 end

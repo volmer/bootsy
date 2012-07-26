@@ -19,4 +19,4 @@
 
 <hr />
 
-<%= render 'bootsy/images/new', {image: gallery.images.new } %>
+<%= render 'bootsy/images/new', {image: (defined?(image) && image.errors.any?) ? image : gallery.images.new } %>

@@ -21,13 +21,15 @@ module Bootsy
       @gallery = find_gallery
       @gallery.save! unless @gallery.persisted?
       @image = @gallery.images.new params[:image]
+      @images = @gallery.images
   
       respond_to do |format|
-        if @image.save
-          @images = @gallery.images
+        if @image.save  
           format.js
           format.json { render json: @image, status: :created, location: @image }
         else
+          pp @image.errors
+          format.js
           format.json { render json: @image.errors, status: :unprocessable_entity }
         end
       end
