@@ -4,14 +4,8 @@ module Bootsy
 
       desc "Copy Bootsy config and locale files to your application."
 
-
       def add_routes
         insert_into_file "config/routes.rb", "  mount Bootsy::Engine => '/bootsy', as: 'bootsy'\n", after: "Rails.application.routes.draw do\n"
-      end
-
-
-      def copy_config
-        copy_file "../../config/bootsy.yml", "config/bootsy.yml"
       end
 
       def copy_locale
