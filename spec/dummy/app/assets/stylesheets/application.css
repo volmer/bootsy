@@ -10,7 +10,6 @@
  *
  *= require bootstrap
  *= require bootstrap-responsive
- *= require bootsy
  *= require_self
  *= require_tree .
  */

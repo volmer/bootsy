@@ -1,7 +1,6 @@
 module Bootsy
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      #include Rails::Generators::ResourceHelpers
       source_root File.expand_path('../templates', __FILE__)
 
       def add_routes
@@ -9,12 +8,26 @@ module Bootsy
       end
 
       def copy_locale
-        copy_file "../../config/locales/en.yml", "config/locales/bootsy.en.yml"
+        copy_file "../../../../../config/locales/en.yml", "config/locales/bootsy.en.yml"
       end
 
       def add_assets
-        #insert_into_file "app/assets/javascripts/application.js", "//= require bootsy/application\n", after: "jquery_ujs\n"
-        #insert_into_file "app/assets/stylesheets/application.css", "*= require bootsy/application\n", after: "require_self\n"
+
+        [{original: 'app/assets/javascripts/application.js',
+          skip_if: 'require bootsy', 
+          content: "//= require bootsy\n", 
+          position: {after: '//= require tree .'},
+         {original: 'app/assets/stylesheets/application.css',
+          skip_if: 'require bootsy', 
+          content: " *= require bootsy\n", 
+          position: {before: '*/'}}]. each do |params|
+
+          if File.binread(params[:original]).include?(params[:skip_if])
+            say_status 'skipped', "insert into #{params[:original]}", :yellow
+          else
+            insert_into_file params[:original], params[:content], params[:position]
+          end
+        end    
       end
     end
   end

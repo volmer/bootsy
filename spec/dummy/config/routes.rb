@@ -5,6 +5,4 @@ Rails.application.routes.draw do
   end
 
   root to: 'posts#index'
-
-  mount Bootsy::Engine => "/bootsy", :as => 'bootsy'
 end
