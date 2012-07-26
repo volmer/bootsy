@@ -1,7 +1,7 @@
 module Bootsy
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path('..', __FILE__)
 
       def add_routes
         route "mount Bootsy::Engine => '/bootsy', as: 'bootsy'"
