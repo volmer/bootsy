@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require bootsy/application
+//= require bootsy
 //= require_tree .
