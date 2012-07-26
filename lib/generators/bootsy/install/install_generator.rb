@@ -16,10 +16,10 @@ module Bootsy
         [{original: 'app/assets/javascripts/application.js',
           skip_if: 'require bootsy', 
           content: "//= require bootsy\n", 
-          position: {after: '//= require tree .'},
+          position: {before: '//= require_tree .'}},
          {original: 'app/assets/stylesheets/application.css',
           skip_if: 'require bootsy', 
-          content: " *= require bootsy\n", 
+          content: "*= require bootsy\n", 
           position: {before: '*/'}}]. each do |params|
 
           if File.binread(params[:original]).include?(params[:skip_if])

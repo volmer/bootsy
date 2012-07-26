@@ -12,7 +12,8 @@
  *= require bootstrap-responsive
  *= require_self
  *= require_tree .
- */
+ *= require bootsy
+*/
 body {
   padding-top: 60px;
   padding-bottom: 40px;
