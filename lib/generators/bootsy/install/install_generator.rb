@@ -8,7 +8,7 @@ module Bootsy
       end
 
       def copy_locale
-        copy_file "../../../../../config/locales/en.yml", "config/locales/bootsy.en.yml"
+        copy_file "../../../../config/locales/en.yml", "config/locales/bootsy.en.yml"
       end
 
       def add_assets
