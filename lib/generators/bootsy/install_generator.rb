@@ -1,14 +1,14 @@
 module Bootsy
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../../../../..', __FILE__)
+      source_root __FILE__
 
       def add_routes
         route "mount Bootsy::Engine => '/bootsy', as: 'bootsy'"
       end
 
       def copy_locale
-        copy_file "config/locales/en.yml", "config/locales/bootsy.en.yml"
+        copy_file "../../../../config/locales/en.yml", "config/locales/bootsy.en.yml"
       end
 
       def add_assets
@@ -27,8 +27,10 @@ module Bootsy
           else
             insert_into_file params[:original], params[:content], params[:position]
           end
-        end    
+        end
+
       end
+
     end
   end
 end
