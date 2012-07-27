@@ -9,7 +9,7 @@ Bootsy
 
 * Ruby MRI >= 1.9.3;
 * Rails >= 3.2.6;
-* Twitter Bootstrap properly integrated in your project's assets pipeline.
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) assets added on your application.
 
 
 ## Installation
@@ -31,7 +31,7 @@ Bootsy
   rails g bootsy:install
   ```
 
-4. Add and run migrations:
+4. Add and run migrations (if you are using ActiveRecord):
   ```console
   rake bootsy:install:migrations
   rake db:migrate
