@@ -8,6 +8,7 @@ Bootsy
 ## Requirements
 
 * Ruby MRI >= 1.9.3;
+* ImageMagick or GraphicsMagick (for MiniMagick);
 * Rails >= 3.2.6;
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) assets added on your application.
 
