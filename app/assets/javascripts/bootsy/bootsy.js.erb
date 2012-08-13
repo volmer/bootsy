@@ -11,8 +11,6 @@ function bootsyOpenImageGallery(editor){
 }
 
 function bootsyInsertImage(image, editor){
-  console.log(image);
-  
   $('#bootsy_image_gallery').modal('hide');
   editor.composer.commands.exec("insertImage", image);
 }
@@ -52,7 +50,6 @@ $(document).ready(function(){
       imagePrefix = '/';
     }
     var img = $(this).parents('li.dropdown').find('img');
-    console.log($(this).parents('li.dropdown'));
     var src = img.attr('src').replace("/thumb_", imagePrefix);
     var alt = img.attr('alt');
 

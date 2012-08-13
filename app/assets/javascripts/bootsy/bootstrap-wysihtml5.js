@@ -100,7 +100,7 @@
                     "check_attributes": {
                         "width": "numbers",
                         "alt": "alt",
-                        "src": "url",
+                        "src": "src",
                         "height": "numbers"
                     }
                 },
@@ -160,8 +160,6 @@
                 'class' : "wysihtml5-toolbar",
                 'style': "display:none"
             });
-
-            console.log(options.locale);
 
             for(var key in defaultOptions) {
                 var value = false;
