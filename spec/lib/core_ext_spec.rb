@@ -7,9 +7,9 @@ describe 'Core Extensions' do
     end
   end
 
-  describe ActionView::Helpers::FormHelper do
+  describe ActionView::Base do
     it 'includes Bootsy::FormHelper' do
-      ActionView::Helpers::FormHelper.should include(Bootsy::FormHelper)
+      ActionView::Base.should include(Bootsy::FormHelper)
     end
   end
 end
