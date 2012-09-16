@@ -1,23 +1,13 @@
 <h3><%= t 'bootsy.image.new' %></h3>
 
-<%= form_for [bootsy, resource_or_nil(image.image_gallery), image], remote: true, html: {:class => 'bootsy'} do |f| %>
+<%= form_for [bootsy, resource_or_nil(image.image_gallery), image], remote: true, html: {:class => 'bootsy form-inline'} do |f| %>
   <% if image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
-
-      <ul>
-      <% image.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <% image.errors.full_messages.each do |msg| %>
+      <div class="alert alert-error"><%= msg %></div>
+    <% end %>
   <% end %>
 
-  <div class="field">
-    <%= f.file_field :image_file %>
-  </div>
+  <%= f.file_field :image_file %>
 
-  <div class="actions">
-    <%= f.submit t('bootsy.action.load'), :class => 'btn' %>
-  </div>
+  <%= f.submit t('bootsy.action.load'), :class => 'btn btn-primary' %>
 <% end %>

@@ -2,14 +2,23 @@
   <% images.each do |image| %>
     <li class="span1 dropdown">
       <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail', data: { toggle: 'dropdown'} %>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" role="menu">
         <li class="nav-header"><%= t 'bootsy.image.size' %></li>
-        <li><%= link_to t('bootsy.image.small'), '#', :class => 'insert', data: { :'image-size' => 'small'} %></li>
-        <li><%= link_to t('bootsy.image.medium'), '#', :class => 'insert', data: { :'image-size' => 'medium'} %></li>
-        <li><%= link_to t('bootsy.image.large'), '#', :class => 'insert', data: { :'image-size' => 'large'} %></li>
-        <li><%= link_to t('bootsy.image.original'), '#', :class => 'insert', data: { :'image-size' => 'original'} %></li>
+        <% [:small, :medium, :large, :original].each do |size| %>
+          <li>
+            <%= link_to '#', :class => 'insert', tabindex: '-1', data: { :'image-size' => size.to_s} do %>
+              <i class="icon-picture"></i>
+              <%= t "bootsy.image.#{size}" %>
+            <% end %>
+          </li>
+        <% end %>
         <li class="divider"></li>
-        <li><%= link_to t('bootsy.action.destroy'), image, method: :delete, remote: true, data: { confirm: t('bootsy.image.confirm.destroy')}, :class => 'destroy_btn' %></li>
+        <li>
+          <%= link_to image, method: :delete, remote: true, data: { confirm: t('bootsy.image.confirm.destroy')}, tabindex: '-1', :class => 'destroy_btn' do %>
+            <i class="icon-trash"></i>
+            <%= t 'bootsy.action.destroy' %>
+          <% end %>
+        </li>
       </ul>
     </li>
   <% end %>

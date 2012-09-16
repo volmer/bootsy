@@ -55,4 +55,9 @@ $(document).ready(function(){
 
     bootsyInsertImage({src: src, alt: alt}, wysihtml5Editor);
   });
+
+  $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
+  $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
+    e.stopPropagation();
+  });
 });
