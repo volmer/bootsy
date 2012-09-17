@@ -45,7 +45,7 @@
         bootsyRefreshGallery(element);
       });
 
-      var editorOptions = {locale: "<%= I18n.default_locale %>"};
+      var editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
       
       if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
         editorOptions.image = true;
