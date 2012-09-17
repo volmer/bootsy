@@ -41,7 +41,7 @@ Bootsy
 
 ## Usage
 
-Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in the same way that you call the basic `textarea` method. Example:
+Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in the same way you call the basic `textarea` method. Example:
 
   ```erb
   <%= form_for(@post) do |f| %>
