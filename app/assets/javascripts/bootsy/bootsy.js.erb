@@ -17,6 +17,14 @@
     editor.composer.commands.exec("insertImage", image);
   }
 
+  var unsavedChanges = false
+
+  var bootsyAlertUnsavedChanges = function(){
+    if(unsavedChanges){  
+      return "<%= I18n.t 'bootsy.js.alert_unsaved' %>"; 
+    }
+  }
+
   $(document).ready(function(){
     if($('textarea.bootsy_text_area').length > 0){
       element = $('#bootsy_image_gallery');
@@ -47,10 +55,10 @@
         editorOptions.imageUploadCallback = bootsyOpenImageGallery;
       }
 
-      var bootsyEditor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
+      var editor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
 
       element.on('hide', function() {
-        bootsyEditor.currentView.element.focus();
+        editor.currentView.element.focus();
       });
 
       element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
@@ -72,7 +80,16 @@
           obj.align = $(this).attr('data-position');
         }
 
-        bootsyInsertImage(obj, bootsyEditor);
+        bootsyInsertImage(obj, editor);
+      });
+
+      editor.on("change", function(){
+        unsavedChanges = true;
+      });
+
+      $('textarea.bootsy_text_area').closest('form').submit(function(e){
+        unsavedChanges = false;
+        return true;
       });
 
       // In order to properly work with Twitter Bootstrap 2.1
@@ -81,7 +98,11 @@
         e.stopPropagation();
       });
 
-      window.bootsyEditor = bootsyEditor;
+      window.bootsyEditor = editor;
+
+      if($('textarea.bootsy_text_area').attr('data-alert-unsaved') != 'false'){
+        window.onbeforeunload = bootsyAlertUnsavedChanges;
+      }
     }
   });
 }).call(this);

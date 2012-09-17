@@ -21,3 +21,5 @@ en:
         left: Left
         right: Right
         inline: Inline
+    js:
+      alert_unsaved: You have unsaved changes.

@@ -21,3 +21,5 @@ pt-BR:
         left: Esquerda
         right: Direita
         inline: Mesma linha
+    js:
+      alert_unsaved: As suas modificações ainda não foram gravadas.

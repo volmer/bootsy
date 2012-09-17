@@ -14,6 +14,10 @@ module Bootsy
         if bootsy_options[:uploader] == false
           options[:'data-enable-uploader'] = 'false'
         end
+
+        if bootsy_options[:alert_unsaved] == false
+          options[:'data-alert-unsaved'] = 'false'
+        end
       end
 
       object_name = object.class.name.underscore
