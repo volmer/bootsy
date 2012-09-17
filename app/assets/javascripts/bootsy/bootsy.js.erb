@@ -16,48 +16,50 @@ function bootsyInsertImage(image, editor){
 }
 
 $(document).ready(function(){
-  element = $('#bootsy_image_gallery');
-  
-  element.parents('form').after(element);
+  if($('textarea.bootsy_text_area').length > 0){
+    element = $('#bootsy_image_gallery');
+    
+    element.parents('form').after(element);
 
-  element.find('a.refresh_btn').live('click', function(e){
-    $(this).hide();
-    bootsyProgressBar(element);
-  });
+    element.find('a.refresh_btn').live('click', function(e){
+      $(this).hide();
+      bootsyProgressBar(element);
+    });
 
-  element.find('a.destroy_btn').click(function(e){
-    bootsyProgressBar(element);
-  });
+    element.find('a.destroy_btn').click(function(e){
+      bootsyProgressBar(element);
+    });
 
-  element.modal({show: false});
-  element.on('shown', function(){
-    bootsyRefreshGallery(element);
-  });
+    element.modal({show: false});
+    element.on('shown', function(){
+      bootsyRefreshGallery(element);
+    });
 
-  wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5({"image": false, "imageUpload": true, imageUploadCallback: bootsyOpenImageGallery, locale: "<%= I18n.default_locale %>"}).data("wysihtml5").editor;
+    wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5({"image": false, "imageUpload": true, imageUploadCallback: bootsyOpenImageGallery, locale: "<%= I18n.default_locale %>"}).data("wysihtml5").editor;
 
-  element.on('hide', function() {
-    wysihtml5Editor.currentView.element.focus();
-  });
+    element.on('hide', function() {
+      wysihtml5Editor.currentView.element.focus();
+    });
 
-  element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
-    e.stopPropagation();
-  });
+    element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+      e.stopPropagation();
+    });
 
-  element.find('ul.dropdown-menu a.insert').live('click', function(e){
-    var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
-    if($(this).attr('data-image-size') == 'original'){
-      imagePrefix = '/';
-    }
-    var img = $(this).parents('li.dropdown').find('img');
-    var src = img.attr('src').replace("/thumb_", imagePrefix);
-    var alt = img.attr('alt');
+    element.find('ul.dropdown-menu a.insert').live('click', function(e){
+      var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
+      if($(this).attr('data-image-size') == 'original'){
+        imagePrefix = '/';
+      }
+      var img = $(this).parents('li.dropdown').find('img');
+      var src = img.attr('src').replace("/thumb_", imagePrefix);
+      var alt = img.attr('alt');
 
-    bootsyInsertImage({src: src, alt: alt}, wysihtml5Editor);
-  });
+      bootsyInsertImage({src: src, alt: alt}, wysihtml5Editor);
+    });
 
-  $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
-  $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
-    e.stopPropagation();
-  });
+    $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
+    $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
+      e.stopPropagation();
+    });
+  }
 });
