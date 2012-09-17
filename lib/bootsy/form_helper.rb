@@ -2,11 +2,18 @@ module Bootsy
   module FormHelper
     def bootsy_area object, method, options = {}
 
-      resource = options[:resource]
-      options.delete :resource
+      resource = options.delete :resource
 
       unless resource.kind_of?(MediaContainer) || (resource.nil? && object.kind_of?(MediaContainer))
         raise ArgumentError, 'Bootsy area needs a model or a resource as its option'
+      end
+
+      bootsy_options = options.delete :bootsy_options
+
+      unless bootsy_options.nil?
+        if bootsy_options[:uploader] == false
+          options[:'data-enable-uploader'] = 'false'
+        end
       end
 
       object_name = object.class.name.underscore

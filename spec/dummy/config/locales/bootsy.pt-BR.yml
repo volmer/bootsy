@@ -17,3 +17,7 @@ pt-BR:
       new: Nova imagem
       confirm:
         destroy: Tem certeza que deseja apagar esta imagem?
+      position:
+        left: Esquerda
+        right: Direita
+        inline: Mesma linha

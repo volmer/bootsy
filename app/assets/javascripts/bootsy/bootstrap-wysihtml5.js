@@ -85,6 +85,10 @@
         imageUploadCallback: undefined,
         events: {},
         parserRules: {
+            classes: {
+                "wysiwyg-float-left": 1,
+                "wysiwyg-float-right": 1
+            },
             tags: {
                 "b":  {},
                 "i":  {},
@@ -101,7 +105,11 @@
                         "width": "numbers",
                         "alt": "alt",
                         "src": "src",
-                        "height": "numbers"
+                        "height": "numbers",
+                        "align": "alt"
+                    },
+                    "add_class": {
+                        "align": "align_img"
                     }
                 },
                 "a":  {

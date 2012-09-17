@@ -5,11 +5,20 @@
       <ul class="dropdown-menu" role="menu">
         <li class="nav-header"><%= t 'bootsy.image.size' %></li>
         <% [:small, :medium, :large, :original].each do |size| %>
-          <li>
-            <%= link_to '#', :class => 'insert', tabindex: '-1', data: { :'image-size' => size.to_s} do %>
+          <li class="dropdown-submenu">
+            <%= link_to '#' do %>
               <i class="icon-picture"></i>
               <%= t "bootsy.image.#{size}" %>
             <% end %>
+            <ul class="dropdown-menu">
+              <% [:left, :right, :inline].each do |position| %>
+                <li>
+                  <%= link_to '#', :class => 'insert', tabindex: '-1', data: { :'image-size' => size.to_s, position: position.to_s} do %>
+                    <%= t "bootsy.image.position.#{position}" %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
         <li class="divider"></li>

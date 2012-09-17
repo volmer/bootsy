@@ -17,3 +17,7 @@ en:
       new: New image
       confirm:
         destroy: Are you sure you want do destroy this image?
+      position:
+        left: Left
+        right: Right
+        inline: Inline

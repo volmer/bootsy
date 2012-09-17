@@ -35,7 +35,17 @@ $(document).ready(function(){
       bootsyRefreshGallery(element);
     });
 
-    wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5({"image": false, "imageUpload": true, imageUploadCallback: bootsyOpenImageGallery, locale: "<%= I18n.default_locale %>"}).data("wysihtml5").editor;
+    var editorOptions = {locale: "<%= I18n.default_locale %>"};
+    
+    if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
+      editorOptions.image = true;
+    }else{
+      editorOptions.image = false;
+      editorOptions.imageUpload = true;
+      editorOptions.imageUploadCallback = bootsyOpenImageGallery;
+    }
+
+    window.wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
 
     element.on('hide', function() {
       wysihtml5Editor.currentView.element.focus();
@@ -51,12 +61,19 @@ $(document).ready(function(){
         imagePrefix = '/';
       }
       var img = $(this).parents('li.dropdown').find('img');
-      var src = img.attr('src').replace("/thumb_", imagePrefix);
-      var alt = img.attr('alt');
+      var obj = {
+        src: img.attr('src').replace("/thumb_", imagePrefix),
+        alt: img.attr('alt').replace("Thumb_", "")
+      };
 
-      bootsyInsertImage({src: src, alt: alt}, wysihtml5Editor);
+      if($(this).attr('data-position') != 'inline'){
+        obj.align = $(this).attr('data-position');
+      }
+
+      bootsyInsertImage(obj, wysihtml5Editor);
     });
 
+    // In order to properly work with Twitter Bootstrap 2.1
     $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
     $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
       e.stopPropagation();
