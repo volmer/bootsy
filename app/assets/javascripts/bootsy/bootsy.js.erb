@@ -1,82 +1,87 @@
-function bootsyProgressBar(element){
-  element.find('div.modal-body').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
-}
-
-function bootsyRefreshGallery(element){
-  element.find('a.refresh_btn').show().click();
-}
-
-function bootsyOpenImageGallery(editor){
-  $('#bootsy_image_gallery').modal('show');
-}
-
-function bootsyInsertImage(image, editor){
-  $('#bootsy_image_gallery').modal('hide');
-  editor.composer.commands.exec("insertImage", image);
-}
-
-$(document).ready(function(){
-  if($('textarea.bootsy_text_area').length > 0){
-    element = $('#bootsy_image_gallery');
-    
-    element.parents('form').after(element);
-
-    element.find('a.refresh_btn').live('click', function(e){
-      $(this).hide();
-      bootsyProgressBar(element);
-    });
-
-    element.find('a.destroy_btn').click(function(e){
-      bootsyProgressBar(element);
-    });
-
-    element.modal({show: false});
-    element.on('shown', function(){
-      bootsyRefreshGallery(element);
-    });
-
-    var editorOptions = {locale: "<%= I18n.default_locale %>"};
-    
-    if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
-      editorOptions.image = true;
-    }else{
-      editorOptions.image = false;
-      editorOptions.imageUpload = true;
-      editorOptions.imageUploadCallback = bootsyOpenImageGallery;
-    }
-
-    window.wysihtml5Editor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
-
-    element.on('hide', function() {
-      wysihtml5Editor.currentView.element.focus();
-    });
-
-    element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
-      e.stopPropagation();
-    });
-
-    element.find('ul.dropdown-menu a.insert').live('click', function(e){
-      var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
-      if($(this).attr('data-image-size') == 'original'){
-        imagePrefix = '/';
-      }
-      var img = $(this).parents('li.dropdown').find('img');
-      var obj = {
-        src: img.attr('src').replace("/thumb_", imagePrefix),
-        alt: img.attr('alt').replace("Thumb_", "")
-      };
-
-      if($(this).attr('data-position') != 'inline'){
-        obj.align = $(this).attr('data-position');
-      }
-
-      bootsyInsertImage(obj, wysihtml5Editor);
-    });
-
-    // In order to properly work with Twitter Bootstrap 2.1
-    $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
-    $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
-      e.stopPropagation();
-    });
+(function(){
+  
+  var bootsyProgressBar = function(element){
+    element.find('div.modal-body').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
   }
-});
+
+  var bootsyRefreshGallery = function(element){
+    element.find('a.refresh_btn').show().click();
+  }
+
+  var bootsyOpenImageGallery = function(editor){
+    $('#bootsy_image_gallery').modal('show');
+  }
+
+  var bootsyInsertImage = function(image, editor){
+    $('#bootsy_image_gallery').modal('hide');
+    editor.composer.commands.exec("insertImage", image);
+  }
+
+  $(document).ready(function(){
+    if($('textarea.bootsy_text_area').length > 0){
+      element = $('#bootsy_image_gallery');
+      
+      element.parents('form').after(element);
+
+      element.find('a.refresh_btn').live('click', function(e){
+        $(this).hide();
+        bootsyProgressBar(element);
+      });
+
+      element.find('a.destroy_btn').click(function(e){
+        bootsyProgressBar(element);
+      });
+
+      element.modal({show: false});
+      element.on('shown', function(){
+        bootsyRefreshGallery(element);
+      });
+
+      var editorOptions = {locale: "<%= I18n.default_locale %>"};
+      
+      if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
+        editorOptions.image = true;
+      }else{
+        editorOptions.image = false;
+        editorOptions.imageUpload = true;
+        editorOptions.imageUploadCallback = bootsyOpenImageGallery;
+      }
+
+      var bootsyEditor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
+
+      element.on('hide', function() {
+        bootsyEditor.currentView.element.focus();
+      });
+
+      element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+        e.stopPropagation();
+      });
+
+      element.find('ul.dropdown-menu a.insert').live('click', function(e){
+        var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
+        if($(this).attr('data-image-size') == 'original'){
+          imagePrefix = '/';
+        }
+        var img = $(this).parents('li.dropdown').find('img');
+        var obj = {
+          src: img.attr('src').replace("/thumb_", imagePrefix),
+          alt: img.attr('alt').replace("Thumb_", "")
+        };
+
+        if($(this).attr('data-position') != 'inline'){
+          obj.align = $(this).attr('data-position');
+        }
+
+        bootsyInsertImage(obj, bootsyEditor);
+      });
+
+      // In order to properly work with Twitter Bootstrap 2.1
+      $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
+      $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
+        e.stopPropagation();
+      });
+
+      window.bootsyEditor = bootsyEditor;
+    }
+  });
+}).call(this);
