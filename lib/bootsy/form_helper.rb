@@ -13,7 +13,7 @@ module Bootsy
       
       output = self.render 'bootsy/images/modal', {resource: resource || object}
       options[:class] = (options[:class].nil? ? [] : (options[:class].kind_of?(Array) ? options[:class] : [options[:class]])) + [:bootsy_text_area]
-      output += self.text_area object_name, method, options #.merge({:class => 'bootsy_text_area'}){|key, oldval, newval| "#{oldval} #{newval}"}
+      output += self.text_area object_name, method, options
       if resource.nil? || (resource == object)
         output += self.hidden_field object_name, :bootsy_image_gallery_id, :class => 'bootsy_image_gallery_id'
       end
