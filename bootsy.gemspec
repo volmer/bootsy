@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Volmer Soares"]
   s.email       = ["volmerius@gmail.com"]
   s.homepage    = "http://github.com/volmer/bootsy"
-  s.summary     = "A beautiful wysiwig editor with image uploads for Rails."
-  s.description = "Bootsy is a WYSIWIG editor for Rails applications based on WYSIHTML5 and Twitter Bootstrap. It integrates images uploads using CarrierWave, as an image gallery scoped in models of your application."
+  s.summary     = "A beautiful WYSIWYG editor with image uploads for Rails."
+  s.description = "A beautiful WYSIWYG editor with image uploads for Rails."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 

@@ -15,7 +15,7 @@ Bootsy
 
 ## Installation
 
-1. Add Bootsy to your GemFile:
+1. Add Bootsy to your Gemfile:
 
   ```ruby
   gem 'bootsy'
@@ -74,6 +74,11 @@ Bootsy defines some i18n keys. The english translation is automatically added to
 ## Mongoid support
 
 Par default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use [bootsy-mongoid](https://github.com/volmer/bootsy-mongoid) instead.
+
+
+## Bootsy with SimpleForm
+
+Do you want to use Bootsy alongside with [SimpleForm](https://github.com/plataformatec/simple_form)? Take a look at [Bootsy-SimpleForm](https://github.com/volmer/bootsy-simple_form).
 
 
 ## License
