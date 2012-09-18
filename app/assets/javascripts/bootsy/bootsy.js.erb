@@ -76,9 +76,7 @@
           alt: img.attr('alt').replace("Thumb_", "")
         };
 
-        if($(this).attr('data-position') != 'inline'){
-          obj.align = $(this).attr('data-position');
-        }
+        obj.align = $(this).attr('data-position');
 
         bootsyInsertImage(obj, editor);
       });

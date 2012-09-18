@@ -144,8 +144,7 @@
                         "width": "numbers",
                         "alt": "alt",
                         "src": "src",
-                        "height": "numbers",
-                        "align": "alt"
+                        "height": "numbers"
                     },
                     "add_class": {
                         "align": "align_img"
@@ -164,7 +163,7 @@
                 "div": 1
             }
         },
-        stylesheets: ["./lib/css/wysiwyg-color.css"], // (path_to_project/lib/css/wysiwyg-color.css)
+        stylesheets: ["/assets/bootsy/bootsy.css"], // (path_to_project/lib/css/wysiwyg-color.css)
         locale: "en"
     };
 
