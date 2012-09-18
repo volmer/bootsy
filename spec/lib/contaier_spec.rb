@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Bootsy::MediaContainer do
+describe Bootsy::Container do
 
 
   before :each do

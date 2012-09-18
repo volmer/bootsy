@@ -1,7 +1,7 @@
 require 'active_support/concern'
 
 module Bootsy
-  module MediaContainer 
+  module Container 
 
     extend ActiveSupport::Concern
     

@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include Bootsy::MediaContainer
+  include Bootsy::Container
   attr_accessible :content, :title
 
   has_many :comments, dependent: :destroy

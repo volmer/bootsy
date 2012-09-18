@@ -55,11 +55,11 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in
   <% end %>
   ```
 
-Bootsy will group the uploaded image files as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `MediaContainer` module:
+Bootsy will group the uploaded image files as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
 
   ```ruby
   class Post < ActiveRecord::Base
-    include Bootsy::MediaContainer
+    include Bootsy::Container
     
     attr_accessible :content, :title
   end

@@ -4,7 +4,7 @@ module Bootsy
 
       container = options.delete :container
 
-      unless container.kind_of?(MediaContainer) || (container.nil? && object.kind_of?(MediaContainer))
+      unless container.kind_of?(Container) || (container.nil? && object.kind_of?(Container))
         raise ArgumentError, 'Bootsy area needs a model or a container as its option'
       end
 

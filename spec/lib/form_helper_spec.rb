@@ -16,7 +16,7 @@ describe Bootsy::FormHelper do
       dummy_object.stub(:render) {|template, variables| variables[:container].to_s }
       dummy_object.stub(:text_area).and_return('<textarea>')
       dummy_object.stub(:hidden_field).and_return('<hidden>')
-      @container = double('container').extend(Bootsy::MediaContainer)
+      @container = double('container').extend(Bootsy::Container)
       @container.stub(:content)
     end
 
@@ -48,7 +48,7 @@ describe Bootsy::FormHelper do
       dummy_object.bootsy_area(@container, :content, {:class => ['my_html_class'], op1: '1', op2: '2'}).should include('<textarea>')
     end
 
-    context 'when a non-media_container is passed' do
+    context 'when a non-container is passed' do
       it 'raises an error' do
         expect{
           dummy_object.bootsy_area(double('container'), :content)
@@ -59,7 +59,7 @@ describe Bootsy::FormHelper do
     context 'when a specific container is passed' do
 
       before :each do
-        @specific = double('specific').extend(Bootsy::MediaContainer)
+        @specific = double('specific').extend(Bootsy::Container)
       end
 
       it 'renders the gallery of the specific container' do
@@ -70,7 +70,7 @@ describe Bootsy::FormHelper do
         dummy_object.bootsy_area(@container, :content, {container: @specific}).should_not include('<hidden>')
       end
 
-      context 'when a non-media_container specific container is passed' do
+      context 'when a non-container specific container is passed' do
         it 'raises an error' do
           expect{
             dummy_object.bootsy_area(@container, :content, {container: double('other_specific')})
