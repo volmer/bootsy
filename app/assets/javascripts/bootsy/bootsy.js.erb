@@ -46,14 +46,25 @@
       });
 
       var editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
-      
-      if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
-        editorOptions.image = true;
-      }else{
+
+      if($('textarea.bootsy_text_area').attr('data-enable-image') == 'false'){
         editorOptions.image = false;
-        editorOptions.imageUpload = true;
-        editorOptions.imageUploadCallback = bootsyOpenImageGallery;
+      }else{
+        if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
+          editorOptions.image = true;
+        }else{
+          editorOptions.image = false;
+          editorOptions.imageUpload = true;
+          editorOptions.imageUploadCallback = bootsyOpenImageGallery;
+        }
       }
+
+      if($('textarea.bootsy_text_area').attr('data-enable-font-styles') == 'false') editorOptions['font-styles'] = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-emphasis') == 'false') editorOptions.emphasis = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-lists') == 'false') editorOptions.lists = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-html') == 'true') editorOptions.html = true;
+      if($('textarea.bootsy_text_area').attr('data-enable-link') == 'false') editorOptions.link = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-color') == 'false') editorOptions.color = false;
 
       var editor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
 
