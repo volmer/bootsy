@@ -3,5 +3,9 @@ Bootsy::Engine.routes.draw do
     resources :images, only: [:index, :create, :update, :destroy]
   end
 
-  resources :images, only: [:index, :create, :update, :destroy]
+  file_routes = [:index, :create, :update]
+
+  file_routes << :destroy if Bootsy.allow_destroy
+
+  resources :images, only: file_routes
 end
