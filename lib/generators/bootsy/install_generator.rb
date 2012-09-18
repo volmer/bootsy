@@ -31,6 +31,10 @@ module Bootsy
 
       end
 
+      def copy_config
+        template '../templates/bootsy.rb', 'config/initializers/bootsy.rb'
+      end
+
     end
   end
 end
