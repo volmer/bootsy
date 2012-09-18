@@ -18,4 +18,9 @@ describe Bootsy::Image do
     image.remove_image_file!
     image.should_not be_valid
   end
+
+  it 'touches its gallery when saved' do
+    image.image_gallery.should_receive :touch
+    image.save!
+  end
 end

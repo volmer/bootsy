@@ -1,6 +1,6 @@
 module Bootsy
   class Image < ActiveRecord::Base
-    belongs_to :image_gallery
+    belongs_to :image_gallery, touch: true
 
     mount_uploader :image_file, ImageUploader
 
