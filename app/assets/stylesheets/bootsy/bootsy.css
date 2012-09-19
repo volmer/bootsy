@@ -71,3 +71,7 @@
   float: right;
   margin: 0 0 8px 8px;
 }
+
+form.bootsy .field_with_errors { 
+  display: inline-block; 
+}

@@ -41,10 +41,11 @@ var Bootsy = (function(){
         Bootsy.progressBar(element);
       });
 
-      element.find('form').submit(function(e){
-        Bootsy.progressBar(element);
-        return true;
-      });
+      // element.find('#new_image .btn').live('click', function(e){
+      //   console.log('sending...')
+      //   Bootsy.progressBar(element);
+      //   $(this).parent('form').submit();
+      // });
 
       element.modal({show: false});
       element.on('shown', function(){

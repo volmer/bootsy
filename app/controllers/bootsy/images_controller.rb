@@ -20,7 +20,8 @@ module Bootsy
     def create
       @gallery = find_gallery
       @gallery.save! unless @gallery.persisted?
-      @image = @gallery.images.new params[:image]
+      @image = Image.new params[:image]
+      @image.image_gallery_id = params[:image_gallery_id]
       @images = @gallery.images
   
       respond_to do |format|
@@ -28,7 +29,6 @@ module Bootsy
           format.js
           format.json { render json: @image, status: :created, location: @image }
         else
-          pp @image.errors
           format.js
           format.json { render json: @image.errors, status: :unprocessable_entity }
         end
