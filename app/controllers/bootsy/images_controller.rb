@@ -21,7 +21,7 @@ module Bootsy
       @gallery = find_gallery
       @gallery.save! unless @gallery.persisted?
       @image = Image.new params[:image]
-      @image.image_gallery_id = params[:image_gallery_id]
+      @image.image_gallery_id = @gallery.id
       @images = @gallery.images
   
       respond_to do |format|
