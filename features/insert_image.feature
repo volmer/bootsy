@@ -10,11 +10,20 @@ Feature: Insert an image
 
   Scenario Outline: insert an image with a specific size
     When click on the image "test.jpg"
-    And I click on "<Size>"
-    Then I should see the image "test.jpg" in its <Size> size inserted on the text area
+    And I open the "<Size>" menu
+    And I click on "<Position>"
+    Then I should see the image "test.jpg" in its <Size> size inserted on the text area positioned as <Position>
     Examples:
-      | Size     |
-      | Small    |
-      | Medium   |
-      | Large    |
-      | Original |
+      | Size     | Position |
+      | Small    | Left     |
+      | Small    | Right    |
+      | Small    | Inline   |
+      | Medium   | Left     |
+      | Medium   | Right    |
+      | Medium   | Inline   |
+      | Large    | Left     |
+      | Large    | Right    |
+      | Large    | Inline   |
+      | Original | Left     |
+      | Original | Right    |
+      | Original | Inline   |

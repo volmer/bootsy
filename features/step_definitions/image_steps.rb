@@ -28,6 +28,10 @@ When /^I click on "(.*?)"$/ do |link_name|
   click_link link_name
 end
 
+When /^I open the "(.*?)" menu$/ do |term|
+  page.execute_script("$('a:contains(#{term}):visible').parent().find('.dropdown-menu').show()")
+end
+
 When 'I accept the alert prompt' do
   page.driver.browser.switch_to.alert.accept
 end
@@ -36,14 +40,15 @@ When 'I dismiss the alert prompt' do
   page.driver.browser.switch_to.alert.dismiss
 end
 
-Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text area$/ do |image_file, size|
+Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text area positioned as (.*?)$/ do |image_file, size, position|
   size.downcase!
   img_src = "/#{size}_#{image_file}"
   img_src = "/#{image_file}" if size == 'original'
 
-  content =  page.evaluate_script('wysihtml5Editor.getValue()')
+  content =  page.evaluate_script('Bootsy.editor.getValue()')
   #wait_until { !find('textarea.bootsy_text_area').value.blank? }
   #content = find('textarea.bootsy_text_area').value
 
   content.should include(img_src)
+  content.should include("align=\"#{position.downcase}\"")
 end
