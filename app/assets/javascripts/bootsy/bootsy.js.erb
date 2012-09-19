@@ -41,6 +41,11 @@ var Bootsy = (function(){
         Bootsy.progressBar(element);
       });
 
+      element.find('form').submit(function(e){
+        Bootsy.progressBar(element);
+        return true;
+      });
+
       element.modal({show: false});
       element.on('shown', function(){
         Bootsy.refreshGallery(element);
