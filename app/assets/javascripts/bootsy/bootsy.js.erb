@@ -1,8 +1,8 @@
 <%# encoding: UTF-8 %>
 
-var Bootsy = (function(){
+window.Bootsy = (function(){
 
-  var Bootsy = {unsavedChanges: false};
+  var Bootsy = {unsavedChanges: false, editor: false, editorOptions: {}};
 
   
   Bootsy.progressBar = function(element){
@@ -53,28 +53,28 @@ var Bootsy = (function(){
         Bootsy.refreshGallery(element);
       });
 
-      var editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
+      Bootsy.editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
 
       if($('textarea.bootsy_text_area').attr('data-enable-image') == 'false'){
-        editorOptions.image = false;
+        Bootsy.editorOptions.image = false;
       }else{
         if($('textarea.bootsy_text_area').attr('data-enable-uploader') == 'false'){
-          editorOptions.image = true;
+          Bootsy.editorOptions.image = true;
         }else{
-          editorOptions.image = false;
-          editorOptions.imageUpload = true;
-          editorOptions.imageUploadCallback = Bootsy.openImageGallery;
+          Bootsy.editorOptions.image = false;
+          Bootsy.editorOptions.imageUpload = true;
+          Bootsy.editorOptions.imageUploadCallback = Bootsy.openImageGallery;
         }
       }
 
-      if($('textarea.bootsy_text_area').attr('data-enable-font-styles') == 'false') editorOptions['font-styles'] = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-emphasis') == 'false') editorOptions.emphasis = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-lists') == 'false') editorOptions.lists = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-html') == 'true') editorOptions.html = true;
-      if($('textarea.bootsy_text_area').attr('data-enable-link') == 'false') editorOptions.link = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-color') == 'false') editorOptions.color = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-font-styles') == 'false') Bootsy.editorOptions['font-styles'] = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-emphasis') == 'false') Bootsy.editorOptions.emphasis = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-lists') == 'false') Bootsy.editorOptions.lists = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-html') == 'true') Bootsy.editorOptions.html = true;
+      if($('textarea.bootsy_text_area').attr('data-enable-link') == 'false') Bootsy.editorOptions.link = false;
+      if($('textarea.bootsy_text_area').attr('data-enable-color') == 'false') Bootsy.editorOptions.color = false;
 
-      Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(editorOptions).data("wysihtml5").editor;
+      Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
 
       element.on('hide', function() {
         Bootsy.editor.currentView.element.focus();
