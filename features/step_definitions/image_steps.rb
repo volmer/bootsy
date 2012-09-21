@@ -20,24 +20,12 @@ Given /^I upload the image "(.*?)"$/ do |image_file|
   step "I should see the thumbnail \"#{image_file}\" on the image gallery"
 end
 
-When /^click on the image "(.*?)"$/ do |image_name|
+When /^I click on the image "(.*?)"$/ do |image_name|
   find('div#bootsy_image_gallery a.thumbnail img', src: "/thumb_#{image_name}").click
-end
-
-When /^I click on "(.*?)"$/ do |link_name|
-  click_link link_name
 end
 
 When /^I open the "(.*?)" menu$/ do |term|
   page.execute_script("$('a:contains(#{term}):visible').parent().find('.dropdown-menu').show()")
-end
-
-When 'I accept the alert prompt' do
-  page.driver.browser.switch_to.alert.accept
-end
-
-When 'I dismiss the alert prompt' do
-  page.driver.browser.switch_to.alert.dismiss
 end
 
 Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text area positioned as (.*?)$/ do |image_file, size, position|

@@ -9,7 +9,7 @@ Feature: Insert an image
     And I upload the image "test.jpg"
 
   Scenario Outline: insert an image with a specific size
-    When click on the image "test.jpg"
+    When I click on the image "test.jpg"
     And I open the "<Size>" menu
     And I click on "<Position>"
     Then I should see the image "test.jpg" in its <Size> size inserted on the text area positioned as <Position>

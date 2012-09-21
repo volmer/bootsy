@@ -3,13 +3,13 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
  
-    when /the home\s?page/
+    when 'the home'
       '/'
-    when 'its edit page'
+    when 'its edit'
       edit_post_path(Post.last)
     else
       begin
-        page_name =~ /the (.*) page/
+        page_name =~ /the (.*)/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
       rescue Object => e
@@ -21,6 +21,10 @@ module NavigationHelpers
 
   def path_to_file filename
     Rails.root.to_s + "/public/" + filename
+  end
+
+  def current_path
+    URI.parse(current_url).path
   end
 end
 

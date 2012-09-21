@@ -9,13 +9,13 @@ Feature: Destroy an image
     And I upload the image "test.jpg"
 
   Scenario: destroy an image
-    When click on the image "test.jpg"
+    When I click on the image "test.jpg"
     And I click on "Destroy"
     And I accept the alert prompt
     Then I should not see the thumbnail "test.jpg" on the image gallery
 
   Scenario: cancel the destruction
-    When click on the image "test.jpg"
+    When I click on the image "test.jpg"
     And I click on "Destroy"
     And I dismiss the alert prompt
     Then I should see the thumbnail "test.jpg" on the image gallery

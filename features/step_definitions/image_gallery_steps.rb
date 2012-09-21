@@ -1,15 +1,7 @@
-Given /^I am on (.*?)$/ do |page|
-  visit path_to(page)
-end
-
 Given 'there is a post with images' do
   post = Post.new title: 'Test', content: 'test'
   post.bootsy_image_gallery_id = FactoryGirl.create(:image_gallery_with_images).id
   post.save!
-end
-
-When /^I press "(.*?)"$/ do |button|
-  click_on button
 end
 
 Then 'I should see the image gallery' do
