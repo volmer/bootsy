@@ -13,6 +13,7 @@ describe Bootsy::FormHelper do
 
   describe '#bootsy_area' do
     before :each do
+      dummy_object.stub(:raw) {|str| str }
       dummy_object.stub(:render) {|template, variables| variables[:container].to_s }
       dummy_object.stub(:text_area).and_return('<textarea>')
       dummy_object.stub(:hidden_field).and_return('<hidden>')
@@ -53,6 +54,14 @@ describe Bootsy::FormHelper do
         dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
         dummy_object.bootsy_area(double('container'), :content)
       end
+
+      it 'does not render a hidden_field' do
+        dummy_object.bootsy_area(double('container'), :content).should_not include('<hidden>')
+      end
+
+      it 'does not render the gallery of the container' do
+        dummy_object.bootsy_area(double('container'), :content).should_not include(@container.to_s)
+      end
     end
 
     context 'when a specific container is passed' do
@@ -72,7 +81,11 @@ describe Bootsy::FormHelper do
       context 'when a non-container specific container is passed' do
         it "adds data-enable-uploader='false'" do
           dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
-          dummy_object.bootsy_area(double('container'), :content)
+          dummy_object.bootsy_area(double('container'), :content, {container: double('other_specific')})
+        end
+
+        it 'does not render the gallery of the container' do
+          dummy_object.bootsy_area(double('container'), :content, {container: double('other_specific')}).should_not include(@container.to_s)
         end
       end
     end

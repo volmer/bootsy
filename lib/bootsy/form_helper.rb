@@ -2,10 +2,12 @@ module Bootsy
   module FormHelper
     def bootsy_area object, method, options = {}
 
-      container = options.delete :container
+      foreign_container = options.delete :container
+      container_exists = true
 
-      unless container.kind_of?(Container) || (container.nil? && object.kind_of?(Container))
+      unless foreign_container.kind_of?(Container) || (foreign_container.nil? && object.kind_of?(Container))
         options[:editor_options] = {uploader: false}
+        container_exists = false
       end
 
       editor_options = options.delete :editor_options
@@ -33,13 +35,18 @@ module Bootsy
       end
 
       object_name = object.class.name.underscore
+
+      output = raw ''
       
-      output = self.render 'bootsy/images/modal', {container: container || object}
+      output = self.render 'bootsy/images/modal', {container: foreign_container || object} if container_exists
+
       options[:class] = (options[:class].nil? ? [] : (options[:class].kind_of?(Array) ? options[:class] : [options[:class]])) + [:bootsy_text_area]
       output += self.text_area object_name, method, options
 
-      if container.nil? || (container == object)
-        output += self.hidden_field object_name, :bootsy_image_gallery_id, :class => 'bootsy_image_gallery_id'
+      if container_exists
+        if foreign_container.nil? || (foreign_container == object)
+          output += self.hidden_field object_name, :bootsy_image_gallery_id, :class => 'bootsy_image_gallery_id'
+        end
       end
       
       output
