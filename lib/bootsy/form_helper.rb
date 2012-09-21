@@ -5,7 +5,7 @@ module Bootsy
       container = options.delete :container
 
       unless container.kind_of?(Container) || (container.nil? && object.kind_of?(Container))
-        raise ArgumentError, 'Bootsy area needs a model or a container as its option'
+        options[:editor_options] = {uploader: false}
       end
 
       editor_options = options.delete :editor_options

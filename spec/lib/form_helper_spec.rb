@@ -49,10 +49,9 @@ describe Bootsy::FormHelper do
     end
 
     context 'when a non-container is passed' do
-      it 'raises an error' do
-        expect{
-          dummy_object.bootsy_area(double('container'), :content)
-        }.to raise_error(ArgumentError)
+      it "adds data-enable-uploader='false'" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+        dummy_object.bootsy_area(double('container'), :content)
       end
     end
 
@@ -71,10 +70,9 @@ describe Bootsy::FormHelper do
       end
 
       context 'when a non-container specific container is passed' do
-        it 'raises an error' do
-          expect{
-            dummy_object.bootsy_area(@container, :content, {container: double('other_specific')})
-          }.to raise_error(ArgumentError)
+        it "adds data-enable-uploader='false'" do
+          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+          dummy_object.bootsy_area(double('container'), :content)
         end
       end
     end
