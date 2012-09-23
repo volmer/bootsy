@@ -91,9 +91,19 @@ describe Bootsy::FormHelper do
     end
 
     context 'when editor_options is passed' do
-      it "adds data-enable-uploader='false' for uploader: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
-        dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false})
+      describe 'uploader: false' do
+        it "adds data-enable-uploader='false'" do
+          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false})
+        end
+
+        it 'does not render a hidden_field' do
+          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false}).should_not include('<hidden>')
+        end
+
+        it 'does not render the gallery of the container' do
+          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false}).should_not include(@container.to_s)
+        end
       end
 
       it "adds data-alert-unsaved='false' for alert_unsaved: false" do
