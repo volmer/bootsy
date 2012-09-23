@@ -7,6 +7,8 @@ module NavigationHelpers
       '/'
     when 'its edit'
       edit_post_path(Post.last)
+    when 'its comment'
+      post_path(Post.last)
     else
       begin
         page_name =~ /the (.*)/
