@@ -2,8 +2,27 @@
 
 window.Bootsy = (function(){
 
-  var Bootsy = {unsavedChanges: false, editor: false, editorOptions: {}};
+  var Bootsy = {unsavedChanges: false, editor: false, editorOptions: {}, eventCallbacks: {'loaded': []}, triggeredEvents: []};
 
+  Bootsy.on = function(eventName, callback){
+    Bootsy.eventCallbacks[eventName].push(callback);
+  };
+
+  Bootsy.trigger = function(eventName){
+    var callbacks = Bootsy.eventCallbacks[eventName];
+    for(i in callbacks){
+      callbacks[i]();
+    }
+    Bootsy.triggeredEvents.push(eventName);
+  };
+
+  Bootsy.after = function(eventName, callback){
+    if(Bootsy.triggeredEvents.indexOf(eventName) != -1){
+      callback();
+    }else{
+      Bootsy.on(eventName, callback);
+    }
+  };
   
   Bootsy.progressBar = function(element){
     element.find('div.modal-body').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
@@ -118,6 +137,8 @@ window.Bootsy = (function(){
         Bootsy.unsavedChanges = false;
         return true;
       });
+
+      Bootsy.trigger('loaded');
     }
   };
 
