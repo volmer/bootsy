@@ -69,7 +69,7 @@ Bootsy will group the uploaded image files as galleries and associate them to on
 
 ## I18n
 
-Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy for your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales).
+Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy for your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). 
 
 
 ## Mongoid support
