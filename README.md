@@ -99,6 +99,11 @@ It is also possible to disable the image upload feature entirely. This way the u
 *Note*: this option is automatically defined if you use `bootsy_area` without a `Bootsy::Container` model.
 
 
+## Configuration
+
+You can set the image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, `/config/initializers/bootsy.rb`.
+
+
 ## I18n
 
 Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy for your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). 
