@@ -66,6 +66,38 @@ Bootsy will group the uploaded image files as galleries and associate them to on
   end
   ```
 
+## Editor options
+
+It's possible to perform serveral in how the editor is displayed and its behavior by passing a hash `editor_options` to your `bootsy_area`.
+
+
+### Buttons
+
+You can enable/disable the buttons available in the editor. For example, if you want to disable the link and color buttons:
+
+  ```erb
+  <%= f.bootsy_area :my_attribute, editor_options: {link: false, color: false} %>
+  ```
+Available options are: font_styles, emphasis, lists, html, link, image and color.
+
+
+### Alert for usaved changes
+
+By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable it by doing:
+
+  ```erb
+  <%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
+  ```
+
+### Uploader
+
+It is also possible to disable the image upload feature entirely. This way the user can add images to the text by providing an image url. Simple and easy:
+
+  ```erb
+  <%= f.bootsy_area :my_attribute, editor_options: {uploader: false} %>
+  ```
+*Note*: this option is automatically defined if you use `bootsy_area` without a `Bootsy::Container` model.
+
 
 ## I18n
 
