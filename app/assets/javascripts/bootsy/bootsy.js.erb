@@ -52,6 +52,8 @@ window.Bootsy = (function(){
 
       Bootsy.editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
 
+      Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
+
       if($('textarea.bootsy_text_area').attr('data-enable-image') == 'false'){
         Bootsy.editorOptions.image = false;
       }else{
