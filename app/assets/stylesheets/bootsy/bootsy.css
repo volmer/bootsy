@@ -126,3 +126,7 @@ blockquote:before,
 blockquote:after {
   content: "";
 }
+
+textarea.bootsy:required:invalid {
+  color: inherit;
+}
