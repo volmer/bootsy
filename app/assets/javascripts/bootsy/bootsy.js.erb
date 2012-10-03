@@ -50,7 +50,7 @@ window.Bootsy = (function(){
   Bootsy.ready = function(){
     if($('textarea.bootsy_text_area').length > 0){
 
-      Bootsy.editorOptions = {color: true, locale: "<%= I18n.default_locale %>"};
+      Bootsy.editorOptions = {color: true, locale: "<%= I18n.locale %>"};
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 

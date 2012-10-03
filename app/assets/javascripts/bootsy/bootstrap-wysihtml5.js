@@ -72,6 +72,11 @@
                   "<a class='btn' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "'><i class='icon-picture'></i></a>" +
                 "</li>",
 
+            "imageUpload": 
+                "<li>" +
+                    "<a class='btn' data-wysihtml5-command='insertUploadedImage' title='" + locale.image.insert + "'><i class='icon-picture'></i></a>" +
+                "</li>",
+
             "html":
                 "<li>" +
                   "<div class='btn-group'>" +
@@ -254,8 +259,15 @@
 
         initInsertUploadedImage: function(toolbar, callback) {
             toolbar.find('a[data-wysihtml5-command=insertUploadedImage]').click(function() {
-                callback(this.editor);
-                return false;
+                var activeButton = $(this).hasClass("wysihtml5-command-active");
+
+                if (!activeButton) {
+                    callback(this.editor);
+                    return false;
+                }
+                else {
+                    return true;
+                }
             });
         },
 
@@ -325,16 +337,16 @@
         shallowExtend: function (options) {
             var settings = $.extend({}, $.fn.wysihtml5.defaultOptions, options || {});
             var that = this;
-            methods.bypassDefaults.apply(that, [settings]);
+            return methods.bypassDefaults.apply(that, [settings]);
         },
         deepExtend: function(options) {
             var settings = $.extend(true, {}, $.fn.wysihtml5.defaultOptions, options || {});
             var that = this;
-            methods.bypassDefaults.apply(that, [settings]);
+            return methods.bypassDefaults.apply(that, [settings]);
         },
         init: function(options) {
             var that = this;
-            methods.shallowExtend.apply(that, [options]);
+            return methods.shallowExtend.apply(that, [options]);
         }
     };
 
@@ -363,25 +375,25 @@
         events: {},
         parserRules: {
             classes: {
-              // (path_to_project/lib/css/wysiwyg-color.css)
-              "wysiwyg-color-silver" : 1,
-              "wysiwyg-color-gray" : 1,
-              "wysiwyg-color-white" : 1,
-              "wysiwyg-color-maroon" : 1,
-              "wysiwyg-color-red" : 1,
-              "wysiwyg-color-purple" : 1,
-              "wysiwyg-color-fuchsia" : 1,
-              "wysiwyg-color-green" : 1,
-              "wysiwyg-color-lime" : 1,
-              "wysiwyg-color-olive" : 1,
-              "wysiwyg-color-yellow" : 1,
-              "wysiwyg-color-navy" : 1,
-              "wysiwyg-color-blue" : 1,
-              "wysiwyg-color-teal" : 1,
-              "wysiwyg-color-aqua" : 1,
-              "wysiwyg-color-orange" : 1,
-              "wysiwyg-float-left": 1,
-              "wysiwyg-float-right": 1
+                // (path_to_project/lib/css/wysiwyg-color.css)
+                "wysiwyg-color-silver" : 1,
+                "wysiwyg-color-gray" : 1,
+                "wysiwyg-color-white" : 1,
+                "wysiwyg-color-maroon" : 1,
+                "wysiwyg-color-red" : 1,
+                "wysiwyg-color-purple" : 1,
+                "wysiwyg-color-fuchsia" : 1,
+                "wysiwyg-color-green" : 1,
+                "wysiwyg-color-lime" : 1,
+                "wysiwyg-color-olive" : 1,
+                "wysiwyg-color-yellow" : 1,
+                "wysiwyg-color-navy" : 1,
+                "wysiwyg-color-blue" : 1,
+                "wysiwyg-color-teal" : 1,
+                "wysiwyg-color-aqua" : 1,
+                "wysiwyg-color-orange" : 1,
+                "wysiwyg-float-left": 1,
+                "wysiwyg-float-right": 1
             },
             tags: {
                 "b":  {},
@@ -475,3 +487,4 @@
     };
 
 }(window.jQuery, window.wysihtml5);
+
