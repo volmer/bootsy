@@ -111,7 +111,7 @@ Bootsy defines some i18n keys. The english translation is automatically added to
 
 ## Mongoid support
 
-Par default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use [bootsy-mongoid](https://github.com/volmer/bootsy-mongoid) instead.
+Par default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use [Bootsy-Mongoid](https://github.com/volmer/bootsy-mongoid) instead.
 
 
 ## Bootsy with SimpleForm
