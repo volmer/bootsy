@@ -407,6 +407,8 @@
                 "h3": {},
                 "blockquote": {},
                 "small": {},
+                "p": {},
+                "cite": {"title": "alt"},
                 "u": 1,
                 "img": {
                     "check_attributes": {
