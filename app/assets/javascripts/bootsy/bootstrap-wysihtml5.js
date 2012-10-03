@@ -408,7 +408,11 @@
                 "blockquote": {},
                 "small": {},
                 "p": {},
-                "cite": {"title": "alt"},
+                "cite": {
+                    "check_attributes": {
+                        "title": "alt"
+                    }
+                },
                 "u": 1,
                 "img": {
                     "check_attributes": {
