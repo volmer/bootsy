@@ -29,13 +29,14 @@ describe Bootsy::Container do
       @post.bootsy_image_gallery_id.should be_nil
     end
 
-    it 'sets an image gallery' do
-      @g = FactoryGirl.create :image_gallery
-      @post_with_gallery.bootsy_image_gallery_id = @g.id
-      @post_with_gallery.save!
+    it 'sets an image gallery if container does not have one yet' do
+      post = Post.new title: 'Test', content: 'Test'
+      g = FactoryGirl.create :image_gallery
+      post.bootsy_image_gallery_id = g.id
+      post.save!
 
-      @post_with_gallery.bootsy_image_gallery.should eq(@g)
-      @post_with_gallery.bootsy_image_gallery_id.should eq(@g.id)
+      post.bootsy_image_gallery.should eq(g)
+      post.bootsy_image_gallery_id.should eq(g.id)
     end
   end
 end
