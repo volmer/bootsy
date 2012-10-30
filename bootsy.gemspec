@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "mini_magick", "~> 3.4"
-  s.add_dependency "carrierwave", "~> 0.6"
-  s.add_dependency "remotipart", "~> 1.0"
+  s.add_dependency "carrierwave", "~> 0.7.0"
+  s.add_dependency "remotipart", "~> 1.0.2"
 
   s.add_development_dependency "rails", "~> 3.2"
   s.add_development_dependency "sqlite3", "~> 1.3"
