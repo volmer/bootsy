@@ -121,12 +121,6 @@ window.Bootsy = (function(){
 
       Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
 
-      // In order to properly work with Twitter Bootstrap 2.1
-      $('body').off('click.dropdown touchstart.dropdown.data-api', '.dropdown');
-      $('body').on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function(e){ 
-        e.stopPropagation();
-      });
-
       if($('textarea.bootsy_text_area').attr('data-alert-unsaved') != 'false'){
         window.onbeforeunload = Bootsy.alertUnsavedChanges;
       }
