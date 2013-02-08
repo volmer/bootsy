@@ -67,7 +67,7 @@ window.Bootsy = (function(){
         
           element.parents('form').after(element);
 
-          element.find('a.refresh_btn').live('click', function(e){
+          element.on('click', 'a.refresh_btn', function(e){
             $(this).hide();
             Bootsy.progressBar(element);
           });
@@ -76,7 +76,7 @@ window.Bootsy = (function(){
             Bootsy.progressBar(element);
           });
 
-          // element.find('#new_image').live('ajax:before', function(e){
+          // element.on('ajax:before', '#new_image', function(e){
           //   console.log('sending...')
           //   Bootsy.progressBar(element);
           // });
@@ -94,7 +94,7 @@ window.Bootsy = (function(){
             e.stopPropagation();
           });
 
-          element.find('ul.dropdown-menu a.insert').live('click', function(e){
+          element.on('click', 'ul.dropdown-menu a.insert', function(e){
             var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
             if($(this).attr('data-image-size') == 'original'){
               imagePrefix = '/';
