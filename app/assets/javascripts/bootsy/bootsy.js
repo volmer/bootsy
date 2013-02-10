@@ -4,6 +4,12 @@ window.Bootsy = (function(){
 
   var Bootsy = {caretBookmark: false, unsavedChanges: false, editor: false, editorOptions: {}, eventCallbacks: {'loaded': []}, triggeredEvents: []};
 
+  Bootsy.translations = {
+    en: {
+      alert_unsaved: 'You have unsaved changes.'
+    }
+  };
+
   Bootsy.on = function(eventName, callback){
     Bootsy.eventCallbacks[eventName].push(callback);
   };
@@ -50,12 +56,14 @@ window.Bootsy = (function(){
 
   Bootsy.alertUnsavedChanges = function(){
     if(Bootsy.unsavedChanges){  
-      return "<%= I18n.t 'bootsy.js.alert_unsaved' %>"; 
+      return Bootsy.translations[Bootsy.locale].alert_unsaved; 
     }
   };
 
   Bootsy.ready = function(){
     if($('textarea.bootsy_text_area').length > 0){
+      Bootsy.locale = $('textarea.bootsy_text_area').attr('data-locale');
+
       var templates = {
         customCommand: function(locale, options) {
           var size = (options && options.size) ? ' btn-'+options.size : '';
@@ -65,7 +73,7 @@ window.Bootsy = (function(){
         },
       };
 
-      Bootsy.editorOptions = {color: true, locale: $('textarea.bootsy_text_area').attr('data-locale'), customTemplates: templates};
+      Bootsy.editorOptions = {color: true, locale: Bootsy.locale, customTemplates: templates};
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 
