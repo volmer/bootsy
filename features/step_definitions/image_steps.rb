@@ -8,10 +8,11 @@ When /^I attach the file "(.*?)" on "(.*?)"$/ do |file, field|
 end
 
 Then /^I should( not)? see the thumbnail "(.*?)" on the image gallery$/ do |negate, thumbnail|
-  wait_until { find("ul.thumbnails").visible? }
-  expectation = negate ? :should_not : :should
+  page.should have_selector 'ul.thumbnails', visible: true
 
-  page.send expectation, have_selector('div#bootsy_image_gallery a.thumbnail img', src: "/thumb_#{thumbnail}", visible: true)
+  expectation = negate ? :have_no_selector : :have_selector
+
+  page.should send(expectation, :xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
 end
 
 Given /^I upload the image "(.*?)"$/ do |image_file|
@@ -21,7 +22,11 @@ Given /^I upload the image "(.*?)"$/ do |image_file|
 end
 
 When /^I click on the image "(.*?)"$/ do |image_name|
-  find('div#bootsy_image_gallery a.thumbnail img', src: "/thumb_#{image_name}").click
+  find(:xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{image_name}')]").click
+end
+
+When /^I click on the "(.*?)" option of the submenu$/ do |position|
+  find('li.dropdown-submenu ul.dropdown-menu li a', visible: true, text: /#{position}/).click
 end
 
 When /^I open the "(.*?)" menu$/ do |term|
@@ -34,8 +39,6 @@ Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text are
   img_src = "/#{image_file}" if size == 'original'
 
   content =  page.evaluate_script('Bootsy.editor.getValue()')
-  #wait_until { !find('textarea.bootsy_text_area').value.blank? }
-  #content = find('textarea.bootsy_text_area').value
 
   content.should include(img_src)
   content.should include("align=\"#{position.downcase}\"")

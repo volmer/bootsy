@@ -11,7 +11,7 @@ Given 'I change the content of the text area' do
 end
 
 Then /^I should see (.*?) page$/ do |page|
-  wait_until { current_path == path_to(page) }
+  #wait_until { current_path == path_to(page) }
   current_path.should == path_to(page)
 end
 
