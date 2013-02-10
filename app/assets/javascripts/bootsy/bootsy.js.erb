@@ -2,7 +2,7 @@
 
 window.Bootsy = (function(){
 
-  var Bootsy = {unsavedChanges: false, editor: false, editorOptions: {}, eventCallbacks: {'loaded': []}, triggeredEvents: []};
+  var Bootsy = {caretBookmark: false, unsavedChanges: false, editor: false, editorOptions: {}, eventCallbacks: {'loaded': []}, triggeredEvents: []};
 
   Bootsy.on = function(eventName, callback){
     Bootsy.eventCallbacks[eventName].push(callback);
@@ -33,11 +33,18 @@ window.Bootsy = (function(){
   };
 
   Bootsy.openImageGallery = function(editor){
+    editor.currentView.element.focus(false);
+    Bootsy.caretBookmark = editor.composer.selection.getBookmark();
     $('#bootsy_image_gallery').modal('show');
   };
 
   Bootsy.insertImage = function(image, editor){
     $('#bootsy_image_gallery').modal('hide');
+    editor.currentView.element.focus();
+    if (Bootsy.caretBookmark) {
+      editor.composer.selection.setBookmark(Bootsy.caretBookmark);
+      Bootsy.caretBookmark = null;
+    }
     editor.composer.commands.exec("insertImage", image);
   }
 
@@ -49,8 +56,16 @@ window.Bootsy = (function(){
 
   Bootsy.ready = function(){
     if($('textarea.bootsy_text_area').length > 0){
+      var templates = {
+        customCommand: function(locale, options) {
+          var size = (options && options.size) ? ' btn-'+options.size : '';
+          return "<li>" +
+            "<a class='btn" + size + "' data-wysihtml5-command='customCommand' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
+          "</li>";
+        },
+      };
 
-      Bootsy.editorOptions = {color: true, locale: "<%= I18n.locale %>"};
+      Bootsy.editorOptions = {color: true, locale: "<%= I18n.locale %>", customTemplates: templates};
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 
@@ -60,8 +75,8 @@ window.Bootsy = (function(){
 
         if($('textarea.bootsy_text_area').attr('data-enable-uploader') != 'false'){
           Bootsy.editorOptions.image = false;
-          Bootsy.editorOptions.imageUpload = true;
-          Bootsy.editorOptions.imageUploadCallback = Bootsy.openImageGallery;
+          Bootsy.editorOptions.customCommand = true;
+          Bootsy.editorOptions.customCommandCallback = Bootsy.openImageGallery;
 
           element = $('#bootsy_image_gallery');
         
@@ -119,7 +134,39 @@ window.Bootsy = (function(){
       if($('textarea.bootsy_text_area').attr('data-enable-link') == 'false') Bootsy.editorOptions.link = false;
       if($('textarea.bootsy_text_area').attr('data-enable-color') == 'false') Bootsy.editorOptions.color = false;
 
+      /*$('textarea.bootsy_text_area').wysihtml5('deepExtend', {
+        "imageUpload": false,
+        imageUploadCallback: undefined,
+        parserRules: {
+          classes: {
+            "wysiwyg-float-left": 1,
+            "wysiwyg-float-right": 1
+          },
+
+          tags: {
+            "small": {},
+            "p": {},
+            "cite": {
+              "check_attributes": {
+                "title": "alt"
+              }
+            },
+            "img": {
+              "check_attributes": {
+                "src": "src"
+              },
+              "add_class": {
+                "align": "align_img"
+              }
+            },
+          }
+
+        }
+      });*/
+
       Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
+
+      
 
       if($('textarea.bootsy_text_area').attr('data-alert-unsaved') != 'false'){
         window.onbeforeunload = Bootsy.alertUnsavedChanges;
