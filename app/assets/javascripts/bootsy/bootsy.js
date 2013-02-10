@@ -71,7 +71,35 @@ window.Bootsy = (function(){
         },
       };
 
-      Bootsy.editorOptions = {color: true, locale: Bootsy.locale, customTemplates: templates};
+      Bootsy.editorOptions = {
+        parserRules: {
+          classes: {
+            "wysiwyg-float-left": 1,
+            "wysiwyg-float-right": 1
+          },
+
+          tags: {
+            "small": {},
+            "p": {},
+            "cite": {
+              "check_attributes": {
+                "title": "alt"
+              }
+            },
+            "img": {
+              "check_attributes": {
+                "src": "src"
+              },
+              "add_class": {
+                "align": "align_img"
+              }
+            },
+          }
+        },
+        color: true, 
+        locale: Bootsy.locale, 
+        customTemplates: templates
+      };
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 
@@ -96,11 +124,6 @@ window.Bootsy = (function(){
           element.find('a.destroy_btn').click(function(e){
             Bootsy.progressBar(element);
           });
-
-          // element.on('ajax:before', '#new_image', function(e){
-          //   console.log('sending...')
-          //   Bootsy.progressBar(element);
-          // });
 
           element.modal({show: false});
           element.on('shown', function(){
@@ -140,39 +163,7 @@ window.Bootsy = (function(){
       if($('textarea.bootsy_text_area').attr('data-link') == 'false') Bootsy.editorOptions.link = false;
       if($('textarea.bootsy_text_area').attr('data-color') == 'false') Bootsy.editorOptions.color = false;
 
-      /*$('textarea.bootsy_text_area').wysihtml5('deepExtend', {
-        "imageUpload": false,
-        imageUploadCallback: undefined,
-        parserRules: {
-          classes: {
-            "wysiwyg-float-left": 1,
-            "wysiwyg-float-right": 1
-          },
-
-          tags: {
-            "small": {},
-            "p": {},
-            "cite": {
-              "check_attributes": {
-                "title": "alt"
-              }
-            },
-            "img": {
-              "check_attributes": {
-                "src": "src"
-              },
-              "add_class": {
-                "align": "align_img"
-              }
-            },
-          }
-
-        }
-      });*/
-
       Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
-
-      
 
       if($('textarea.bootsy_text_area').attr('data-alert-unsaved') != 'false'){
         window.onbeforeunload = Bootsy.alertUnsavedChanges;
