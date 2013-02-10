@@ -51,13 +51,13 @@ describe Bootsy::FormHelper do
 
     it "sets the current app locale in data-locale" do
       I18n.locale = :pirate
-      dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-locale' => :pirate))
+      dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(locale: :pirate)))
       dummy_object.bootsy_area(@container, :content)
     end
 
     context 'when a non-container is passed' do
-      it "adds data-enable-uploader='false'" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+      it "adds data-uploader='false'" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
         dummy_object.bootsy_area(double('container'), :content)
       end
 
@@ -85,8 +85,8 @@ describe Bootsy::FormHelper do
       end
 
       context 'when a non-container specific container is passed' do
-        it "adds data-enable-uploader='false'" do
-          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+        it "adds data-uploader='false'" do
+          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
           dummy_object.bootsy_area(double('container'), :content, {container: double('other_specific')})
         end
 
@@ -98,8 +98,8 @@ describe Bootsy::FormHelper do
 
     context 'when editor_options is passed' do
       describe 'uploader: false' do
-        it "adds data-enable-uploader='false'" do
-          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
+        it "adds data-uploader='false'" do
+          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
           dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false})
         end
 
@@ -113,42 +113,42 @@ describe Bootsy::FormHelper do
       end
 
       it "adds data-alert-unsaved='false' for alert_unsaved: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-alert-unsaved' => 'false'))
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(alert_unsaved: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {alert_unsaved: false})
       end
 
-      it "adds data-enable-font-styles='false' for font_styles: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-font-styles' => 'false'))
+      it "adds data-font-styles='false' for font_styles: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(font_styles: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {font_styles: false})
       end
 
-      it "adds data-enable-emphasis='false' for emphasis: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-emphasis' => 'false'))
+      it "adds data-emphasis='false' for emphasis: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(emphasis: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {emphasis: false})
       end
 
-      it "adds data-enable-lists='false' for lists: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-lists' => 'false'))
+      it "adds data-lists='false' for lists: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(lists: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {lists: false})
       end
 
-      it "adds data-enable-html='true' for html: true" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-html' => 'true'))
+      it "adds data-html='true' for html: true" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(html: true)))
         dummy_object.bootsy_area(@container, :content, editor_options: {html: true})
       end
 
-      it "adds data-enable-link='false' for link: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-link' => 'false'))
+      it "adds data-link='false' for link: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(link: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {link: false})
       end
 
-      it "adds data-enable-image='false' for image: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-image' => 'false'))
+      it "adds data-image='false' for image: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(image: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {image: false})
       end
 
-      it "adds data-enable-color='false' for color: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-color' => 'false'))
+      it "adds data-color='false' for color: false" do
+        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(color: false)))
         dummy_object.bootsy_area(@container, :content, editor_options: {color: false})
       end
     end

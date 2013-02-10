@@ -1,5 +1,3 @@
-<%# encoding: UTF-8 %>
-
 window.Bootsy = (function(){
 
   var Bootsy = {caretBookmark: false, unsavedChanges: false, editor: false, editorOptions: {}, eventCallbacks: {'loaded': []}, triggeredEvents: []};
@@ -77,11 +75,11 @@ window.Bootsy = (function(){
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 
-      if($('textarea.bootsy_text_area').attr('data-enable-image') == 'false'){
+      if($('textarea.bootsy_text_area').attr('data-image') == 'false'){
         Bootsy.editorOptions.image = false;
       }else{
 
-        if($('textarea.bootsy_text_area').attr('data-enable-uploader') != 'false'){
+        if($('textarea.bootsy_text_area').attr('data-uploader') != 'false'){
           Bootsy.editorOptions.image = false;
           Bootsy.editorOptions.customCommand = true;
           Bootsy.editorOptions.customCommandCallback = Bootsy.openImageGallery;
@@ -135,12 +133,12 @@ window.Bootsy = (function(){
         }
       }
 
-      if($('textarea.bootsy_text_area').attr('data-enable-font-styles') == 'false') Bootsy.editorOptions['font-styles'] = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-emphasis') == 'false') Bootsy.editorOptions.emphasis = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-lists') == 'false') Bootsy.editorOptions.lists = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-html') == 'true') Bootsy.editorOptions.html = true;
-      if($('textarea.bootsy_text_area').attr('data-enable-link') == 'false') Bootsy.editorOptions.link = false;
-      if($('textarea.bootsy_text_area').attr('data-enable-color') == 'false') Bootsy.editorOptions.color = false;
+      if($('textarea.bootsy_text_area').attr('data-font-styles') == 'false') Bootsy.editorOptions['font-styles'] = false;
+      if($('textarea.bootsy_text_area').attr('data-emphasis') == 'false') Bootsy.editorOptions.emphasis = false;
+      if($('textarea.bootsy_text_area').attr('data-lists') == 'false') Bootsy.editorOptions.lists = false;
+      if($('textarea.bootsy_text_area').attr('data-html') == 'true') Bootsy.editorOptions.html = true;
+      if($('textarea.bootsy_text_area').attr('data-link') == 'false') Bootsy.editorOptions.link = false;
+      if($('textarea.bootsy_text_area').attr('data-color') == 'false') Bootsy.editorOptions.color = false;
 
       /*$('textarea.bootsy_text_area').wysihtml5('deepExtend', {
         "imageUpload": false,
