@@ -25,6 +25,8 @@ module Bootsy
 
       options[:'data-enable-uploader'] = 'false' unless enable_uploader
 
+      options[:'data-locale'] = I18n.locale
+
       object_name = object.class.name.underscore
 
       output = raw ''

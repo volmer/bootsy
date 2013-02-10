@@ -65,7 +65,7 @@ window.Bootsy = (function(){
         },
       };
 
-      Bootsy.editorOptions = {color: true, locale: "<%= I18n.locale %>", customTemplates: templates};
+      Bootsy.editorOptions = {color: true, locale: $('textarea.bootsy_text_area').attr('data-locale'), customTemplates: templates};
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 

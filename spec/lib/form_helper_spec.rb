@@ -49,6 +49,12 @@ describe Bootsy::FormHelper do
       dummy_object.bootsy_area(@container, :content, {:class => ['my_html_class'], op1: '1', op2: '2'}).should include('<textarea>')
     end
 
+    it "sets the current app locale in data-locale" do
+      I18n.locale = :pirate
+      dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-locale' => :pirate))
+      dummy_object.bootsy_area(@container, :content)
+    end
+
     context 'when a non-container is passed' do
       it "adds data-enable-uploader='false'" do
         dummy_object.should_receive(:text_area).with(anything, anything, hash_including(:'data-enable-uploader' => 'false'))
