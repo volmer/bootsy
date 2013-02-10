@@ -4,7 +4,7 @@ PATH
     bootsy (0.1.8)
       carrierwave (~> 0.8.0)
       mini_magick (~> 3.4)
-      remotipart (~> 1.0.2)
+      remotipart (~> 1.0.5)
 
 GEM
   remote: http://rubygems.org/
