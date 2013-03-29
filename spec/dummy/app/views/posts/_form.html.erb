@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.bootsy_area :content, rows: 16, :class => 'span12'%>
+    <%= f.bootsy_area :content, rows: 16, :class => 'span12', editor_options: {uploader: true} %>
   </div>
   <div class="actions">
     <%= f.submit :class => 'btn' %>
