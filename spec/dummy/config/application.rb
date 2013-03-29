@@ -8,8 +8,9 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-Bundler.require
-require "bootsy"
+Bundler.require(*Rails.groups(assets: %w(development test)))
+
+require 'bootsy'
 
 module Dummy
   class Application < Rails::Application
