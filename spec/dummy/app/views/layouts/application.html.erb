@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dummy</title>
-  <style>
-    body {
-      padding-top: 60px
-    }
-  </style>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Dummy</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
 
   <body>
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to 'Dummy', root_path, :class => 'brand' %>
+          <%= link_to 'Dummy', root_path, class: 'brand' %>
         </div>
       </div>
     </div>
