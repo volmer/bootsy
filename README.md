@@ -1,5 +1,6 @@
 # Bootsy
 
+[![Gem Version](https://badge.fury.io/rb/bootsy.png)](http://badge.fury.io/rb/bootsy)
 [![Build Status](https://secure.travis-ci.org/volmer/bootsy.png?branch=master)](http://travis-ci.org/volmer/bootsy)
 [![Dependency Status](https://gemnasium.com/volmer/bootsy.png)](https://gemnasium.com/volmer/bootsy)
 
@@ -8,10 +9,10 @@
 
 ## Requirements
 
-* Ruby MRI >= 1.9.3;
+* Ruby >= 1.9.3;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails >= 3.2.6;
-* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) assets added on your application.
+* Rails ~> 3.2 (Rails 4 support is comming soon);
+* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
 
 
 ## Installation
@@ -33,7 +34,7 @@
   rails g bootsy:install
   ```
 
-4. Add and run migrations (if you are using ActiveRecord):
+4. Add and run migrations (if you're using ActiveRecord):
   ```console
   rake bootsy:install:migrations
   rake db:migrate
@@ -42,7 +43,7 @@
 
 ## Usage
 
-Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in the same way you call the basic `textarea` method. Example:
+Just call the brand new method `bootsy_area` in your `FormBuilder` instances, the same way you'd call the basic `textarea` method. Example:
 
   ```erb
   <%= form_for(@post) do |f| %>
@@ -56,7 +57,7 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, in
   <% end %>
   ```
 
-Bootsy will group the uploaded image files as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
+Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
 
   ```ruby
   class Post < ActiveRecord::Base
@@ -68,12 +69,12 @@ Bootsy will group the uploaded image files as galleries and associate them to on
 
 ## Editor options
 
-It's possible to customize how the editor is displayed and its behavior by passing a hash `editor_options` to your `bootsy_area`.
+It is possible to customize how the editor is displayed and its behavior by passing a hash `editor_options` to your `bootsy_area`.
 
 
 ### Buttons
 
-You can enable/disable the buttons available in the editor. For example, if you want to disable the link and color buttons:
+You can enable/disable the buttons available on the editor. For example, if you want to disable the link and color buttons:
 
   ```erb
   <%= f.bootsy_area :my_attribute, editor_options: {link: false, color: false} %>
@@ -83,7 +84,7 @@ Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, 
 
 ### Alert for usaved changes
 
-By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable it by doing:
+By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable this behaviour by doing:
 
   ```erb
   <%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
@@ -91,7 +92,7 @@ By default, Bootsy alerts for unsaved changes if the user attempts to unload the
 
 ### Uploader
 
-It is also possible to disable the image upload feature entirely. This way the user can insert images in his/her text by providing an image url. Simple and easy:
+It's also possible to disable the image upload feature entirely. This way users can insert images in their texts by providing an image url. Simple and easy:
 
   ```erb
   <%= f.bootsy_area :my_attribute, editor_options: {uploader: false} %>
@@ -121,4 +122,4 @@ Do you want to use Bootsy alongside with [SimpleForm](https://github.com/platafo
 
 ## License
 
-MIT License. Copyright 2012 Volmer Soares
+MIT License. Copyright 2013 Volmer Soares
