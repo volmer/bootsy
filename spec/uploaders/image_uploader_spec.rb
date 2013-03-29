@@ -4,43 +4,25 @@ require 'carrierwave/test/matchers'
 describe Bootsy::ImageUploader do
   include CarrierWave::Test::Matchers
 
-  before :each do
+  before :all do
     path_to_file = Rails.root.to_s + "/public/test.jpg"
     @uploader = Bootsy::ImageUploader.new FactoryGirl.build(:image), :image_file
     @uploader.store! File.open(path_to_file)
   end
 
-  after do
-    @uploader.remove!
-  end
+  subject { @uploader }
+
+  after(:all) { @uploader.remove! }
 
   context 'the original version' do
-    it "should limit 1160 by 2000 pixels" do
-      @uploader.should be_no_larger_than(1160, 2000)
-    end
+    it { should be_no_larger_than(1160, 2000) }
   end
 
-  context 'the thumb version' do
-    it "should scale down an image to be exactly 60 by 60 pixels" do
-      @uploader.thumb.should have_dimensions(60, 60)
-    end
-  end
+  its(:thumb){ should have_dimensions(60, 60) }
 
-  context 'the small version' do
-    it "should limit to dimensions defined at Bootsy.small_image" do
-      @uploader.small.should be_no_larger_than(Bootsy.small_image[:width], Bootsy.small_image[:height])
-    end
-  end
+  its(:small){ should be_no_larger_than(Bootsy.small_image[:width], Bootsy.small_image[:height]) }
 
-  context 'the medium version' do
-    it "should limit to dimensions defined at Bootsy.medium_image" do
-      @uploader.thumb.should be_no_larger_than(Bootsy.medium_image[:width], Bootsy.medium_image[:height])
-    end
-  end
+  its(:medium){ should be_no_larger_than(Bootsy.medium_image[:width], Bootsy.medium_image[:height]) }
 
-  context 'the large version' do
-    it "should limit to dimensions defined at Bootsy.large_image" do
-      @uploader.thumb.should be_no_larger_than(Bootsy.large_image[:width], Bootsy.large_image[:height])
-    end
-  end
+  its(:large){ should be_no_larger_than(Bootsy.large_image[:width], Bootsy.large_image[:height]) }
 end
