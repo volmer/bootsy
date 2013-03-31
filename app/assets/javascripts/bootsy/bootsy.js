@@ -60,7 +60,7 @@ window.Bootsy = (function(){
 
   Bootsy.ready = function(){
     if($('textarea.bootsy_text_area').length > 0){
-      Bootsy.locale = $('textarea.bootsy_text_area').attr('data-locale');
+      Bootsy.locale = $('textarea.bootsy_text_area').attr('data-bootsy-locale') || $('html').attr('lang');
 
       var templates = {
         customCommand: function(locale, options) {
@@ -103,11 +103,11 @@ window.Bootsy = (function(){
 
       Bootsy.editorOptions.stylesheets = ["/assets/bootsy/bootsy.css"];
 
-      if($('textarea.bootsy_text_area').attr('data-image') == 'false'){
+      if($('textarea.bootsy_text_area').attr('data-bootsy-image') == 'false'){
         Bootsy.editorOptions.image = false;
       }else{
 
-        if($('textarea.bootsy_text_area').attr('data-uploader') != 'false'){
+        if($('textarea.bootsy_text_area').attr('data-bootsy-uploader') != 'false'){
           Bootsy.editorOptions.image = false;
           Bootsy.editorOptions.customCommand = true;
           Bootsy.editorOptions.customCommandCallback = Bootsy.openImageGallery;
@@ -156,12 +156,12 @@ window.Bootsy = (function(){
         }
       }
 
-      if($('textarea.bootsy_text_area').attr('data-font-styles') == 'false') Bootsy.editorOptions['font-styles'] = false;
-      if($('textarea.bootsy_text_area').attr('data-emphasis') == 'false') Bootsy.editorOptions.emphasis = false;
-      if($('textarea.bootsy_text_area').attr('data-lists') == 'false') Bootsy.editorOptions.lists = false;
-      if($('textarea.bootsy_text_area').attr('data-html') == 'true') Bootsy.editorOptions.html = true;
-      if($('textarea.bootsy_text_area').attr('data-link') == 'false') Bootsy.editorOptions.link = false;
-      if($('textarea.bootsy_text_area').attr('data-color') == 'false') Bootsy.editorOptions.color = false;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-font-styles') == 'false') Bootsy.editorOptions['font-styles'] = false;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-emphasis') == 'false') Bootsy.editorOptions.emphasis = false;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-lists') == 'false') Bootsy.editorOptions.lists = false;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-html') == 'true') Bootsy.editorOptions.html = true;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-link') == 'false') Bootsy.editorOptions.link = false;
+      if($('textarea.bootsy_text_area').attr('data-bootsy-color') == 'false') Bootsy.editorOptions.color = false;
 
       Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
 

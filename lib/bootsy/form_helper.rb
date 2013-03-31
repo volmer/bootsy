@@ -1,30 +1,59 @@
 module Bootsy
   module FormHelper
-    def bootsy_area object, method, options = {}
-      foreign_container = options.delete :container
+    def bootsy_area(object, method, options = {})
+      container = options.delete :container
+      enable_uploader = enable_uploader? object, options.delete(:uploader), container
+      bootsy_options = options.delete(:editor_options) || {}
+      bootsy_options[:uploader] = false unless enable_uploader
 
-      data = options.delete(:editor_options) || {}
-      data[:locale] = I18n.locale
+      options[:data] = (options[:data] || {}).merge bootsy: bootsy_options
+      options[:class] = class_attr options
 
-      data[:uploader] = false unless foreign_container.kind_of?(Container) || (foreign_container.nil? && object.kind_of?(Container))
+      output = self.text_area object_name(object), method, options
 
-      enable_uploader = !(data[:uploader] == false)
+      if enable_uploader
+        output += self.render 'bootsy/images/modal', {container: container || object}
 
-      options[:data] = options[:data] ? options[:data] + data : data
-
-      object_name = object.class.name.underscore
-
-      output = enable_uploader ? self.render('bootsy/images/modal', {container: foreign_container || object}) : raw('')
-
-      options[:class] = (options[:class].nil? ? [] : (options[:class].kind_of?(Array) ? options[:class] : [options[:class]])) + [:bootsy_text_area]
-    
-      output += self.text_area object_name, method, options
-
-      if enable_uploader && (foreign_container.nil? || (foreign_container == object))
-        output += self.hidden_field object_name, :bootsy_image_gallery_id, :class => 'bootsy_image_gallery_id'
+        if container.blank? || (container == object)
+          output += self.hidden_field object_name(object), :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id'
+        end
       end
       
       output
+    end
+
+    private
+
+    def enable_uploader?(object, uploader, container)
+      if uploader == false
+        false
+      elsif container.is_a? Container
+        true
+      elsif container.blank? && object.is_a?(Container)
+        true
+      else
+        false
+      end
+    end
+
+    def class_attr(options)
+      old_val = if options[:class].blank?
+        []
+      elsif options[:class].kind_of?(Array)
+        options[:class]
+      else
+        [options[:class]]
+      end
+
+      old_val << 'bootsy_text_area'
+    end
+
+    def object_name(object)
+      if object.is_a?(String) || object.is_a?(Symbol)
+        object
+      else
+        object.class.name.underscore
+      end
     end
   end
 end

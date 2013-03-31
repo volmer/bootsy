@@ -95,7 +95,7 @@ By default, Bootsy alerts for unsaved changes if the user attempts to unload the
 It's also possible to disable the image upload feature entirely. This way users can insert images in their texts by providing an image url. Simple and easy:
 
   ```erb
-  <%= f.bootsy_area :my_attribute, editor_options: {uploader: false} %>
+  <%= f.bootsy_area :my_attribute, uploader: false %>
   ```
 *Note*: this option is automatically defined if you use `bootsy_area` without a `Bootsy::Container` model.
 

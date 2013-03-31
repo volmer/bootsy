@@ -1,155 +1,128 @@
 require 'spec_helper'
 
 describe Bootsy::FormHelper do
-  let :dummy_object do
-    Class.new do
-      extend Bootsy::FormHelper
-    end
+  let :form do
+    s = double(text_area: '<textarea field>', 
+               hidden_field: '<hidden field>').extend Bootsy::FormHelper
+    s.stub(:render) {|template, variables| template+variables[:container].to_s }
+    s
   end
 
-  it 'includes the method bootsy_area' do
-    dummy_object.should respond_to(:bootsy_area)
-  end
+  let(:container){ double(content: 'abc').extend Bootsy::Container }
 
   describe '#bootsy_area' do
-    before :each do
-      dummy_object.stub(:raw) {|str| str }
-      dummy_object.stub(:render) {|template, variables| variables[:container].to_s }
-      dummy_object.stub(:text_area).and_return('<textarea>')
-      dummy_object.stub(:hidden_field).and_return('<hidden>')
-      @container = double('container').extend(Bootsy::Container)
-      @container.stub(:content)
+    subject { form.bootsy_area :object, :content }
+
+    it 'renders a text_area with class bootsy_text_area' do
+      form.should_receive(:text_area).with :object, :content, hash_including(class: ['bootsy_text_area'])
+      should include('<textarea field>')
     end
 
-    it 'renders a text_area with the HTML class :bootsy_text_area' do
-      dummy_object.should_receive(:text_area).with(anything, :content, hash_including(:class => [:bootsy_text_area])).and_return('<textarea>')
-      dummy_object.bootsy_area(@container, :content).should include('<textarea>')
-    end
+    context 'when the object is a Bootsy Container' do
+      subject { form.bootsy_area container, :content }
 
-    it 'renders a hidden_field' do
-      dummy_object.bootsy_area(@container, :content).should include('<hidden>')
-    end
+      it 'renders a hidden_field with class and name bootsy_image_gallery_id' do
+        form.should_receive(:hidden_field).with container.class.name.underscore, :bootsy_image_gallery_id, {class: 'bootsy_image_gallery_id'}
+        should include('<hidden field>')
+      end
 
-    it 'renders the gallery of the container' do
-      dummy_object.bootsy_area(@container, :content).should include(@container.to_s)
-    end
-
-    it 'passes the options hash to the text_area' do
-      dummy_object.should_receive(:text_area).with(anything, :content, hash_including(:class => [:bootsy_text_area], op1: '1', op2: '2')).and_return('<textarea>')
-      dummy_object.bootsy_area(@container, :content, {op1: '1', op2: '2'}).should include('<textarea>')
-    end
-
-    it 'appends custom HTML classes passed as string on the text_area' do
-      dummy_object.should_receive(:text_area).with(anything, :content, hash_including(:class => ['my_html_class', :bootsy_text_area])).and_return('<textarea>')
-      dummy_object.bootsy_area(@container, :content, {:class => 'my_html_class', op1: '1', op2: '2'}).should include('<textarea>')
-    end
-
-    it 'appends custom HTML classes passed as array on the text_area' do
-      dummy_object.should_receive(:text_area).with(anything, :content, hash_including(:class => ['my_html_class', :bootsy_text_area])).and_return('<textarea>')
-      dummy_object.bootsy_area(@container, :content, {:class => ['my_html_class'], op1: '1', op2: '2'}).should include('<textarea>')
-    end
-
-    it "sets the current app locale in data-locale" do
-      I18n.locale = :pirate
-      dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(locale: :pirate)))
-      dummy_object.bootsy_area(@container, :content)
+      it 'renders the upload modal' do
+        should include('bootsy/images/modal')
+        should include(container.to_s)
+      end
     end
 
     context 'when a non-container is passed' do
-      it "adds data-uploader='false'" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
-        dummy_object.bootsy_area(double('container'), :content)
+      subject { form.bootsy_area :non_container, :content }
+
+      it 'adds data-bootsy-uploader="false"' do
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+        subject
       end
 
-      it 'does not render a hidden_field' do
-        dummy_object.bootsy_area(double('container'), :content).should_not include('<hidden>')
-      end
+      it { should_not include('<hidden field>') }
 
-      it 'does not render the gallery of the container' do
-        dummy_object.bootsy_area(double('container'), :content).should_not include(@container.to_s)
+      it 'does not render the upload modal' do
+        should_not include('bootsy/images/modal')
       end
     end
 
     context 'when a specific container is passed' do
+      let(:specific){ double('specific').extend Bootsy::Container }
 
-      before :each do
-        @specific = double('specific').extend(Bootsy::Container)
+      subject { form.bootsy_area container, :content, {container: specific} }
+
+      it 'renders the upload modal' do
+        should include('bootsy/images/modal')
+        should include(specific.to_s)
       end
 
-      it 'renders the gallery of the specific container' do
-        dummy_object.bootsy_area(@container, :content, {container: @specific}).should include(@specific.to_s)
-      end
+      it { should_not include('<hidden field>') }
 
-      it 'does not render a hidden_field' do
-        dummy_object.bootsy_area(@container, :content, {container: @specific}).should_not include('<hidden>')
-      end
+      context 'when the specific container is not a Container' do
+        subject { form.bootsy_area container, :content, {container: double('non-container')} }
 
-      context 'when a non-container specific container is passed' do
-        it "adds data-uploader='false'" do
-          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
-          dummy_object.bootsy_area(double('container'), :content, {container: double('other_specific')})
+        it 'adds data-bootsy-uploader="false"' do
+          form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+          subject
         end
 
-        it 'does not render the gallery of the container' do
-          dummy_object.bootsy_area(double('container'), :content, {container: double('other_specific')}).should_not include(@container.to_s)
+        it 'does not render the upload modal' do
+          should_not include('bootsy/images/modal')
         end
       end
     end
 
-    context 'when editor_options is passed' do
-      describe 'uploader: false' do
-        it "adds data-uploader='false'" do
-          dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(uploader: false)))
-          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false})
+    context 'when uploader: false is passed' do
+      subject { form.bootsy_area container, :content, uploader: false }
+
+      it 'adds data-bootsy-uploader="false"' do
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+        subject
+      end
+
+      it { should_not include('<hidden field>') }
+
+      it 'does not render the upload modal' do
+        should_not include('bootsy/images/modal')
+      end
+    end
+
+    context 'when editor_options are passed' do
+      subject { form.bootsy_area container, :content, editor_options: {op1: '1', op2: '2'} }
+
+      it 'passes the editor options to the text area as data-bootsy attributes' do
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(op1: '1', op2: '2')))
+        subject
+      end
+    end
+
+    context 'when additional options are passed' do
+      subject { form.bootsy_area container, :content, op1: '1', op2: '2', data: {a: 1, b: 2} }
+
+      it 'resends them to the text_area' do
+        form.should_receive(:text_area).with anything, anything, hash_including(op1: '1', op2: '2', data: hash_including(a: 1, b: 2))
+        subject
+      end
+    end
+
+    context 'when custom HTML classes are passed' do
+      context 'as a string' do
+        subject { form.bootsy_area container, :content, class: 'class1 class2' }
+
+        it 'resends them to the text_area' do
+          form.should_receive(:text_area).with anything, anything, hash_including(class: ['class1 class2', 'bootsy_text_area'])
+          subject
         end
+      end
 
-        it 'does not render a hidden_field' do
-          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false}).should_not include('<hidden>')
+      context 'as an array' do
+        subject { form.bootsy_area container, :content, class: ['class1', 'class2'] }
+
+        it 'resends them to the text_area' do
+          form.should_receive(:text_area).with anything, anything, hash_including(class: ['class1', 'class2', 'bootsy_text_area'])
+          subject
         end
-
-        it 'does not render the gallery of the container' do
-          dummy_object.bootsy_area(@container, :content, editor_options: {uploader: false}).should_not include(@container.to_s)
-        end
-      end
-
-      it "adds data-alert-unsaved='false' for alert_unsaved: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(alert_unsaved: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {alert_unsaved: false})
-      end
-
-      it "adds data-font-styles='false' for font_styles: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(font_styles: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {font_styles: false})
-      end
-
-      it "adds data-emphasis='false' for emphasis: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(emphasis: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {emphasis: false})
-      end
-
-      it "adds data-lists='false' for lists: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(lists: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {lists: false})
-      end
-
-      it "adds data-html='true' for html: true" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(html: true)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {html: true})
-      end
-
-      it "adds data-link='false' for link: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(link: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {link: false})
-      end
-
-      it "adds data-image='false' for image: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(image: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {image: false})
-      end
-
-      it "adds data-color='false' for color: false" do
-        dummy_object.should_receive(:text_area).with(anything, anything, hash_including(data: hash_including(color: false)))
-        dummy_object.bootsy_area(@container, :content, editor_options: {color: false})
       end
     end
   end
