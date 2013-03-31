@@ -3,7 +3,7 @@ module Bootsy
     def bootsy_area(object, method, options = {})
       container = options.delete :container
       enable_uploader = enable_uploader? object, options.delete(:uploader), container
-      bootsy_options = options.delete(:editor_options) || {}
+      bootsy_options = Bootsy.editor_options.merge(options.delete(:editor_options) || {})
       bootsy_options[:uploader] = false unless enable_uploader
 
       options[:data] = (options[:data] || {}).merge bootsy: bootsy_options

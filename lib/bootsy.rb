@@ -9,6 +9,10 @@ require 'bootsy/core_ext'
 module Bootsy
   ## CONFIGURATION OPTIONS
 
+  # Default editor options
+  mattr_accessor :editor_options
+  @@editor_options = {}
+
   # Image versions available
   mattr_accessor :image_versions_available
   @@image_versions_available = [:small, :medium, :large, :original]

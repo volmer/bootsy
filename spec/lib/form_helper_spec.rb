@@ -97,6 +97,15 @@ describe Bootsy::FormHelper do
       end
     end
 
+    context 'when editor options are defined on the intialize file' do
+      before { Bootsy.stub editor_options: {global_op1: 1, global_op2: 2} }
+
+      it 'passes them to the text area as data-bootsy attributes' do
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(global_op1: 1, global_op2: 2)))
+        subject
+      end
+    end
+
     context 'when additional options are passed' do
       subject { form.bootsy_area container, :content, op1: '1', op2: '2', data: {a: 1, b: 2} }
 

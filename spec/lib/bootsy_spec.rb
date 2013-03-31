@@ -12,6 +12,8 @@ describe Bootsy do
   end
 
   describe 'default values' do
+    its(:editor_options) { should == {} }
+
     its(:image_versions_available) { should == [:small, :medium, :large, :original] }
 
     its(:allow_destroy) { should == true }

@@ -90,7 +90,7 @@ By default, Bootsy alerts for unsaved changes if the user attempts to unload the
   <%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
   ```
 
-### Uploader
+## Uploader
 
 It's also possible to disable the image upload feature entirely. This way users can insert images in their texts by providing an image url. Simple and easy:
 
@@ -102,7 +102,7 @@ It's also possible to disable the image upload feature entirely. This way users 
 
 ## Configuration
 
-You can set the image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, `/config/initializers/bootsy.rb`.
+You can set the default editor options, image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, `/config/initializers/bootsy.rb`.
 
 
 ## I18n
