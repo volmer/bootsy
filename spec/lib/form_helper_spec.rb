@@ -36,7 +36,7 @@ describe Bootsy::FormHelper do
       subject { form.bootsy_area :non_container, :content }
 
       it 'adds data-bootsy-uploader="false"' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
         subject
       end
 
@@ -63,7 +63,7 @@ describe Bootsy::FormHelper do
         subject { form.bootsy_area container, :content, {container: double('non-container')} }
 
         it 'adds data-bootsy-uploader="false"' do
-          form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+          form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
           subject
         end
 
@@ -77,7 +77,7 @@ describe Bootsy::FormHelper do
       subject { form.bootsy_area container, :content, uploader: false }
 
       it 'adds data-bootsy-uploader="false"' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(uploader: false)))
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
         subject
       end
 
@@ -92,16 +92,16 @@ describe Bootsy::FormHelper do
       subject { form.bootsy_area container, :content, editor_options: {op1: '1', op2: '2'} }
 
       it 'passes the editor options to the text area as data-bootsy attributes' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(op1: '1', op2: '2')))
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-op1' => '1', 'bootsy-op2' => '2'))
         subject
       end
     end
 
     context 'when editor options are defined on the intialize file' do
-      before { Bootsy.stub editor_options: {global_op1: 1, global_op2: 2} }
+      before { Bootsy.stub editor_options: {global1: 1, global2: 2} }
 
       it 'passes them to the text area as data-bootsy attributes' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including(bootsy: hash_including(global_op1: 1, global_op2: 2)))
+        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-global1' => 1, 'bootsy-global2' => 2))
         subject
       end
     end

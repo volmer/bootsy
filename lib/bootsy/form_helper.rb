@@ -6,7 +6,7 @@ module Bootsy
       bootsy_options = Bootsy.editor_options.merge(options.delete(:editor_options) || {})
       bootsy_options[:uploader] = false unless enable_uploader
 
-      options[:data] = (options[:data] || {}).merge bootsy: bootsy_options
+      options[:data] = data_options options, bootsy_options
       options[:class] = class_attr options
 
       output = self.text_area object_name(object), method, options
@@ -37,7 +37,7 @@ module Bootsy
     end
 
     def class_attr(options)
-      old_val = if options[:class].blank?
+      classes = if options[:class].blank?
         []
       elsif options[:class].kind_of?(Array)
         options[:class]
@@ -45,7 +45,7 @@ module Bootsy
         [options[:class]]
       end
 
-      old_val << 'bootsy_text_area'
+      classes << 'bootsy_text_area'
     end
 
     def object_name(object)
@@ -54,6 +54,10 @@ module Bootsy
       else
         object.class.name.underscore
       end
+    end
+
+    def data_options(options, bootsy_options)
+      (options[:data] || {}).merge Hash[bootsy_options.map{|k,v|["bootsy-#{k}",v]}]
     end
   end
 end

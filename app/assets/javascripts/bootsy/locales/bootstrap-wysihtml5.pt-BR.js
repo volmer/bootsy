@@ -4,6 +4,7 @@
 (function($){
     $.fn.wysihtml5.locale["pt-BR"] = {
         font_styles: {
+            title: "Estilo de fonte",
             normal: "Texto normal",
             h1: "Título 1",
             h2: "Título 2",
@@ -32,6 +33,7 @@
             edit: "Editar HTML"
         },
         colours: {
+            title: "Cor do texto",
             black: "Preto",
             silver: "Prata",
             gray: "Cinza",

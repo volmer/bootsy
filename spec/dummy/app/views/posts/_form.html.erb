@@ -13,13 +13,13 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title, :class => 'span12' %>
+    <%= f.text_field :title, class: 'span12' %>
   </div>
   <div class="field">
     <%= f.label :content %><br />
-    <%= f.bootsy_area :content, rows: 16, :class => 'span12', editor_options: {uploader: true} %>
+    <%= f.bootsy_area :content, rows: 16, class: 'span12' %>
   </div>
   <div class="actions">
-    <%= f.submit :class => 'btn' %>
+    <%= f.submit class: 'btn' %>
   </div>
 <% end %>
