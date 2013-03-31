@@ -1,9 +1,9 @@
 Feature: Customize editor options
   In order to enable/disable certain functions
   As a developer using Bootsy
-  I want to customize the options available in the editor toolbar
+  I want to customize the options available for the editor
 
-  Scenario Outline: enable an editor option
+  Scenario Outline: enable a toolbar option
     When I set "<Config>" as "true" on the editor options of bootsy_area
     And I go to the new post page
     Then I should see a link with the option "<Option>" in the editor toolbar
@@ -22,7 +22,7 @@ Feature: Customize editor options
       | image       | Insert image   |
       | html        | Edit HTML      |
 
-  Scenario Outline: disable an editor option
+  Scenario Outline: disable a toolbar option
     When I set "<Config>" as "false" on the editor options of bootsy_area
     And I go to the new post page
     Then I should not see a link with the option "<Option>" in the editor toolbar
@@ -40,3 +40,10 @@ Feature: Customize editor options
       | link        | Insert link    |
       | image       | Insert image   |
       | html        | Edit HTML      |
+
+  Scenario: disable the alert for unsaved changes
+    Given I set "alert-unsaved" as "false" on the editor options of bootsy_area
+    And I go to the new post page
+    When I change the content of the text area
+    And I go to the home page
+    Then I should see the home page
