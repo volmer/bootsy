@@ -60,7 +60,7 @@ window.Bootsy = (function(){
 
   Bootsy.ready = function(){
     if($('textarea.bootsy_text_area').length > 0){
-      Bootsy.locale = $('textarea.bootsy_text_area').attr('data-bootsy-locale') || $('html').attr('lang');
+      Bootsy.locale = $('textarea.bootsy_text_area').attr('data-bootsy-locale') || $('html').attr('lang') || 'en';
 
       var templates = {
         customCommand: function(locale, options) {
@@ -165,7 +165,7 @@ window.Bootsy = (function(){
 
       Bootsy.editor = $('textarea.bootsy_text_area').wysihtml5(Bootsy.editorOptions).data("wysihtml5").editor;
 
-      if($('textarea.bootsy_text_area').attr('data-alert-unsaved') != 'false'){
+      if($('textarea.bootsy_text_area').attr('data-bootsy-alert-unsaved') != 'false'){
         window.onbeforeunload = Bootsy.alertUnsavedChanges;
       }
 
