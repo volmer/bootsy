@@ -4,7 +4,7 @@ Feature: Customize editor options
   I want to customize the options available for the editor
 
   Scenario Outline: enable a toolbar option
-    When I set "<Config>" as "true" on the editor options of bootsy_area
+    When I set "<Config>" to "true" on the editor options of bootsy_area
     And I go to the new post page
     Then I should see a link with the option "<Option>" in the editor toolbar
     Examples:
@@ -23,7 +23,7 @@ Feature: Customize editor options
       | html        | Edit HTML      |
 
   Scenario Outline: disable a toolbar option
-    When I set "<Config>" as "false" on the editor options of bootsy_area
+    When I set "<Config>" to "false" on the editor options of bootsy_area
     And I go to the new post page
     Then I should not see a link with the option "<Option>" in the editor toolbar
     Examples:
@@ -42,7 +42,7 @@ Feature: Customize editor options
       | html        | Edit HTML      |
 
   Scenario: disable the alert for unsaved changes
-    Given I set "alert-unsaved" as "false" on the editor options of bootsy_area
+    Given I set "alert-unsaved" to "false" on the editor options of bootsy_area
     And I go to the new post page
     When I change the content of the text area
     And I go to the home page
