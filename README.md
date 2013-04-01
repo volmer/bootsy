@@ -92,12 +92,7 @@ By default, Bootsy alerts for unsaved changes if the user attempts to unload the
 
 ## Uploader
 
-It's also possible to disable the image upload feature entirely. This way users can insert images in their texts by providing an image url. Simple and easy:
-
-  ```erb
-  <%= f.bootsy_area :my_attribute, uploader: false %>
-  ```
-*Note*: this option is automatically defined if you use `bootsy_area` without a `Bootsy::Container` model.
+It's also possible to use Bootsy without the image upload feature. Just call `bootsy_area` in a form builder not associated to a `Bootsy::Container` model. This way users can insert images in their texts by providing an image url.
 
 
 ## Configuration
@@ -107,7 +102,7 @@ You can set the default editor options, image sizes available (small, medium, la
 
 ## I18n
 
-Bootsy defines some i18n keys. The ruby english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy to your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
+Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy to your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
 
 
 ## Mongoid support
