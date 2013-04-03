@@ -143,6 +143,10 @@
 
         createEditor: function(options) {
             options = options || {};
+            
+            // Add the toolbar to a clone of the options object so multiple instances
+            // of the WYISYWG don't break because "toolbar" is already defined
+            options = $.extend(true, {}, options);
             options.toolbar = this.toolbar[0];
 
             var editor = new wysi.Editor(this.el[0], options);
@@ -266,7 +270,7 @@
                 if (!activeButton) {
                     self.editor.currentView.element.focus(false);
                     caretBookmark = self.editor.composer.selection.getBookmark();
-                    insertImageModal.modal('show');
+                    insertImageModal.appendTo('body').modal('show');
                     insertImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
                         e.stopPropagation();
                     });
@@ -453,7 +457,10 @@
                     }
                 },
                 "span": 1,
-                "div": 1
+                "div": 1,
+                // to allow save and edit files with code tag hacks
+                "code": 1,
+                "pre": 1
             }
         },
         stylesheets: ["./lib/css/wysiwyg-color.css"], // (path_to_project/lib/css/wysiwyg-color.css)
