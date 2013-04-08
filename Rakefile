@@ -22,10 +22,13 @@ end
 
 Bundler::GemHelper.install_tasks
 
-require "cucumber/rake/task"
+require 'cucumber/rake/task'
 require 'rspec/core/rake_task'
+require 'coveralls/rake/task'
 
-task :default => [:spec,:run]
+Coveralls::RakeTask.new
+
+task default: [:spec,:run, 'coveralls:push']
 
 RSpec::Core::RakeTask.new(:spec)
 

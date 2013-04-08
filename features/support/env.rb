@@ -5,6 +5,11 @@
 # files.
 
 ENV["RAILS_ENV"] = "test" # had to explicity state the test environment (or cucumber env.)
+require 'simplecov'
+require 'coveralls'
+#Coveralls.wear_merged!
+
+
 ENV["RAILS_ROOT"] = File.expand_path(File.dirname(__FILE__) + '/../../spec/dummy/')
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/dummy/config/environment')
  
