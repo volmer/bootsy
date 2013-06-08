@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'database_cleaner', '~> 0.9'
   s.add_development_dependency 'cucumber-rails', '~> 1.3'
   s.add_development_dependency 'shoulda-matchers', '~> 1.5'
+  s.add_development_dependency 'selenium-webdriver', '~> 2.33'
 end
