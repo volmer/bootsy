@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
-require 'simplecov'
+
 require 'coveralls'
-#Coveralls.wear_merged!
+Coveralls.wear_merged!
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
