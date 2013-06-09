@@ -13,7 +13,7 @@
 
 * Ruby >= 1.9.3;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails ~> 3.2 (Rails 4 support is comming soon);
+* Rails ~> 3.2 (use [this branch](https://github.com/volmer/bootsy/tree/rails-4) for Rails 4);
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
 
 
@@ -54,7 +54,7 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, th
 
     <%= f.label :content %><br />
     <%= f.bootsy_area :content %>
-    
+
     <%= f.submit %>
   <% end %>
   ```
@@ -64,7 +64,7 @@ Bootsy will group the uploaded images as galleries and associate them to one of 
   ```ruby
   class Post < ActiveRecord::Base
     include Bootsy::Container
-    
+
     attr_accessible :content, :title
   end
   ```
