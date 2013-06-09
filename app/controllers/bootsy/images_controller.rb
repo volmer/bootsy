@@ -20,12 +20,12 @@ module Bootsy
     def create
       @gallery = find_gallery
       @gallery.save! unless @gallery.persisted?
-      @image = Image.new params[:image]
+      @image = Image.new image_params
       @image.image_gallery_id = @gallery.id
       @images = @gallery.images
-  
+
       respond_to do |format|
-        if @image.save  
+        if @image.save
           format.js
           format.json { render json: @image, status: :created, location: @image }
         else
@@ -34,13 +34,13 @@ module Bootsy
         end
       end
     end
-  
+
     # DELETE /images/1
     # DELETE /images/1.json
     def destroy
       @image = Image.find(params[:id])
       @image.destroy
-  
+
       respond_to do |format|
         format.js
         format.html { redirect_to images_url }
@@ -50,11 +50,16 @@ module Bootsy
 
     private
     def find_gallery
-      begin 
+      begin
         return ImageGallery.find params[:image_gallery_id]
       rescue
         return ImageGallery.new
       end
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def image_params
+      params.require(:image).permit(:image_file)
     end
   end
 end
