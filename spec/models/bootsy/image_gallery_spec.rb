@@ -10,7 +10,7 @@ describe Bootsy::ImageGallery do
       ig2 = FactoryGirl.create(:image_gallery, created_at: 3.days.ago)
       ig3 = FactoryGirl.create(:image_gallery, created_at: 4.days.ago)
 
-      Bootsy::ImageGallery.recycle(1.day.ago)
+      Bootsy::ImageGallery.destroy_orphans(1.day.ago)
 
       expect(Bootsy::ImageGallery.all).to be_empty
     end
@@ -21,7 +21,7 @@ describe Bootsy::ImageGallery do
       ig2 = FactoryGirl.create(:image_gallery, created_at: 3.days.ago)
       ig3 = FactoryGirl.create(:image_gallery, created_at: 4.days.ago)
 
-      Bootsy::ImageGallery.recycle(2.days.ago)
+      Bootsy::ImageGallery.destroy_orphans(2.days.ago)
 
       expect(Bootsy::ImageGallery.all).to eq([ig1])
     end
@@ -31,7 +31,7 @@ describe Bootsy::ImageGallery do
       ig2 = FactoryGirl.create(:image_gallery, created_at: 3.days.ago, bootsy_resource: Post.create(title: 'a', content: 'b'))
       ig3 = FactoryGirl.create(:image_gallery, created_at: 4.days.ago)
 
-      Bootsy::ImageGallery.recycle(1.day.ago)
+      Bootsy::ImageGallery.destroy_orphans(1.day.ago)
 
       expect(Bootsy::ImageGallery.all).to eq([ig2])
     end
