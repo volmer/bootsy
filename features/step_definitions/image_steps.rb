@@ -10,9 +10,9 @@ end
 Then /^I should( not)? see the thumbnail "(.*?)" on the image gallery$/ do |negate, thumbnail|
   page.should have_selector 'ul.thumbnails', visible: true
 
-  expectation = negate ? :have_no_selector : :have_selector
+  expectation = negate ? :should_not : :should
 
-  page.should send(expectation, :xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
+  page.send expectation, have_selector(:xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
 end
 
 Given /^I upload the image "(.*?)"$/ do |image_file|
@@ -38,7 +38,7 @@ Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text are
   img_src = "/#{size}_#{image_file}"
   img_src = "/#{image_file}" if size == 'original'
 
-  content =  page.evaluate_script('Bootsy.editor.getValue()')
+  content =  page.evaluate_script('Bootsy.areas[0].editor.getValue()')
 
   content.should include(img_src)
   content.should include("align=\"#{position.downcase}\"")

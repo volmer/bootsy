@@ -12,7 +12,7 @@ describe Bootsy::ImageGallery do
 
       Bootsy::ImageGallery.destroy_orphans(1.day.ago)
 
-      expect(Bootsy::ImageGallery.all).to be_empty
+      expect(Bootsy::ImageGallery.all).to_not include(ig1, ig2, ig3)
     end
 
 
@@ -23,7 +23,7 @@ describe Bootsy::ImageGallery do
 
       Bootsy::ImageGallery.destroy_orphans(2.days.ago)
 
-      expect(Bootsy::ImageGallery.all).to eq([ig1])
+      expect(Bootsy::ImageGallery.all).to include(ig1)
     end
 
     it 'does not destroy non orphan galleries' do
@@ -33,7 +33,7 @@ describe Bootsy::ImageGallery do
 
       Bootsy::ImageGallery.destroy_orphans(1.day.ago)
 
-      expect(Bootsy::ImageGallery.all).to eq([ig2])
+      expect(Bootsy::ImageGallery.all).to include(ig2)
     end
   end
 end
