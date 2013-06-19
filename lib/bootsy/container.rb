@@ -11,9 +11,9 @@ module Bootsy
 
         def bootsy_image_gallery_id
           if self.bootsy_image_gallery.nil?
-            return nil
+            nil
           else
-            return self.bootsy_image_gallery.id
+            self.bootsy_image_gallery.id
           end
         end
 

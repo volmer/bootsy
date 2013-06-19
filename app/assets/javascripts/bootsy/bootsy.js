@@ -1,23 +1,45 @@
 window.Bootsy = window.Bootsy || {};
 
-window.Bootsy.Area = function($el) {
+window.Bootsy.Area = function ($el) {
   var self = this;
 
-  this.progressBar = function(element){
-    element.find('div.modal-body').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
+  this.progressBar = function () {
+    self.imageGalleryModal.find('div.modal-body').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>');
   };
 
-  this.refreshGallery = function(element){
-    element.find('a.refresh_btn').show().click();
+  this.setImageGalleryId = function (id) {
+    self.imageGalleryModal.data('bootsy-gallery-id', id)
+    $('input.bootsy_image_gallery_id').val(id);
   };
 
-  this.openImageGallery = function(editor){
+  this.refreshGallery = function () {
+    self.progressBar();
+    $.ajax({
+      url: '/bootsy/images',
+      type: 'GET',
+      cache: false,
+      data: {
+        image_gallery_id: self.imageGalleryModal.data('bootsy-gallery-id')
+      },
+      dataType: 'json',
+      success: function (data) {
+        self.imageGalleryModal.find('div.modal-body').html(data.partial);
+        self.imageGalleryModal.find('a.refresh-btn').hide();
+      },
+      error: function (e) {
+        alert(Bootsy.translations[self.locale].error);
+        self.imageGalleryModal.find('a.refresh-btn').show();
+      }
+    });
+  };
+
+  this.openImageGallery = function (editor) {
     editor.currentView.element.focus(false);
     self.caretBookmark = editor.composer.selection.getBookmark();
     $('#bootsy_image_gallery').modal('show');
   };
 
-  this.insertImage = function(image){
+  this.insertImage = function (image) {
     $('#bootsy_image_gallery').modal('hide');
     self.editor.currentView.element.focus();
     if (self.caretBookmark) {
@@ -27,30 +49,35 @@ window.Bootsy.Area = function($el) {
     self.editor.composer.commands.exec('insertImage', image);
   };
 
-  this.on = function(eventName, callback){
+  this.on = function (eventName, callback) {
     self.eventCallbacks[eventName].push(callback);
   };
 
-  this.trigger = function(eventName){
+  this.trigger = function (eventName) {
     var callbacks = self.eventCallbacks[eventName];
-    for(i in callbacks){
+    for(i in callbacks) {
       callbacks[i]();
     }
     self.triggeredEvents.push(eventName);
   };
 
-  this.after = function(eventName, callback){
-    if(self.triggeredEvents.indexOf(eventName) != -1){
+  this.after = function (eventName, callback) {
+    if(self.triggeredEvents.indexOf(eventName) != -1) {
       callback();
     }else{
       self.on(eventName, callback);
     }
   };
 
-  this.alertUnsavedChanges = function() {
+  this.alertUnsavedChanges = function () {
     if (self.unsavedChanges) {
       return Bootsy.translations[self.locale].alert_unsaved;
     }
+  };
+
+  this.clear = function () {
+    self.editor.clear();
+    self.setImageGalleryId('');
   };
 
   this.locale = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
@@ -72,7 +99,7 @@ window.Bootsy.Area = function($el) {
     window.onbeforeunload = this.alertUnsavedChanges;
   }
 
-  $el.closest('form').submit(function(e) {
+  $el.closest('form').submit(function (e) {
     self.unsavedChanges = false;
     return true;
   });
@@ -83,7 +110,7 @@ window.Bootsy.Area = function($el) {
       this.editorOptions.customCommand = true;
       this.editorOptions.customCommandCallback = this.openImageGallery;
       this.editorOptions.customTemplates = {
-        customCommand: function(locale, options) {
+        customCommand: function (locale, options) {
           var size = (options && options.size) ? ' btn-'+options.size : '';
           return "<li>" +
             "<a class='btn" + size + "' data-wysihtml5-command='customCommand' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
@@ -91,35 +118,29 @@ window.Bootsy.Area = function($el) {
         }
       };
 
-      element = $('#bootsy_image_gallery');
+      this.imageGalleryModal = $('#bootsy_image_gallery');
 
-      element.parents('form').after(element);
+      this.imageGalleryModal.parents('form').after(this.imageGalleryModal);
 
-      element.on('click', 'a.refresh_btn', function(e){
-        $(this).hide();
-        self.progressBar(element);
-      });
+      this.imageGalleryModal.on('click', 'a[href="#refresh-gallery"]', this.refreshGallery);
 
-      element.find('a.destroy_btn').click(function(e){
-        self.progressBar(element);
-      });
+      this.imageGalleryModal.find('a.destroy_btn').click(this.progressBar);
 
-      element.modal({show: false});
-      element.on('shown', function(){
-        self.refreshGallery(element);
-      });
+      this.imageGalleryModal.modal({show: false});
+      this.imageGalleryModal.on('shown', this.refreshGallery);
 
-      element.on('hide', function() {
+      this.imageGalleryModal.on('hide', function () {
+        self.progressBar();
         self.editor.currentView.element.focus();
       });
 
-      element.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+      this.imageGalleryModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function (e) {
         e.stopPropagation();
       });
 
-      element.on('click', 'ul.dropdown-menu a.insert', function(e){
+      this.imageGalleryModal.on('click', 'ul.dropdown-menu a.insert', function (e) {
         var imagePrefix = "/"+$(this).attr('data-image-size')+"_";
-        if($(this).data('image-size') == 'original'){
+        if($(this).data('image-size') == 'original') {
           imagePrefix = '/';
         }
         var img = $(this).parents('li.dropdown').find('img');
@@ -139,7 +160,7 @@ window.Bootsy.Area = function($el) {
 
   this.editor = $el.wysihtml5($.extend(Bootsy.editorOptions, this.editorOptions)).data('wysihtml5').editor;
 
-  this.editor.on('change', function() {
+  this.editor.on('change', function () {
     self.unsavedChanges = true;
   });
 

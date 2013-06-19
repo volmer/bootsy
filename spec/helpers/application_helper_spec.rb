@@ -7,22 +7,11 @@ describe Bootsy::ApplicationHelper do
   describe '#refresh_btn' do
     subject { helper.refresh_btn }
 
-    it { should include('class="btn btn-mini refresh_btn"') }
-    it { should include('data-remote="true"') }
+    it { should include('class="btn btn-mini refresh-btn"') }
 
     it { should include('Refresh') }
 
-    context 'when the given gallery is not persisted' do
-      subject { helper.refresh_btn unsaved_gallery }
-
-      it { should include('href="/bootsy/images"') }
-    end
-
-    context 'when the given gallery is persisted' do
-      subject { helper.refresh_btn saved_gallery }
-
-      it { should match(/^.*href="\/bootsy\/image_galleries\/.*\/images".*$/) }
-    end
+    it { should include('href="#refresh-gallery"') }
   end
 
   describe '#resource_or_nil' do

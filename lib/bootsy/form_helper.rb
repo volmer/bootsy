@@ -18,7 +18,7 @@ module Bootsy
           output += self.hidden_field object_name(object), :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id'
         end
       end
-      
+
       output
     end
 
