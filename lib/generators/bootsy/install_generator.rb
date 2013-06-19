@@ -14,13 +14,13 @@ module Bootsy
       def add_assets
 
         [{original: 'app/assets/javascripts/application.js',
-          skip_if: 'require bootsy', 
-          content: "//= require bootsy\n", 
-          position: {before: '//= require_tree .'}},
+          skip_if: 'require bootsy',
+          content: "\n//= require bootsy",
+          position: {after: '//= require jquery_ujs'}},
          {original: 'app/assets/stylesheets/application.css',
-          skip_if: 'require bootsy', 
-          content: "*= require bootsy\n", 
-          position: {before: '*/'}}]. each do |params|
+          skip_if: 'require bootsy',
+          content: "\n *= require bootsy",
+          position: {after: '*= require_self'}}]. each do |params|
 
           if File.binread(params[:original]).include?(params[:skip_if])
             say_status 'skipped', "insert into #{params[:original]}", :yellow
