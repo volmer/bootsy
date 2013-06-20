@@ -1,5 +1,10 @@
 window.Bootsy = window.Bootsy || {};
 
+var page_stylesheets = [];
+$('link[rel="stylesheet"]').each(function () {
+  page_stylesheets.push($(this).attr('href'));
+});
+
 window.Bootsy.editorOptions = {
   parserRules: {
     classes: {
@@ -71,5 +76,5 @@ window.Bootsy.editorOptions = {
     }
   },
   color: true,
-  stylesheets: ["/assets/bootsy/bootsy.css", "/assets/application.css"]
+  stylesheets: page_stylesheets
 };
