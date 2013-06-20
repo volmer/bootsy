@@ -71,5 +71,5 @@ window.Bootsy.editorOptions = {
     }
   },
   color: true,
-  stylesheets: ["/assets/bootsy/bootsy.css"]
+  stylesheets: ["/assets/application.css"]
 };
