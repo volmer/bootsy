@@ -1,5 +1,5 @@
 <ul class="thumbnails">
-  <% images.each do |image| %>
+  <% gallery.images.each do |image| %>
     <li class="span1 dropdown">
       <%= link_to image_tag(image.image_file.thumb.url), '#', :class => 'thumbnail', data: { toggle: 'dropdown'} %>
       <ul class="dropdown-menu" role="menu">
@@ -35,7 +35,7 @@
   <% end %>
 </ul>
 
-<%= refresh_btn gallery %>
+<%= refresh_btn %>
 
 <hr />
 

@@ -7,7 +7,7 @@ When /^I go to (.*?) page$/ do |page|
 end
 
 Given 'I change the content of the text area' do
-  page.execute_script "Bootsy.editor.fire('change')"
+  page.execute_script "Bootsy.areas[0].editor.fire('change')"
 end
 
 Then /^I should see (.*?) page$/ do |page|

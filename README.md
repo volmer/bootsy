@@ -13,40 +13,43 @@
 
 * Ruby >= 1.9.3;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails ~> 3.2 (use [this branch](https://github.com/volmer/bootsy/tree/rails-4) for Rails 4);
+* Rails 4.0 or 3.2;
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
 
 
 ## Installation
 
-1. Add Bootsy to your Gemfile:
-
-  ```ruby
-  gem 'bootsy'
-  ```
+1. Add Bootsy to your Gemfile (use our specific branch for Rails 4 if you like):
+```ruby
+gem 'bootsy', github: 'volmer/bootsy', branch: 'rails-4'
+```
 
 2. Run the bundle command to install it:
-
-  ```console
-  bundle install
-  ```
+```console
+bundle install
+```
 
 3. Run the install generator:
-  ```console
-  rails g bootsy:install
-  ```
+```console
+rails g bootsy:install
+```
 
 4. Add and run migrations (if you're using ActiveRecord):
-  ```console
-  rake bootsy:install:migrations
-  rake db:migrate
-  ```
+```console
+rake bootsy:install:migrations
+rake db:migrate
+```
 
 
 ## Usage
 
 Just call the brand new method `bootsy_area` in your `FormBuilder` instances, the same way you'd call the basic `textarea` method. Example:
+```erb
+<%= form_for(@post) do |f| %>
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
 
+<<<<<<< HEAD
   ```erb
   <%= form_for(@post) do |f| %>
     <%= f.label :title %><br />
@@ -58,9 +61,16 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, th
     <%= f.submit %>
   <% end %>
   ```
+=======
+  <%= f.label :content %><br />
+  <%= f.bootsy_area :content %>
+>>>>>>> rails-4
 
-Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
+  <%= f.submit %>
+<% end %>
+```
 
+<<<<<<< HEAD
   ```ruby
   class Post < ActiveRecord::Base
     include Bootsy::Container
@@ -68,6 +78,25 @@ Bootsy will group the uploaded images as galleries and associate them to one of 
     attr_accessible :content, :title
   end
   ```
+=======
+Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
+```ruby
+class Post < ActiveRecord::Base
+  include Bootsy::Container
+
+  attr_accessible :content, :title
+end
+```
+
+Don't forget to ensure the association of new instances of your model with Bootsy image galleries. For example, if you're using `strong_parameters`, you must allow the parameter `bootsy_image_gallery_id` in your controllers. Example:
+```ruby
+private
+# Never trust parameters from the scary internet, only allow the white list through.
+def post_params
+  params.require(:post).permit(:title, :content, :bootsy_image_gallery_id)
+end
+```
+>>>>>>> rails-4
 
 ## Editor options
 

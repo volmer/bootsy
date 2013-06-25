@@ -1,7 +1,7 @@
 module Bootsy
   module ApplicationHelper
-    def refresh_btn gallery=nil
-      link_to t('bootsy.action.refresh'), [bootsy, resource_or_nil(gallery), :images], remote: true, class: 'btn btn-mini refresh_btn'
+    def refresh_btn
+      link_to t('bootsy.action.refresh'), '#refresh-gallery', class: 'btn btn-mini refresh-btn'
     end
 
     def resource_or_nil resource

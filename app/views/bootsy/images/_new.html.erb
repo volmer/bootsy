@@ -1,6 +1,7 @@
 <h3><%= t 'bootsy.image.new' %></h3>
 
 <%= form_for [bootsy, resource_or_nil(image.image_gallery), image], remote: true, html: {:class => 'bootsy form-inline'} do |f| %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <% if image.errors.any? %>
     <% image.errors.full_messages.each do |msg| %>
       <div class="alert alert-error"><%= msg %></div>
