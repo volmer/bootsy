@@ -19,9 +19,9 @@
 
 ## Installation
 
-1. Add Bootsy to your Gemfile (use our specific branch for Rails 4 if you like):
+1. Add Bootsy to your Gemfile:
 ```ruby
-gem 'bootsy', github: 'volmer/bootsy', branch: 'rails-4'
+gem 'bootsy'
 ```
 
 2. Run the bundle command to install it:
