@@ -49,36 +49,13 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, th
   <%= f.label :title %><br />
   <%= f.text_field :title %>
 
-<<<<<<< HEAD
-  ```erb
-  <%= form_for(@post) do |f| %>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-
-    <%= f.label :content %><br />
-    <%= f.bootsy_area :content %>
-
-    <%= f.submit %>
-  <% end %>
-  ```
-=======
   <%= f.label :content %><br />
   <%= f.bootsy_area :content %>
->>>>>>> rails-4
 
   <%= f.submit %>
 <% end %>
 ```
 
-<<<<<<< HEAD
-  ```ruby
-  class Post < ActiveRecord::Base
-    include Bootsy::Container
-
-    attr_accessible :content, :title
-  end
-  ```
-=======
 Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
 ```ruby
 class Post < ActiveRecord::Base
@@ -96,7 +73,6 @@ def post_params
   params.require(:post).permit(:title, :content, :bootsy_image_gallery_id)
 end
 ```
->>>>>>> rails-4
 
 ## Editor options
 
@@ -106,20 +82,18 @@ It is possible to customize how the editor is displayed and its behavior by pass
 ### Buttons
 
 You can enable/disable the buttons available on the editor. For example, if you want to disable the link and color buttons:
-
-  ```erb
-  <%= f.bootsy_area :my_attribute, editor_options: {link: false, color: false} %>
-  ```
+```erb
+<%= f.bootsy_area :my_attribute, editor_options: {link: false, color: false} %>
+```
 Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, `:image` and `:color`.
 
 
 ### Alert for usaved changes
 
 By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable this behaviour by doing:
-
-  ```erb
-  <%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
-  ```
+```erb
+<%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
+```
 
 ## Uploader
 
