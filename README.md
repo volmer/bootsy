@@ -11,9 +11,9 @@
 
 ## Requirements
 
-* Ruby >= 1.9.3;
+* Ruby `2.0` or `1.9.3`;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails 4.0 or 3.2;
+* Rails `4.0`;
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
 
 
@@ -65,7 +65,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-Don't forget to ensure the association of new instances of your model with Bootsy image galleries. For example, if you're using `strong_parameters`, you must allow the parameter `bootsy_image_gallery_id` in your controllers. Example:
+Don't forget to ensure the association of new instances of your model with Bootsy image galleries. For `strong_parameters`, you must allow the parameter `bootsy_image_gallery_id` in your controllers. Example:
 ```ruby
 private
 # Never trust parameters from the scary internet, only allow the white list through.
