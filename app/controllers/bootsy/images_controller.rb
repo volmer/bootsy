@@ -10,7 +10,12 @@ module Bootsy
 
       respond_to do |format|
         format.html # index.html.erb
-        format.json { render json: { partial: render_to_string(partial: 'bootsy/images/index', formats: [:html], locals: {gallery: @gallery}) } }
+        format.json do
+          partial_str = render_to_string(file: 'bootsy/images/_index',
+                                          formats: [:html],
+                                          locals: { gallery: @gallery })
+          render json: { partial: partial_str }
+        end
       end
     end
 
