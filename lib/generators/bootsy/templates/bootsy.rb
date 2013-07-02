@@ -48,7 +48,17 @@ Bootsy.setup do |config|
   # config.allow_destroy = true
 
 
-  # Store directory (inside of 'public')
+  # Storage mode
+  # You can change the sorage mode below from :file to :fog if you want
+  # to use Amazon S3 and other cloud services. If you do that, please add
+  # 'fog' to your Gemfile and create and configure your credentials in an
+  # initializer file, as described in Carrierwave's docs:
+  # https://github.com/carrierwaveuploader/carrierwave/blob/master/README.md#using-amazon-s3
+  #
+  # config.storage = :file
+
+
+  # Store directory (inside 'public') for storage = :file
   # BE CAREFUL! Changing this may break previously uploaded file paths!
   # config.store_dir = 'uploads'
 end

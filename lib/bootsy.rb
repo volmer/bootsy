@@ -37,7 +37,11 @@ module Bootsy
   mattr_accessor :original_image
   @@original_image = {}
 
-  # Store directory (inside of 'public')
+  # Storage mode
+  mattr_accessor :storage
+  @@storage = :file
+
+  # Store directory (inside 'public')
   mattr_accessor :store_dir
   @@store_dir = 'uploads'
 
