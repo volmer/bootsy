@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master branch
+## 0.4.0
 
 * Bootsy now accepts file storage in cloud services like Amazon S3 and others.
   In `config/intializers/bootsy.rb`, just set a new attribute called `storage`
