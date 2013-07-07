@@ -1,5 +1,11 @@
 # Bootsy Changelog
 
+## 1.0.0
+
+*Backwards incompatibility*: Bootsy does not support Rails `3.2` anymore. We strongly recomend to move
+on and upgrade outdated projects to Rails `4.0`. If you didn't upgrade your project yet, you can use
+[our branch with *temporary* support for Rails `3.2`](https://github.com/volmer/bootsy/tree/rails-3.2).
+
 ## 0.4.0
 
 * Bootsy now accepts file storage in cloud services like Amazon S3 and others.
