@@ -1,3 +1,7 @@
+<% if gallery.images.count == 0 %>
+  <p class='alert'>There are currently no uploaded images.</p>
+<% end %>
+
 <ul class="thumbnails">
   <% gallery.images.each do |image| %>
     <li class="span1 dropdown">
