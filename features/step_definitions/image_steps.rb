@@ -17,7 +17,7 @@ end
 
 Given /^I upload the image "(.*?)"$/ do |image_file|
   step "I attach the file \"#{image_file}\" on \"image_file\""
-  step 'I press "Load"'
+  # step 'I press "Load"'
   step "I should see the thumbnail \"#{image_file}\" on the image gallery"
 end
 
