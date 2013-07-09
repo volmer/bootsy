@@ -130,3 +130,7 @@ blockquote:after {
 textarea.bootsy:required:invalid {
   color: inherit;
 }
+
+/*Allow dropdown menus to show be displayed if they overflow the footer or modal*/
+#bootsy_image_gallery .modal { overflow: visible; }
+#bootsy_image_gallery .modal-body { overflow-y: visible; }
