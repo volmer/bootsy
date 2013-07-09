@@ -134,3 +134,9 @@ textarea.bootsy:required:invalid {
 /*Allow dropdown menus to show be displayed if they overflow the footer or modal*/
 #bootsy_image_gallery .modal { overflow: visible; }
 #bootsy_image_gallery .modal-body { overflow-y: visible; }
+
+/*The below code is needed for capybara to be able to find the input, as it*/
+/*does not work*/
+.file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover {
+  opacity: .01;
+}
