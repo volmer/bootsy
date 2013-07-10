@@ -1,5 +1,13 @@
 # Bootsy Changelog
 
+## master
+
+* `z-index` fix to allow the contextual drop-down menus to properly appear over the footer and
+  modal if it includes a longer list (thanks @anthonycollini).
+* A default message if there are no uploaded images (thanks @anthonycollini).
+* Bootsy now uses [Bootstrap File Input](https://github.com/grevory/bootstrap-file-input) with
+  auto submission on file input change (thanks @anthonycollini).
+
 ## 1.0.0
 
 * Now Bootsy is compatible with Rails `4.0` - *Backwards incompatibility*: Bootsy does not support
