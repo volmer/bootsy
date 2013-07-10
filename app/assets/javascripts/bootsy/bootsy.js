@@ -25,6 +25,14 @@ window.Bootsy.Area = function ($el) {
       success: function (data) {
         self.imageGalleryModal.find('div.modal-body').html(data.partial);
         self.imageGalleryModal.find('a.refresh-btn').hide();
+        self.imageGalleryModal.find('input#upload_submit').hide();
+        // Nicer file input
+        $('#image_image_file').bootstrapFileInput();
+        // Autosubmit on image selection
+        $('#image_image_file').on('change', function(){
+          $(this.form).submit();
+        });
+
       },
       error: function (e) {
         alert(Bootsy.translations[self.locale].error);

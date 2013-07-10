@@ -9,5 +9,4 @@ Feature: Upload an image
 
   Scenario: upload a valid image
     When I attach the file "test.jpg" on "image_file"
-    And I press "Load"
     Then I should see the thumbnail "test.jpg" on the image gallery

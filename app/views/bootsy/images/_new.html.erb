@@ -1,5 +1,3 @@
-<h3><%= t 'bootsy.image.new' %></h3>
-
 <%= form_for [bootsy, resource_or_nil(image.image_gallery), image], remote: true, html: {:class => 'bootsy form-inline'} do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <% if image.errors.any? %>
@@ -8,7 +6,7 @@
     <% end %>
   <% end %>
 
-  <%= f.file_field :image_file %>
+  <%= f.file_field :image_file, title: t('bootsy.action.upload') %>
 
-  <%= f.submit t('bootsy.action.load'), :class => 'btn btn-primary' %>
+  <%= f.submit t('bootsy.action.load'), id: 'upload_submit', :class => 'btn btn-primary' %>
 <% end %>
