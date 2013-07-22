@@ -24,7 +24,6 @@ window.Bootsy.Area = function ($el) {
       dataType: 'json',
       success: function (data) {
         self.imageGalleryModal.find('div.modal-body').html(data.partial);
-        self.imageGalleryModal.find('a.refresh-btn').hide();
         self.imageGalleryModal.find('input#upload_submit').hide();
         // Nicer file input
         $('#image_image_file').bootstrapFileInput();
