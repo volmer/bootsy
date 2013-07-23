@@ -6,6 +6,10 @@
     <% end %>
   <% end %>
 
+  <div class="bootsy-spinner">
+    <%= image_tag "bootsy/ajax-loader.gif" %>
+  </div>
+  
   <%= f.file_field :image_file, title: t('bootsy.action.upload') %>
 
   <%= f.submit t('bootsy.action.load'), id: 'upload_submit', :class => 'btn btn-primary' %>
