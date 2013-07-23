@@ -1,9 +1,8 @@
 window.Bootsy = window.Bootsy || {};
 
-window.bootsy_upload_init = false; // this flag tells the refreshGallery method whether there was a new upload or not
-
 window.Bootsy.Area = function ($el) {
   var self = this;
+  self.bootsyUploadInit = false; // this flag tells the refreshGallery method whether there was a new upload or not
 
   this.progressBar = function () {
     // Show loading spinner
@@ -16,7 +15,7 @@ window.Bootsy.Area = function ($el) {
   };
 
   this.deleteImage = function (id) {
-    $("ul.thumbnails").find("[data-id='" + id + "']").hide(200, function(){
+    self.imageGalleryModal.find("ul.thumbnails").find("[data-id='" + id + "']").hide(200, function(){
       $(this).remove();
       // Put message back if 0 images
       if ( self.imageGalleryModal.find('.thumbnails li').length == 0 ) {
@@ -53,14 +52,14 @@ window.Bootsy.Area = function ($el) {
           $('.thumbnails li').hide();
           $('.alert').fadeIn(100);
         }
-
+        
         if ( self.imageGalleryModal.find('.modal-body').children().length == 0 ) {
           // Init the modal content (only loads first time)
           self.imageGalleryModal.find('.modal-content').html($data).hide().fadeIn(200);
           // Nicer file input
           $('.modal-footer #image_image_file').bootstrapFileInput();
-        } else if ( window.bootsy_upload_init == true ) {
-          window.bootsy_upload_init = false;
+        } else if ( self.bootsyUploadInit == true ) {
+          self.bootsyUploadInit = false;
           $(img).hide().appendTo(self.imageGalleryModal.find('.modal-body .thumbnails')).fadeIn(200);
         } else {
           // do nothing
@@ -74,7 +73,7 @@ window.Bootsy.Area = function ($el) {
         // Autosubmit on image selection
         $('.modal-footer #image_image_file').on('change', function(){
           self.progressBar();
-          window.bootsy_upload_init = true;
+          self.bootsyUploadInit = true;
           $(this).closest('form').submit();
         });
 

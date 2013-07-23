@@ -18,7 +18,7 @@ describe Bootsy::ImageUploader do
     it { should be_no_larger_than(1160, 2000) }
   end
 
-  its(:thumb){ should have_dimensions(90, 90) }
+  its(:thumb){ should have_dimensions(60, 60) }
 
   its(:small){ should be_no_larger_than(Bootsy.small_image[:width], Bootsy.small_image[:height]) }
 

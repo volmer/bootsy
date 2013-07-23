@@ -140,7 +140,7 @@ textarea.bootsy:required:invalid {
 #bootsy_image_gallery .file-input-name {display: none;}  /*Hide the input file name from showing as it's not needed and ruins design*/
 /*Set a min-height on the modal body to prevent jumping up and down of modal when adding content*/
 #bootsy_image_gallery .modal-body {
-  min-height: 108px;
+  min-height: 78px;
   margin-bottom: 0;
   padding-bottom: 7px;
 }
@@ -149,7 +149,7 @@ textarea.bootsy:required:invalid {
   margin-bottom: 0;
 }
 #bootsy_image_gallery .modal-body .thumbnails > li {
-  margin-left: 8px;
+  margin-left: 7px;
   margin-bottom: 8px;
 }
 

@@ -25,7 +25,7 @@ module Bootsy
     end
 
     version :thumb do
-      process resize_to_fill: [90, 90]
+      process resize_to_fill: [60, 60]
     end
 
     def extension_white_list

@@ -2,6 +2,7 @@ en:
   bootsy:
     action:
       refresh: Refresh
+      destroy: Delete
       close: Close
       load: Load
     image_gallery: Image Gallery
@@ -14,6 +15,8 @@ en:
       small: Small
       original: Original
       new: New image
+      confirm:
+        destroy: Are you sure you want to delete this image?
       position:
         left: Left
         right: Right
