@@ -5,6 +5,7 @@ en:
       destroy: Delete
       close: Close
       load: Load
+      upload: Upload New Image
     image_gallery: Image Gallery
     image:
       s: Image
@@ -21,5 +22,6 @@ en:
         left: Left
         right: Right
         inline: Inline
+    no_images_uploaded: There are currently no uploaded images.
     js:
       alert_unsaved: You have unsaved changes.

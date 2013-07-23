@@ -5,6 +5,7 @@ pt-BR:
       destroy: Apagar
       close: Fechar
       load: Carregar
+      upload: Upload New Image
     image_gallery: Galeria de Imagens
     image:
       s: Imagem
@@ -21,5 +22,6 @@ pt-BR:
         left: Esquerda
         right: Direita
         inline: Mesma linha
+    no_images_uploaded: There are currently no uploaded images.
     js:
       alert_unsaved: As suas modificações ainda não foram gravadas.

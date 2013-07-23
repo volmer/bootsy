@@ -2,7 +2,7 @@ en:
   bootsy:
     action:
       refresh: Refresh
-      destroy: 'Delete'
+      destroy: Delete
       close: Close
       load: Load
       upload: Upload New Image
@@ -23,3 +23,5 @@ en:
         right: Right
         inline: Inline
     no_images_uploaded: There are currently no uploaded images.
+    js:
+      alert_unsaved: You have unsaved changes.
