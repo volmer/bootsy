@@ -2,6 +2,12 @@
 
 ## master
 
+* Design and interaction improvements. Bootsy is a lot more 'ajaxy' now, and loads images
+  without flashing. This also changed the way deleting an image works. It no longer
+  'refreshes the gallery', but instead finds the element to delete, fades it out,
+  and removes it (thanks @anthonycollini).
+* Fixed the indent and outdent icons as the icons were reversed from what they
+  should be (thanks @anthonycollini).
 * `z-index` fix to allow the contextual drop-down menus to properly appear over the footer and
   modal if it includes a longer list (thanks @anthonycollini).
 * A default message if there are no uploaded images (thanks @anthonycollini).
