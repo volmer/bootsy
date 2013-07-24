@@ -28,14 +28,11 @@ require 'coveralls/rake/task'
 
 Coveralls::RakeTask.new
 
-task default: [:spec,:run, 'coveralls:push']
+task default: [:spec, :cucumber, 'coveralls:push']
 
 RSpec::Core::RakeTask.new(:spec)
 
-Cucumber::Rake::Task.new(:run) do |t|
-  t.cucumber_opts = ["-t","~@pending","features --format pretty","-s"]
-end
-
-Cucumber::Rake::Task.new(:wip) do |t|
-  t.cucumber_opts = ["-t","@wip","features"]
+Cucumber::Rake::Task.new do |t|
+  # Uncomment this line when cucumber/multi_test work with minitest.
+  # t.cucumber_opts = %w{--format pretty -s}
 end
