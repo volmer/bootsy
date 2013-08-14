@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 1.1.0
 
 * Design and interaction improvements. Bootsy is a lot more 'ajaxy' now, and loads images
   without flashing. This also changed the way deleting an image works. It no longer
