@@ -110,16 +110,6 @@ You can set the default editor options, image sizes available (small, medium, la
 Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy to your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
 
 
-## Mongoid support
-
-By default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use [Bootsy-Mongoid](https://github.com/volmer/bootsy-mongoid) instead.
-
-
-## Bootsy with SimpleForm
-
-Do you want to use Bootsy alongside with [SimpleForm](https://github.com/plataformatec/simple_form)? Take a look at [Bootsy-SimpleForm](https://github.com/volmer/bootsy-simple_form).
-
-
 ## License
 
 MIT License. Copyright 2013 Volmer Soares
