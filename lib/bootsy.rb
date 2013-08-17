@@ -5,7 +5,8 @@ require 'bootsy/container'
 require 'bootsy/form_helper'
 require 'bootsy/form_builder'
 require 'bootsy/core_ext'
-require 'bootsy/simple_form/bootsy_input'
+
+autoload :BootsyInput, 'bootsy/simple_form/bootsy_input'
 
 module Bootsy
   ## CONFIGURATION OPTIONS
