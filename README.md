@@ -46,10 +46,10 @@ rake db:migrate
 Just call the brand new method `bootsy_area` in your `FormBuilder` instances, the same way you'd call the basic `textarea` method. Example:
 ```erb
 <%= form_for(@post) do |f| %>
-  <%= f.label :title %><br />
+  <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.label :content %><br />
+  <%= f.label :content %>
   <%= f.bootsy_area :content %>
 
   <%= f.submit %>
@@ -73,6 +73,18 @@ def post_params
   params.require(:post).permit(:title, :content, :bootsy_image_gallery_id)
 end
 ```
+
+## Bootsy with SimpleForm builders
+
+Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` instances, in the same way you would use the basic `text` input. Example:
+```erb
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title %>
+
+  <%= f.input :content, as: :bootsy %>
+
+  <%= f.button :submit %>
+<% end %>
 
 ## Editor options
 
