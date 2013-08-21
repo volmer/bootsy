@@ -74,6 +74,7 @@ def post_params
 end
 ```
 
+
 ## Bootsy with SimpleForm builders
 
 Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` instances, in the same way you would use the basic `text` input. Example:
@@ -85,6 +86,8 @@ Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` ins
 
   <%= f.button :submit %>
 <% end %>
+```
+
 
 ## Editor options
 
