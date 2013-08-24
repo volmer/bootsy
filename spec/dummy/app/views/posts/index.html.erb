@@ -2,11 +2,12 @@
   <div class="page-header">
     <h1><%= link_to post.title, post %></h1>
   </div>
-  
+
   <div class="clearfix">
     <%= raw post.content %>
   </div>
   <hr />
 <% end %>
 
-<%= link_to 'New Post', new_post_path, :class => 'btn' %>
+<%= link_to 'New Post', new_post_path, class: 'btn' %>
+<%= link_to 'New Post with Simple Form', new_simple_form_post_path, class: 'btn' %>
