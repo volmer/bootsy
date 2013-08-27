@@ -54,15 +54,15 @@ window.Bootsy.Area = function ($el) {
           $('.alert').fadeIn(100);
         }
 
-        if ( self.imageGalleryModal.find('.modal-body').children().length == 0 ) {
+        //if ( self.imageGalleryModal.find('.modal-body').children().length == 0 ) {
           // Init the modal content (only loads first time)
           self.imageGalleryModal.find('.modal-content').html($data).hide().fadeIn(200);
           // Nicer file input
           bootsy_image_gallery.find('#'+bootsy_image_gallery.find('form').data('namespace')+'_image_image_file').bootstrapFileInput();
-        } else if ( bootsy_image_gallery.is(':hidden') || self.bootsyUploadInit == true ) {
-          self.bootsyUploadInit = false;
-          $(img).hide().appendTo(self.imageGalleryModal.find('.modal-body .thumbnails')).fadeIn(200);
-        }
+        //} else if ( bootsy_image_gallery.is(':hidden') || self.bootsyUploadInit == true ) {
+        //  self.bootsyUploadInit = false;
+        //  $(img).hide().appendTo(self.imageGalleryModal.find('.modal-body .thumbnails')).fadeIn(200);
+        //}
 
         self.imageGalleryModal.find('a.refresh-btn').hide();
         self.imageGalleryModal.find('#refresh-gallery').hide();
