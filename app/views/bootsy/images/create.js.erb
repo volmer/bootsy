@@ -1,2 +1,5 @@
-Bootsy.areas[0].setImageGalleryId(<%= @gallery.id %>);
-Bootsy.areas[0].refreshGallery();
+for (var i=0;i<Bootsy.areas.length;i++)
+{
+Bootsy.areas[i].setImageGalleryId(<%= @gallery.id %>);
+Bootsy.areas[i].refreshGallery();
+}

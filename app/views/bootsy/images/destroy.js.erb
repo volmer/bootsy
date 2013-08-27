@@ -1,1 +1,4 @@
-Bootsy.areas[0].deleteImage(<%= @image.id %>);
+for (var i=0;i<Bootsy.areas.length;i++)
+{
+Bootsy.areas[i].deleteImage(<%= @image.id %>);
+}

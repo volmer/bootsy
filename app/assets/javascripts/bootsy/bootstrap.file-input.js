@@ -87,7 +87,6 @@ $.fn.bootstrapFileInput = function() {
     });
 
     $('.file-input-wrapper input[type=file]').change(function(){
-
       var fileName;
       fileName = $(this).val();
 
