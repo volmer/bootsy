@@ -1,4 +1,3 @@
-for (var i=0;i<Bootsy.areas.length;i++)
-{
-Bootsy.areas[i].deleteImage(<%= @image.id %>);
-}
+$.each(Bootsy.areas, function(){
+  this.deleteImage(<%= @image.id %>);
+})
