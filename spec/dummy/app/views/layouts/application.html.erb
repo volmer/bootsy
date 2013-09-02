@@ -17,17 +17,17 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="main-container">
       <% flash.each do |name, msg| %>
         <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
           <button class="close" data-dismiss="alert">×</button>
           <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
         </div>
       <% end %>
-      
+
       <%= yield %>
 
-      <hr>
+      <hr />
 
       <footer>
         <p>Dummy application for <%= link_to 'Bootsy', 'http://github.com/volmer/bootsy', target: '_blank' %></p>

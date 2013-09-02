@@ -33,6 +33,12 @@ When /^I open the "(.*?)" menu$/ do |term|
   page.execute_script("$('a:contains(#{term}):visible').parent().find('.dropdown-menu').show()")
 end
 
+When(/^I insert the image "(.*?)" on the text$/) do |image|
+  step 'I click on the image "test.jpg"'
+  step 'I open the "Small" menu'
+  step 'I click on the "Left" option of the submenu'
+end
+
 Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text area positioned as (.*?)$/ do |image_file, size, position|
   size.downcase!
   img_src = "/#{size}_#{image_file}"
@@ -42,4 +48,8 @@ Then /^I should see the image "(.*?)" in its (.*?) size inserted on the text are
 
   content.should include(img_src)
   content.should include("align=\"#{position.downcase}\"")
+end
+
+Then(/^I see the post created with the image "(.*?)" in it$/) do |image|
+  expect(page).to have_selector(:xpath, "//div[@id='posts']//img[contains(@src,'/small_#{image}')]")
 end

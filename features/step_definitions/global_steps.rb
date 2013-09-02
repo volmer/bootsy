@@ -30,3 +30,7 @@ end
 When 'I dismiss the alert prompt' do
   page.driver.browser.switch_to.alert.dismiss
 end
+
+When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
+  fill_in field, with: value
+end
