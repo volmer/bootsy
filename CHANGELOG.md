@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master branch
+## 1.2.0
 
 * Merged the [SimpleForm](https://github.com/plataformatec/simple_form) support into master.
   You no longer need to use the [bootsy-simple_form](https://github.com/volmer/bootsy-simple_form)
