@@ -82,7 +82,7 @@ end
 ```
 
 
-## Bootsy with SimpleForm builders
+## Bootsy with [Simple Form](https://github.com/plataformatec/simple_form) builders
 
 Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` instances, 
 in the same way you would use the basic `text` input. Example:
