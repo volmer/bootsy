@@ -13,8 +13,8 @@
 
 * Ruby `2.0` or `1.9.3`;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails `4.0` (you can get a *temporary* support for Rails `3.2` on [this branch](https://github.com/volmer/bootsy/tree/rails-3.2));
-* [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
+* Rails `4.0`;
+* [Bootstrap `2.3`](http://getbootstrap.com/2.3.2/) properly added to your application.
 
 
 ## Installation
