@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 2.14'
   s.add_development_dependency 'factory_girl_rails', '~> 4.2'
   s.add_development_dependency 'database_cleaner', '~> 1.0.1'
-  s.add_development_dependency 'cucumber-rails', '~> 1.3'
-  s.add_development_dependency 'shoulda-matchers', '~> 2.2'
+  s.add_development_dependency 'cucumber-rails', '~> 1.4'
+  s.add_development_dependency 'shoulda-matchers', '~> 2.3'
   s.add_development_dependency 'selenium-webdriver', '~> 2.35'
 end
