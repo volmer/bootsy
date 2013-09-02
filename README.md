@@ -31,8 +31,10 @@ bundle install
 
 3. Run the install generator:
 ```console
-rails g bootsy:install
+rails generate bootsy:install
 ```
+  It will include the javascripts and stylesheets in the assets pipeline, 
+  create the `bootsy.rb` initializer and add a copy of the english translations.
 
 4. Add and run migrations (if you're using ActiveRecord):
 ```console
@@ -43,7 +45,8 @@ rake db:migrate
 
 ## Usage
 
-Just call the brand new method `bootsy_area` in your `FormBuilder` instances, the same way you'd call the basic `textarea` method. Example:
+Just call the brand new method `bootsy_area` in your `FormBuilder` instances, the 
+same way you'd call the basic `textarea` method. Example:
 ```erb
 <%= form_for(@post) do |f| %>
   <%= f.label :title %>
@@ -56,7 +59,9 @@ Just call the brand new method `bootsy_area` in your `FormBuilder` instances, th
 <% end %>
 ```
 
-Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a `Post` model and you want to use `bootsy_area` with it, then you should include the `Bootsy::Container` module:
+Bootsy will group the uploaded images as galleries and associate them to one of 
+your models. For example, if you have a `Post` model and you want to use `bootsy_area` 
+with it, then you should include the `Bootsy::Container` module:
 ```ruby
 class Post < ActiveRecord::Base
   include Bootsy::Container
@@ -65,7 +70,9 @@ class Post < ActiveRecord::Base
 end
 ```
 
-Don't forget to ensure the association of new instances of your model with Bootsy image galleries. For `strong_parameters`, you must allow the parameter `bootsy_image_gallery_id` in your controllers. Example:
+Don't forget to ensure the association of new instances of your model with Bootsy 
+image galleries. For `strong_parameters`, you must allow the parameter `bootsy_image_gallery_id` 
+in your controllers. Example:
 ```ruby
 private
 # Never trust parameters from the scary internet, only allow the white list through.
@@ -77,7 +84,8 @@ end
 
 ## Bootsy with SimpleForm builders
 
-Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` instances, in the same way you would use the basic `text` input. Example:
+Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` instances, 
+in the same way you would use the basic `text` input. Example:
 ```erb
 <%= simple_form_for @post do |f| %>
   <%= f.input :title %>
@@ -91,12 +99,14 @@ Just use the brand new input type `bootsy` in your `SimpleForm::FormBuilder` ins
 
 ## Editor options
 
-It is possible to customize how the editor is displayed and its behavior by passing a hash `editor_options` to your `bootsy_area`.
+It is possible to customize how the editor is displayed and its behavior by passing 
+a hash `editor_options` to your `bootsy_area`.
 
 
 ### Buttons
 
-You can enable/disable the buttons available on the editor. For example, if you want to disable the link and color buttons:
+You can enable/disable the buttons available on the editor. For example, if you 
+want to disable the link and color buttons:
 ```erb
 <%= f.bootsy_area :my_attribute, editor_options: {link: false, color: false} %>
 ```
@@ -105,24 +115,36 @@ Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, 
 
 ### Alert for usaved changes
 
-By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable this behaviour by doing:
+By default, Bootsy alerts for unsaved changes if the user attempts to unload 
+the window. You can disable this behaviour by doing:
 ```erb
 <%= f.bootsy_area :my_attribute, editor_options: {alert_unsaved: false} %>
 ```
 
 ## Uploader
 
-It's also possible to use Bootsy without the image upload feature. Just call `bootsy_area` in a form builder not associated to a `Bootsy::Container` model. This way users can insert images in their texts by providing an image url.
+It's also possible to use Bootsy without the image upload feature. Just call 
+`bootsy_area` in a form builder not associated to a `Bootsy::Container` model. 
+This way users can insert images in their texts by providing an image url.
 
 
 ## Configuration
 
-You can set the default editor options, image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, `/config/initializers/bootsy.rb`.
+You can set the default editor options, image sizes available (small, medium, 
+large and/or its original), its dimensions and more. Take a look at the initalizer 
+file, `/config/initializers/bootsy.rb`.
 
 
 ## I18n
 
-Bootsy defines some i18n keys. The english translation is automatically added to your `config/locales` directory as `bootsy.en.yml`. You can follow that template in order to translate Bootsy to your language. You can find some examples [here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
+Bootsy defines some i18n keys. The english translation is automatically added 
+to your `config/locales` directory as `bootsy.en.yml`. You can follow that template 
+in order to translate Bootsy to your language. You can find some examples 
+[here](https://github.com/volmer/bootsy/tree/master/config/locales). It is also 
+necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in 
+your assets pipeline. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). 
+If you are using the alert for unsaved changes, you have to define a translation 
+for it as well. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
 
 
 ## License
