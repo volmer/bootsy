@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
-  resources :articles, except: :show
 
   resources :simple_form_posts, only: [:new, :create]
 

@@ -15,10 +15,22 @@
     <%= f.label :title %><br />
     <%= f.text_field :title, class: 'span12' %>
   </div>
-  <div class="field">
+  <div class="field post_content">
     <%= f.label :content %><br />
     <%= f.bootsy_area :content, rows: 16, class: 'span12' %>
   </div>
+  <% if @post.new_record? %>
+    <%= f.fields_for :comments do |builder| %>
+      <div class="field">
+        <%= builder.label :author %></br>
+        <%= builder.text_field :author, :class => 'span6' %>
+      </div>
+      <div class="field comment_content">
+        <%= builder.label :content %></br>
+        <%= builder.bootsy_area :content, rows: 8, :class => 'span6' %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit class: 'btn' %>
   </div>
