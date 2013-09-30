@@ -19,6 +19,12 @@ When /^I press "(.*?)"$/ do |button|
   click_on button
 end
 
+When /^I press '(.*?)' within (.*?)$/ do |button, field_name|
+  within ".field.#{field_name}" do
+    click_on button
+  end
+end
+
 When /^I click on "(.*?)"$/ do |link_name|
   click_link link_name
 end

@@ -3,6 +3,11 @@ Given 'I access its image gallery' do
   step 'I should see the image gallery'
 end
 
+Given /^I access its image gallery within field (.*?)$/ do |field_name|
+  step "I press 'Insert image' within #{field_name}"
+  step 'I should see the image gallery'
+end
+
 When /^I attach the file "(.*?)" on "(.*?)"$/ do |file, field|
   attach_file "image[#{field}]", path_to_file(file)
 end
@@ -12,7 +17,7 @@ Then /^I should( not)? see the thumbnail "(.*?)" on the image gallery$/ do |nega
 
   expectation = negate ? :should_not : :should
 
-  page.send expectation, have_selector(:xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
+  page.send expectation, have_selector(:xpath, "//div[contains(concat(' ',@class,' '),' bootsy_image_gallery ')]//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
 end
 
 Given /^I upload the image "(.*?)"$/ do |image_file|
@@ -22,7 +27,7 @@ Given /^I upload the image "(.*?)"$/ do |image_file|
 end
 
 When /^I click on the image "(.*?)"$/ do |image_name|
-  find(:xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{image_name}')]").click
+  find(:xpath, "//div[contains(concat(' ',@class,' '),' bootsy_image_gallery ')]//img[contains(@src,'/thumb_#{image_name}')]").click
 end
 
 When /^I click on the "(.*?)" option of the submenu$/ do |position|

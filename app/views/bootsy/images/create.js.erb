@@ -1,2 +1,4 @@
-Bootsy.areas[0].setImageGalleryId(<%= @gallery.id %>);
-Bootsy.areas[0].refreshGallery();
+$.each(Bootsy.areas, function(){
+  this.setImageGalleryId(<%= @gallery.id %>);
+  this.refreshGallery();
+});

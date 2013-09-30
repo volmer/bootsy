@@ -53,9 +53,7 @@ module Bootsy
 
     private
     def find_gallery
-      ImageGallery.find params[:image_gallery_id]
-    rescue
-      ImageGallery.new
+      ImageGallery.find_or_initialize_by(id: params[:image_gallery_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
