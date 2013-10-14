@@ -37,7 +37,7 @@ window.Bootsy.Area = function ($el) {
       success: function (data) {
         // Hide loading spinner
         $('.bootsy-spinner img').fadeOut(200);
-        
+
         // Cache the returned data
         var $data = $(data.partial);
 
@@ -52,7 +52,7 @@ window.Bootsy.Area = function ($el) {
           $('.thumbnails li').hide();
           $('.alert').fadeIn(100);
         }
-        
+
         if ( self.imageGalleryModal.find('.modal-body').children().length == 0 ) {
           // Init the modal content (only loads first time)
           self.imageGalleryModal.find('.modal-content').html($data).hide().fadeIn(200);
@@ -165,7 +165,7 @@ window.Bootsy.Area = function ($el) {
         customCommand: function (locale, options) {
           var size = (options && options.size) ? ' btn-'+options.size : '';
           return "<li>" +
-            "<a class='btn" + size + "' data-wysihtml5-command='customCommand' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
+            "<a class='btn btn-default " + size + "' data-wysihtml5-command='customCommand' title='" + locale.image.insert + "' tabindex='-1'><i class='icon-picture'></i></a>" +
           "</li>";
         }
       };
