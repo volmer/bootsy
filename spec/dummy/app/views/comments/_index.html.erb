@@ -1,9 +1,9 @@
 <h3>Comments</h3>
 
 <% post.comments.each do |comment| %>
-  <%= render 'comments/show', {comment: comment} %>
+  <%= render 'comments/show', { comment: comment } %>
 <% end %>
 
 <hr />
 
-<%= render 'comments/new', {comment: (defined?(comment) ? comment : post.comments.new) } %>
+<%= render 'comments/new', { comment: (defined?(comment) ? comment : post.comments.new) } %>

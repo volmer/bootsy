@@ -11,15 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, class: 'span12' %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.bootsy_area :content, rows: 16, class: 'span12' %>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.bootsy_area :content, rows: 16, class: 'form-control' %>
   </div>
+
   <div class="actions">
-    <%= f.submit class: 'btn' %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
