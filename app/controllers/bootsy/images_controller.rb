@@ -11,10 +11,19 @@ module Bootsy
       respond_to do |format|
         format.html # index.html.erb
         format.json do
-          partial_str = render_to_string(file: 'bootsy/images/_index',
+          rendered_images = []
+
+          @images.each do |image|
+            rendered_images << render_to_string(file: 'bootsy/images/_image',
                                           formats: [:html],
-                                          locals: { gallery: @gallery })
-          render json: { partial: partial_str }
+                                          locals: { image: image })
+          end
+
+          new_image = render_to_string(file: 'bootsy/images/_new',
+                                        formats: [:html],
+                                        locals: { gallery: @gallery, image: @gallery.images.new })
+
+          render json: { images: rendered_images, form: new_image }
         end
       end
     end
