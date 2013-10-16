@@ -35,7 +35,9 @@ window.Bootsy.Area = function ($el) {
       },
       dataType: 'json',
       success: function (data) {
-        $.each(data.images, self.addToGallery);
+        $.each(data.images, function(index, value) {
+          self.addToGallery(value);
+        });
 
         if(data.images.length == 0) {
           self.progressBar();
@@ -57,7 +59,7 @@ window.Bootsy.Area = function ($el) {
   };
 
   this.refreshImageUploadForm = function(html) {
-    self.imageGalleryModal.find('.modal-footer').html(data.form);
+    self.imageGalleryModal.find('.modal-footer').html(html);
 
     // Nicer file input
     $('#image_image_file').bootstrapFileInput();
