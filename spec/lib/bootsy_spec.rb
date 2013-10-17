@@ -12,7 +12,16 @@ describe Bootsy do
   end
 
   describe 'default values' do
-    its(:editor_options) { should == {} }
+    describe '.editor_options' do
+      subject { Bootsy.editor_options }
+
+      it { should include(font_styles: true) }
+      it { should include(lists: true) }
+      it { should include(emphasis: true) }
+      it { should include(html: false) }
+      it { should include(image: true) }
+      it { should include(color: true) }
+    end
 
     its(:image_versions_available) { should == [:small, :medium, :large, :original] }
 
