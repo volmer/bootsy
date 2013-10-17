@@ -66,6 +66,8 @@ Bootsy.Area.prototype.setUploadForm = function(html) {
 
   footer.html(html);
 
+  this.hideUploadLoadingAnimation();
+
   footer.find('input[type="file"]').bootstrapFileInput();
 
   this.uploadInput = footer.find('input[type="file"]');
@@ -114,6 +116,8 @@ Bootsy.Area.prototype.setImageGallery = function() {
 // Delete image
 Bootsy.Area.prototype.deleteImage = function (id) {
   var image = this.modal.find('.bootsy-image[data-id="' + id + '"]');
+
+  this.hideGalleryLoadingAnimation();
 
   image.hide(200, function() {
     image.remove();
@@ -248,4 +252,6 @@ Bootsy.Area.prototype.init = function() {
   this.modal.on('shown.bs.modal', this.setImageGallery.bind(this));
 
   this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
+
+  this.hideRefreshButton();
 };
