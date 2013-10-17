@@ -6,7 +6,7 @@ Feature: Customize editor options
   Scenario Outline: enable a toolbar option
     When I set "<Config>" to "true" on the editor options of bootsy_area
     And I go to the new post page
-    Then I should see a link with the option "<Option>" in the editor toolbar
+    Then I see a link with the option "<Option>" in the editor toolbar
     Examples:
       | Config      | Option         |
       | font_styles | Font style     |
@@ -25,7 +25,7 @@ Feature: Customize editor options
   Scenario Outline: disable a toolbar option
     When I set "<Config>" to "false" on the editor options of bootsy_area
     And I go to the new post page
-    Then I should not see a link with the option "<Option>" in the editor toolbar
+    Then I don't see a link with the option "<Option>" in the editor toolbar
     Examples:
       | Config      | Option         |
       | font_styles | Font style     |

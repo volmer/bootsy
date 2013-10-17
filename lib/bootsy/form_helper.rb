@@ -1,21 +1,21 @@
 module Bootsy
   module FormHelper
     def bootsy_area(object, method, options = {})
-      container = options.delete :container
-      enable_uploader = enable_uploader? object, options.delete(:uploader), container
+      container = options.delete(:container)
       bootsy_options = Bootsy.editor_options.merge(options.delete(:editor_options) || {})
-      bootsy_options[:uploader] = false unless enable_uploader
 
-      options[:data] = data_options options, bootsy_options
-      options[:class] = class_attr options
+      bootsy_options[:uploader] = enable_uploader?(object, options.delete(:uploader), container)
 
-      output = self.text_area object_name(object), method, options
+      options[:data] = data_options(options, bootsy_options)
+      options[:class] = class_attr(options)
 
-      if enable_uploader
-        output += self.render 'bootsy/images/modal', {container: container || object}
+      output = self.text_area(object_name(object), method, options)
+
+      if bootsy_options[:uploader]
+        output += self.render 'bootsy/images/modal', { container: container || object }
 
         if container.blank? || (container == object)
-          output += self.hidden_field object_name(object), :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id'
+          output += self.hidden_field(object_name(object), :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id')
         end
       end
 
@@ -57,7 +57,7 @@ module Bootsy
     end
 
     def data_options(options, bootsy_options)
-      (options[:data] || {}).merge Hash[bootsy_options.map{|k,v|["bootsy-#{k}",v]}]
+      (options[:data] || {}).merge Hash[ bootsy_options.map { |k,v| ["bootsy-#{k}", v] } ]
     end
   end
 end

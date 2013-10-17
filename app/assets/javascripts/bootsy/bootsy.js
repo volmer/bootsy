@@ -2,14 +2,14 @@ window.Bootsy = window.Bootsy || {};
 
 Bootsy.Area = function($el) {
   this.$el = $el;
-  this.modal = $el.closest('.bootsy-modal');
+  this.modal = $el.siblings('.bootsy-modal');
   this.locale = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
   this.unsavedChanges = false;
 
   this.options = {
     locale: this.locale,
     alertUnsavedChanges: $el.data('bootsy-alert-unsaved'),
-    images: $el.data('bootsy-image'),
+    image: $el.data('bootsy-image'),
     uploader: $el.data('bootsy-uploader'),
   };
 
@@ -70,10 +70,10 @@ Bootsy.Area.prototype.setUploadForm = function(html) {
   input = footer.find('input[type="file"]');
 
   input.bootstrapFileInput();
-  input.on('change', function() {
+  $('#image_image_file').on('change', function() {
     this.showUploadLoadingAnimation();
 
-    input.closest('form').submit();
+    $('#image_image_file').closest('form').submit();
   }.bind(this));
 };
 
@@ -179,9 +179,9 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 
 // Init components
 Bootsy.Area.prototype.init = function() {
-  var insert = this.insertImage;
+  var insert = this.insertImage.bind(this);
 
-  if ((this.options.images === true) && (this.options.uploader === true)) {
+  if ((this.options.image === true) && (this.options.uploader === true)) {
     this.modal.on('click', '.bootsy-image .insert', function(e) {
       var img, imageObject;
       var imagePrefix = '/' + $(this).attr('data-image-size') + '_';
@@ -205,7 +205,7 @@ Bootsy.Area.prototype.init = function() {
     // Let's use the uploader, not the static image modal
     this.options.image = false;
     this.options.customCommand = true;
-    this.options.customCommandCallback = this.openImagesModal;
+    this.options.customCommandCallback = this.openImagesModal.bind(this);
     this.options.customTemplates = {
       customCommand: function(locale, options) {
         var size = (options && options.size) ? ' btn-'+options.size : '';
@@ -221,22 +221,16 @@ Bootsy.Area.prototype.init = function() {
     // In order to avoid form nesting
     this.modal.parents('form').after(this.modal);
 
-    this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery);
+    this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
 
-    this.modal.on('click', '.destroy-btn', this.showGalleryLoadingAnimation);
-
-    this.modal.modal({ show: false });
-
-    this.modal.on('shown.bs.modal', this.setImageGallery);
-
-    this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
+    this.modal.on('click', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
   }
 
   this.editor = this.$el.wysihtml5($.extend(Bootsy.options, this.options)).data('wysihtml5').editor;
 
   // Mechanism for unsaved changes alert
   if (this.options.alertUnsavedChanges !== false) {
-    window.onbeforeunload = this.unsavedChangesAlert;
+    window.onbeforeunload = this.unsavedChangesAlert.bind(this);
   }
 
   this.$el.closest('form').submit(function(e) {
@@ -248,4 +242,10 @@ Bootsy.Area.prototype.init = function() {
   this.editor.on('change', function() {
     this.unsavedChanges = true;
   }.bind(this));
+
+  this.modal.modal({ show: false });
+
+  this.modal.on('shown.bs.modal', this.setImageGallery.bind(this));
+
+  this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
 };

@@ -4,11 +4,11 @@ Given 'there is a post with images' do
   post.save!
 end
 
-Then 'I should see the image gallery' do
-  page.should have_css('#bootsy_image_gallery', visible: true)
+Then 'I see the image gallery' do
+  expect(page).to have_css('.bootsy-modal', visible: true)
 end
 
 Then /^the image gallery should( not)? be empty$/ do |negate|
   expectation = negate ? :should : :should_not
-  page.send expectation, have_css('#bootsy_image_gallery .bootsy-image', visible: true)
+  page.send expectation, have_css('.bootsy-image', visible: true)
 end

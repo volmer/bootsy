@@ -12,7 +12,7 @@ Feature: Insert an image
     When I click on the image "test.jpg"
     And I open the "<Size>" menu
     And I click on the "<Position>" option of the submenu
-    Then I should see the image "test.jpg" in its <Size> size inserted on the text area positioned as <Position>
+    Then I see the image "test.jpg" in its <Size> size inserted on the text area positioned as <Position>
     Examples:
       | Size     | Position |
       | Small    | Left     |

@@ -7,5 +7,5 @@ Feature: Use a foreign gallery
     Given there is a post with images
     And I am on its comment page
     When I press "Insert image"
-    Then I should see the image gallery
+    Then I see the image gallery
     And the image gallery should not be empty
