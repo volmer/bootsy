@@ -4,7 +4,10 @@ Bootsy.init = function() {
   Bootsy.areas = [];
 
   $('textarea.bootsy_text_area').each(function() {
-    Bootsy.areas.push(new Bootsy.Area($(this)));
+    var area = new Bootsy.Area($(this));
+    area.init();
+
+    Bootsy.areas.push(area);
   });
 };
 

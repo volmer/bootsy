@@ -1,11 +1,11 @@
 window.Bootsy = window.Bootsy || {};
 
-var page_stylesheets = [];
+var pageStylesheets = [];
 $('link[rel="stylesheet"]').each(function () {
-  page_stylesheets.push($(this).attr('href'));
+  pageStylesheets.push($(this).attr('href'));
 });
 
-window.Bootsy.editorOptions = {
+window.Bootsy.options = {
   parserRules: {
     classes: {
       "wysiwyg-color-silver" : 1,
@@ -76,5 +76,5 @@ window.Bootsy.editorOptions = {
     }
   },
   color: true,
-  stylesheets: page_stylesheets
+  stylesheets: pageStylesheets
 };

@@ -1,6 +1,6 @@
-<div class="modal fade" id="bootsy_image_gallery"  tabindex="-1"
+<div class="modal fade bootsy-modal"  tabindex="-1"
   role="dialog" aria-hidden="true" data-no-turbolink
-  data-bootsy-gallery-id="<%= container.bootsy_image_gallery_id %>">
+  data-gallery-id="<%= container.bootsy_image_gallery_id %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,11 +10,13 @@
       </div>
 
       <div class="modal-body">
-        <div class="alert hidden">
+        <div class="alert bootsy-empty-alert hidden">
           <%= t 'bootsy.no_images_uploaded' %>
         </div>
 
-        <div class="row" id="bootsy-gallery"></div>
+        <%= image_tag 'bootsy/gallery-loader.gif', class: 'bootsy-gallery-loader hide' %>
+
+        <div class="row bootsy-gallery"></div>
 
         <%= refresh_btn %>
       </div>
