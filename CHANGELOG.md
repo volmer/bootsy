@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Migrated Bootsy to Bootstrap 3.
+
 ## 1.2.0
 
 * Merged the [SimpleForm](https://github.com/plataformatec/simple_form) support into master.
