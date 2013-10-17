@@ -8,8 +8,6 @@ When /^I attach the file "(.*?)" on "(.*?)"$/ do |file, field|
 end
 
 Then /^I should( not)? see the thumbnail "(.*?)" on the image gallery$/ do |negate, thumbnail|
-  page.should have_selector 'ul.thumbnails', visible: true
-
   expectation = negate ? :should_not : :should
 
   page.send expectation, have_selector(:xpath, "//div[@id='bootsy_image_gallery']//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
@@ -17,7 +15,6 @@ end
 
 Given /^I upload the image "(.*?)"$/ do |image_file|
   step "I attach the file \"#{image_file}\" on \"image_file\""
-  # step 'I press "Load"'
   step "I should see the thumbnail \"#{image_file}\" on the image gallery"
 end
 

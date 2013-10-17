@@ -9,17 +9,17 @@
   </head>
 
   <body>
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <%= link_to 'Dummy', root_path, class: 'brand' %>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'Dummy', root_path, class: 'navbar-brand' %>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="container" id="main-container">
       <% flash.each do |name, msg| %>
-        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
           <button class="close" data-dismiss="alert">×</button>
           <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
         </div>
@@ -30,7 +30,9 @@
       <hr />
 
       <footer>
-        <p>Dummy application for <%= link_to 'Bootsy', 'http://github.com/volmer/bootsy', target: '_blank' %></p>
+        <p>
+          Dummy application for <%= link_to 'Bootsy', 'http://github.com/volmer/bootsy', target: '_blank' %>
+        </p>
       </footer>
     </div>
   </body>

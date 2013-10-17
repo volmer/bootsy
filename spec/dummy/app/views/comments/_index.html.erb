@@ -1,9 +1,13 @@
 <h3>Comments</h3>
 
-<% post.comments.each do |comment| %>
-  <%= render 'comments/show', {comment: comment} %>
-<% end %>
+<div class="row">
+  <div class="col-md-8">
+    <% post.comments.each do |comment| %>
+      <%= render 'comments/show', { comment: comment } %>
+    <% end %>
 
-<hr />
+    <hr />
 
-<%= render 'comments/new', {comment: (defined?(comment) ? comment : post.comments.new) } %>
+    <%= render 'comments/new', { comment: (defined?(comment) ? comment : post.comments.new) } %>
+  </div>
+</div>

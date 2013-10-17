@@ -7,7 +7,7 @@ describe Bootsy::ApplicationHelper do
   describe '#refresh_btn' do
     subject { helper.refresh_btn }
 
-    it { should include('class="btn btn-mini refresh-btn"') }
+    it { should include('class="btn btn-default hidden btn-sm refresh-btn"') }
 
     it { should include('Refresh') }
 

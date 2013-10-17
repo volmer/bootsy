@@ -1,7 +1,7 @@
 <%= render @post %>
 
-<%= link_to 'Edit', edit_post_path(@post), class: 'btn' %>
+<%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-default' %>
 
 <hr />
 
-<%= render 'comments/index', {post: @post} %>
+<%= render 'comments/index', { post: @post } %>

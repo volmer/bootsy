@@ -1,2 +1,3 @@
 Bootsy.areas[0].setImageGalleryId(<%= @gallery.id %>);
-Bootsy.areas[0].refreshGallery();
+Bootsy.areas[0].addToGallery('<%= j render(@image) %>');
+Bootsy.areas[0].refreshImageUploadForm('<%= j render('new', gallery: @gallery, image: @gallery.images.new) %>');
