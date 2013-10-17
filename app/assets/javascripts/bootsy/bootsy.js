@@ -63,17 +63,17 @@ Bootsy.Area.prototype.hideRefreshButton = function() {
 // Set upload form
 Bootsy.Area.prototype.setUploadForm = function(html) {
   var footer = this.modal.find('.modal-footer');
-  var input;
 
   footer.html(html);
 
-  input = footer.find('input[type="file"]');
+  footer.find('input[type="file"]').bootstrapFileInput();
 
-  input.bootstrapFileInput();
-  $('#image_image_file').on('change', function() {
+  this.uploadInput = footer.find('input[type="file"]');
+
+  this.uploadInput.change(function() {
     this.showUploadLoadingAnimation();
 
-    $('#image_image_file').closest('form').submit();
+    this.uploadInput.closest('form').submit();
   }.bind(this));
 };
 
