@@ -152,3 +152,10 @@ textarea.bootsy:required:invalid {
 .file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover {
   opacity: .01;
 }
+
+/* Avoid Boostrap input borders */
+body.bootsy_text_area.form-control {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
