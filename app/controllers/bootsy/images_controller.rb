@@ -38,10 +38,16 @@ module Bootsy
 
       respond_to do |format|
         if @image.save
-          format.js
-          format.json { render json: @image, status: :created, location: @image }
+          image_view = render_to_string(file: 'bootsy/images/_image',
+                                        formats: [:html],
+                                        locals: { image: @image })
+
+          new_image = render_to_string(file: 'bootsy/images/_new',
+                                        formats: [:html],
+                                        locals: { gallery: @gallery, image: @gallery.images.new })
+
+          format.json { render json: { image: image_view, form: new_image, gallery_id: @gallery.id } }
         else
-          format.js
           format.json { render json: @image.errors, status: :unprocessable_entity }
         end
       end
@@ -54,9 +60,8 @@ module Bootsy
       @image.destroy
 
       respond_to do |format|
-        format.js
+        format.json { render json: { id: params[:id] } }
         format.html { redirect_to images_url }
-        format.json { head :no_content }
       end
     end
 

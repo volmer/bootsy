@@ -72,8 +72,8 @@
   margin: 0 0 8px 8px;
 }
 
-form.bootsy .field_with_errors { 
-  display: inline-block; 
+form.bootsy .field_with_errors {
+  display: inline-block;
 }
 
 blockquote {
@@ -157,12 +157,15 @@ textarea.bootsy:required:invalid {
   width: 100%;
   margin-right: 8px;
 }
-.bootsy-spinner {
+
+.bootsy-upload-loader {
   display: inline-block;
   padding-right: 5px;
 }
-.bootsy-spinner img {
-  display: none;
+
+.bootsy-gallery-loader {
+  display: block;
+  margin: 0 auto;
 }
 
 /*The below code is needed for capybara to be able to find the input, as it*/

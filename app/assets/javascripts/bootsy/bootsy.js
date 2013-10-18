@@ -1,5 +1,7 @@
 window.Bootsy = window.Bootsy || {};
 
+$.ajaxSettings.dataType = 'json';
+
 Bootsy.Area = function($el) {
   this.$el = $el;
   this.modal = $el.siblings('.bootsy-modal');
@@ -227,7 +229,17 @@ Bootsy.Area.prototype.init = function() {
 
     this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
 
-    this.modal.on('click', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
+    this.modal.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
+
+    this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
+      this.deleteImage(data.id);
+    }.bind(this));
+
+    this.modal.on('ajax:success', '.modal-footer form', function(evt, data) {
+      this.setImageGalleryId(data.gallery_id);
+      this.addImage(data.image);
+      this.setUploadForm(data.form);
+    }.bind(this));
   }
 
   this.editor = this.$el.wysihtml5($.extend(Bootsy.options, this.options)).data('wysihtml5').editor;
