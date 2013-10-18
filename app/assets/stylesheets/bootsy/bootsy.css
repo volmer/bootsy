@@ -125,26 +125,16 @@ textarea.bootsy:required:invalid {
 }
 
 /*Modal Design Styles*/
-#bootsy_image_gallery form { margin-bottom: 0px; } /*remove default bottom margin*/
+
 .bootsy-modal .file-input-name {display: none;}  /*Hide the input file name from showing as it's not needed and ruins design*/
+
 /*Set a min-height on the modal body to prevent jumping up and down of modal when adding content*/
-#bootsy_image_gallery .modal-body {
-  min-height: 78px;
-  margin-bottom: 0;
-  padding-bottom: 7px;
-}
-#bootsy_image_gallery .modal-body .thumbnails {
-  margin-left: -10px;
-  margin-bottom: 0;
-}
-#bootsy_image_gallery .modal-body .thumbnails > li {
-  margin-left: 7px;
-  margin-bottom: 8px;
+.bootsy-modal .modal-body {
+  min-height: 120px;
 }
 
-#bootsy_image_gallery .modal-body .thumbnails > li.alert {
-  width: 100%;
-  margin-right: 8px;
+.bootsy-image {
+  margin-bottom: 15px;
 }
 
 .bootsy-upload-loader {
