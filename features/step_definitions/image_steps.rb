@@ -30,8 +30,7 @@ end
 
 When(/^I insert the image "(.*?)" on the text$/) do |image|
   step 'I click on the image "test.jpg"'
-  step 'I open the "Small" menu'
-  step 'I click on the "Left" option of the submenu'
+  step 'I click on the "Left" option of the "Small" submenu'
 end
 
 Then(/^I see the image "(.*?)" in its (.*?) size inserted on the text area positioned as (.*?)$/) do |image_file, size, position|
