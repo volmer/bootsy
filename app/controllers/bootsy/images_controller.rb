@@ -1,4 +1,4 @@
-require_dependency "bootsy/application_controller"
+require_dependency 'bootsy/application_controller'
 
 module Bootsy
   class ImagesController < Bootsy::ApplicationController
