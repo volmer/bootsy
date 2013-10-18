@@ -183,7 +183,7 @@ Bootsy.Area.prototype.clear = function () {
 Bootsy.Area.prototype.setImageGalleryId = function(id) {
   this.modal.data('gallery-id', id);
 
-  this.$el.closest('input.bootsy_image_gallery_id').val(id);
+  this.$el.siblings('.bootsy_image_gallery_id').val(id);
 };
 
 

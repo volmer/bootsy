@@ -3,30 +3,30 @@ Given 'I access its image gallery' do
   step 'I see the image gallery'
 end
 
-When /^I attach the file "(.*?)" on "(.*?)"$/ do |file, field|
+When(/^I attach the file "(.*?)" on "(.*?)"$/) do |file, field|
   attach_file "image[#{field}]", path_to_file(file)
 end
 
-Then /^I should( not)? see the thumbnail "(.*?)" on the image gallery$/ do |negate, thumbnail|
-  expectation = negate ? :should_not : :should
+Then(/^I( don't)? see the thumbnail "(.*?)" on the image gallery$/) do |negate, thumbnail|
+  expectation = negate ? :not_to : :to
 
-  page.send expectation, have_selector(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
+  expect(page).send expectation, have_selector(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
 end
 
-Given /^I upload the image "(.*?)"$/ do |image_file|
+Given(/^I upload the image "(.*?)"$/) do |image_file|
   step "I attach the file \"#{image_file}\" on \"image_file\""
-  step "I should see the thumbnail \"#{image_file}\" on the image gallery"
+  step "I see the thumbnail \"#{image_file}\" on the image gallery"
 end
 
-When /^I click on the image "(.*?)"$/ do |image_name|
+When(/^I click on the image "(.*?)"$/) do |image_name|
   find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src, '/thumb_#{image_name}')]").click
 end
 
-When /^I click on the "(.*?)" option of the submenu$/ do |position|
+When(/^I click on the "(.*?)" option of the submenu$/) do |position|
   find('li.dropdown-submenu ul.dropdown-menu li a', visible: true, text: /#{position}/).click
 end
 
-When /^I open the "(.*?)" menu$/ do |term|
+When(/^I open the "(.*?)" menu$/) do |term|
   page.execute_script("$('a:contains(#{term}):visible').parent().find('.dropdown-menu').show()")
 end
 
