@@ -8,6 +8,7 @@ Feature: Access the image gallery
     When I press "Insert image"
     Then I see the image gallery
     And the image gallery is empty
+    And I see the message "There are currently no uploaded images."
 
   Scenario: access the image gallery of a saved resource
     Given there is a post with images

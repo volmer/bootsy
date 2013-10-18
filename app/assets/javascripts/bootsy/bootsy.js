@@ -137,9 +137,9 @@ Bootsy.Area.prototype.deleteImage = function (id) {
 
 // Add image to gallery
 Bootsy.Area.prototype.addImage = function(html) {
-  $(html).hide().appendTo(this.find('.bootsy-gallery')).fadeIn(200);
-
   this.hideEmptyAlert();
+
+  $(html).hide().appendTo(this.find('.bootsy-gallery')).fadeIn(200);
 };
 
 // Insert image in the text

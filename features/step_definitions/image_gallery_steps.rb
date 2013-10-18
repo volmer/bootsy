@@ -13,3 +13,7 @@ Then(/^the image gallery is( not)? empty$/) do |negate|
 
   expect(page).send expectation, have_css('.bootsy-image', visible: true)
 end
+
+Then(/^I see the message "(.*?)"$/) do |message|
+  expect(page).to have_content(message)
+end

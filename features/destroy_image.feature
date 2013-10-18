@@ -13,6 +13,7 @@ Feature: Delete an image
     And I click on "Delete"
     And I accept the alert prompt
     Then I don't see the thumbnail "test.jpg" on the image gallery
+    And I see the message "There are currently no uploaded images."
 
   Scenario: cancel the deletion
     When I click on the image "test.jpg"
