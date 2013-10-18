@@ -126,7 +126,7 @@ textarea.bootsy:required:invalid {
 
 /*Modal Design Styles*/
 #bootsy_image_gallery form { margin-bottom: 0px; } /*remove default bottom margin*/
-#bootsy_image_gallery .file-input-name {display: none;}  /*Hide the input file name from showing as it's not needed and ruins design*/
+.bootsy-modal .file-input-name {display: none;}  /*Hide the input file name from showing as it's not needed and ruins design*/
 /*Set a min-height on the modal body to prevent jumping up and down of modal when adding content*/
 #bootsy_image_gallery .modal-body {
   min-height: 78px;

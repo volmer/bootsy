@@ -6,8 +6,8 @@
     <li role="presentation" class="dropdown-header"><%= t 'bootsy.image.size' %></li>
 
     <% Bootsy.image_versions_available.each do |size| %>
-      <li role="presentation" class="dropdown-submenu">
-        <%= link_to '#', tabindex: '-1', role: 'menuitem' do %>
+      <li role="presentation" class="dropdown dropdown-submenu">
+        <%= link_to '#', tabindex: '-1', role: 'menuitem', data: { toggle: 'dropdown' } do %>
           <i class="icon-picture"></i>
 
           <%= t size, scope: 'bootsy.image' %>

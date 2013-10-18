@@ -22,12 +22,10 @@ When(/^I click on the image "(.*?)"$/) do |image_name|
   find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src, '/thumb_#{image_name}')]").click
 end
 
-When(/^I click on the "(.*?)" option of the submenu$/) do |position|
-  find('li.dropdown-submenu ul.dropdown-menu li a', visible: true, text: /#{position}/).click
-end
+When(/^I click on the "(.*?)" option of the "(.*?)" submenu$/) do |position, submenu|
+  page.execute_script("$('.dropdown-submenu .dropdown-menu').hide();$('a:contains(#{ submenu }):visible').parent().find('.dropdown-menu').show()")
 
-When(/^I open the "(.*?)" menu$/) do |term|
-  page.execute_script("$('a:contains(#{term}):visible').parent().find('.dropdown-menu').show()")
+  find('li.dropdown-submenu ul.dropdown-menu li a', visible: true, text: /#{ position }/).click
 end
 
 When(/^I insert the image "(.*?)" on the text$/) do |image|
