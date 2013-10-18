@@ -7,4 +7,4 @@ Feature: Simple Form integration
     Given I am on the new simple form post page
     And I access its image gallery
     When I attach the file "test.jpg" on "image_file"
-    Then I should see the thumbnail "test.jpg" on the image gallery
+    Then I see the thumbnail "test.jpg" on the image gallery

@@ -46,4 +46,4 @@ Feature: Customize editor options
     And I go to the new post page
     When I change the content of the text area
     And I go to the home page
-    Then I should see the home page
+    Then I see the home page

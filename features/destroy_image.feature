@@ -12,10 +12,10 @@ Feature: Delete an image
     When I click on the image "test.jpg"
     And I click on "Delete"
     And I accept the alert prompt
-    Then I should not see the thumbnail "test.jpg" on the image gallery
+    Then I don't see the thumbnail "test.jpg" on the image gallery
 
   Scenario: cancel the deletion
     When I click on the image "test.jpg"
     And I click on "Delete"
     And I dismiss the alert prompt
-    Then I should see the thumbnail "test.jpg" on the image gallery
+    Then I see the thumbnail "test.jpg" on the image gallery

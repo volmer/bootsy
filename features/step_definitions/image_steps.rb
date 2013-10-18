@@ -1,4 +1,4 @@
-Given 'I access its image gallery' do
+Given('I access its image gallery') do
   step 'I press "Insert image"'
   step 'I see the image gallery'
 end

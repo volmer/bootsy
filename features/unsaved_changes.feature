@@ -10,9 +10,9 @@ Feature: Unsaved changes
   Scenario: leave window
     When I go to the home page
     And I accept the alert prompt
-    Then I should see the home page
+    Then I see the home page
 
   Scenario: stay on window
     When I go to the home page
     And I dismiss the alert prompt
-    Then I should see the new post page
+    Then I see the new post page

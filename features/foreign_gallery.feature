@@ -8,4 +8,4 @@ Feature: Use a foreign gallery
     And I am on its comment page
     When I press "Insert image"
     Then I see the image gallery
-    And the image gallery should not be empty
+    And the image gallery is not empty
