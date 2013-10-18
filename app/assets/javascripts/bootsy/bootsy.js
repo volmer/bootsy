@@ -21,7 +21,7 @@ Bootsy.Area = function($el) {
   if ($el.data('bootsy-color') === false) this.options.color = false;
 
   // Delegate find to the modal
-  this.find = this.find;
+  this.find = this.modal.find.bind(this.modal);
 };
 
 
@@ -65,15 +65,15 @@ Bootsy.Area.prototype.hideRefreshButton = function() {
 
 // Set upload form
 Bootsy.Area.prototype.setUploadForm = function(html) {
-  var footer = this.find('.modal-footer');
+  var form;
 
-  footer.html(html);
+  this.find('.modal-footer').html(html);
 
   this.hideUploadLoadingAnimation();
 
-  footer.find('input[type="file"]').bootstrapFileInput();
+  this.find('.bootsy-upload-form input[type="file"]').bootstrapFileInput();
 
-  this.uploadInput = footer.find('input[type="file"]');
+  this.uploadInput = this.find('.bootsy-upload-form input[type="file"]');
 
   this.uploadInput.change(function() {
     this.showUploadLoadingAnimation();
@@ -107,6 +107,8 @@ Bootsy.Area.prototype.setImageGallery = function() {
       }
 
       this.setUploadForm(data.form);
+
+      this.modal.data('gallery-loaded', true);
     }.bind(this),
     error: function(e) {
       alert(Bootsy.translations[this.locale].error);
@@ -174,6 +176,7 @@ Bootsy.Area.prototype.unsavedChangesAlert = function () {
 Bootsy.Area.prototype.clear = function () {
   this.editor.clear();
   this.setImageGalleryId('');
+  this.modal.data('gallery-loaded', false);
 };
 
 // Set the image gallery id
@@ -236,7 +239,7 @@ Bootsy.Area.prototype.init = function() {
       this.deleteImage(data.id);
     }.bind(this));
 
-    this.modal.on('ajax:success', '.modal-footer form', function(evt, data) {
+    this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
       this.setImageGalleryId(data.gallery_id);
       this.addImage(data.image);
       this.setUploadForm(data.form);
@@ -262,7 +265,11 @@ Bootsy.Area.prototype.init = function() {
 
   this.modal.modal({ show: false });
 
-  this.modal.on('shown.bs.modal', this.setImageGallery.bind(this));
+  this.modal.on('shown.bs.modal', function() {
+    if (this.modal.data('gallery-loaded') !== true) {
+      this.setImageGallery();
+    }
+  }.bind(this));
 
   this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
 
