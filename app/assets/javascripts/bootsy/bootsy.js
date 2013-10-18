@@ -19,50 +19,53 @@ Bootsy.Area = function($el) {
   if ($el.data('bootsy-html') === true) this.options.html = true;
   if ($el.data('bootsy-link') === false) this.options.link = false;
   if ($el.data('bootsy-color') === false) this.options.color = false;
+
+  // Delegate find to the modal
+  this.find = this.find;
 };
 
 
 // Gallery loading
 Bootsy.Area.prototype.showGalleryLoadingAnimation = function() {
-  this.modal.find('.bootsy-gallery-loader').fadeIn(200);
+  this.find('.bootsy-gallery-loader').fadeIn(200);
 };
 
 Bootsy.Area.prototype.hideGalleryLoadingAnimation = function() {
-  this.modal.find('.bootsy-gallery-loader').fadeOut(200);
+  this.find('.bootsy-gallery-loader').fadeOut(200);
 };
 
 
 // Upload loading animation
 Bootsy.Area.prototype.showUploadLoadingAnimation = function() {
-  this.modal.find('.bootsy-upload-loader').fadeIn(200);
+  this.find('.bootsy-upload-loader').fadeIn(200);
 };
 
 Bootsy.Area.prototype.hideUploadLoadingAnimation = function() {
-  this.modal.find('.bootsy-upload-loader').fadeOut(200);
+  this.find('.bootsy-upload-loader').fadeOut(200);
 };
 
 // Alert for empty gallery
 Bootsy.Area.prototype.showEmptyAlert = function() {
-  this.modal.find('.bootsy-empty-alert').fadeIn(200);
+  this.find('.bootsy-empty-alert').fadeIn(200);
 };
 
 Bootsy.Area.prototype.hideEmptyAlert = function() {
-  this.modal.find('.bootsy-empty-alert').fadeOut(200);
+  this.find('.bootsy-empty-alert').fadeOut(200);
 };
 
 // Manual refresh button
 Bootsy.Area.prototype.showRefreshButton = function() {
-  this.modal.find('.refresh-btn').fadeIn(200);
+  this.find('.refresh-btn').fadeIn(200);
 };
 
 Bootsy.Area.prototype.hideRefreshButton = function() {
-  this.modal.find('.refresh-btn').fadeOut(200);
+  this.find('.refresh-btn').fadeOut(200);
 };
 
 
 // Set upload form
 Bootsy.Area.prototype.setUploadForm = function(html) {
-  var footer = this.modal.find('.modal-footer');
+  var footer = this.find('.modal-footer');
 
   footer.html(html);
 
@@ -115,7 +118,7 @@ Bootsy.Area.prototype.setImageGallery = function() {
 
 // Delete image
 Bootsy.Area.prototype.deleteImage = function (id) {
-  var image = this.modal.find('.bootsy-image[data-id="' + id + '"]');
+  var image = this.find('.bootsy-image[data-id="' + id + '"]');
 
   this.hideGalleryLoadingAnimation();
 
@@ -123,7 +126,7 @@ Bootsy.Area.prototype.deleteImage = function (id) {
     image.remove();
 
     // Put message back if 0 images
-    if (this.modal.find('.bootsy-image').length == 0 ) {
+    if (this.find('.bootsy-image').length == 0 ) {
       this.showEmptyAlert();
     }
   }.bind(this));
@@ -132,7 +135,7 @@ Bootsy.Area.prototype.deleteImage = function (id) {
 
 // Add image to gallery
 Bootsy.Area.prototype.addImage = function(html) {
-  $(html).hide().appendTo(this.modal.find('.bootsy-gallery')).fadeIn(200);
+  $(html).hide().appendTo(this.find('.bootsy-gallery')).fadeIn(200);
 
   this.hideEmptyAlert();
 };
