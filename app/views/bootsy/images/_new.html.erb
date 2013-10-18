@@ -1,4 +1,5 @@
-<%= form_for [bootsy, resource_or_nil(gallery), image], remote: true, html: { multipart: true, class: 'bootsy form-inline' } do |f| %>
+<%= form_for([bootsy, resource_or_nil(gallery), image], remote: true,
+  html: { multipart: true, class: 'bootsy form-inline' }, data: { type: 'json' }) do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
   <%= image_tag 'bootsy/upload-loader.gif', class: 'bootsy-upload-loader' %>

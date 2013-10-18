@@ -1,7 +1,5 @@
 window.Bootsy = window.Bootsy || {};
 
-$.ajaxSettings.dataType = 'json';
-
 Bootsy.Area = function($el) {
   this.$el = $el;
   this.modal = $el.siblings('.bootsy-modal');

@@ -31,8 +31,8 @@
 
       <li role="presentation">
         <%= link_to image, method: :delete, remote: true,
-          data: { confirm: t('bootsy.image.confirm.destroy')}, tabindex: '-1',
-          role: 'menuitem', class: 'destroy-btn' do %>
+          data: { confirm: t('bootsy.image.confirm.destroy'), type: 'json' },
+          tabindex: '-1', role: 'menuitem', class: 'destroy-btn' do %>
           <i class="icon-trash"></i>
 
           <%= t('bootsy.action.destroy') %>

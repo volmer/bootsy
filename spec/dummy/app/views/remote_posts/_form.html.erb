@@ -1,4 +1,4 @@
-<%= form_for(Post.new, remote: true, html: { id: 'new-remote-post' }) do |f| %>
+<%= form_for(Post.new, remote: true, html: { id: 'new-remote-post' }, data: { type: 'json' }) do |f| %>
   <div class="page-header">
     <h1>New remote post</h1>
   </div>
