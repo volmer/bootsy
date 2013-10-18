@@ -274,4 +274,5 @@ Bootsy.Area.prototype.init = function() {
   this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
 
   this.hideRefreshButton();
+  this.hideEmptyAlert();
 };
