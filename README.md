@@ -8,7 +8,7 @@
 
 *Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
 
-![image](https://f.cloud.github.com/assets/301187/1069163/d3d9de0a-140c-11e3-842a-040484df2933.png)
+![image](https://f.cloud.github.com/assets/301187/1365250/e1b7ba80-3854-11e3-9bfe-8bd1e090aca8.png)
 
 
 ## Requirements
