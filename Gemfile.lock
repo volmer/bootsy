@@ -12,7 +12,7 @@ GIT
 PATH
   remote: .
   specs:
-    bootsy (1.2.0)
+    bootsy (2.0.0)
       carrierwave (~> 0.9.0)
       mini_magick (~> 3.6.0)
       remotipart (~> 1.2.1)
