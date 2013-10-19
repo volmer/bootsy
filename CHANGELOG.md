@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.0.0
 
 * Migrated Bootsy to Bootstrap 3 (backwards incompatible).
 * Removed custom events (backwards incompatible).
