@@ -2,7 +2,9 @@
 
 ## master
 
-* Migrated Bootsy to Bootstrap 3.
+* Migrated Bootsy to Bootstrap 3 (backwards incompatible).
+* Removed custom events (backwards incompatible).
+* Now it's possible to have multiple editors in the same page (thanks @link-er).
 
 ## 1.2.0
 
