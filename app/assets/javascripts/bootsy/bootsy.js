@@ -222,7 +222,7 @@ Bootsy.Area.prototype.init = function() {
 
         return  '<li>' +
                   '<a class="btn btn-default ' + size + '" data-wysihtml5-command="customCommand" title="' + locale.image.insert + '" tabindex="-1">' +
-                    '<i class="icon-picture"></i>' +
+                    '<span class="glyphicon glyphicon-picture"></span>' +
                   '</a>' +
                 '</li>';
       }
