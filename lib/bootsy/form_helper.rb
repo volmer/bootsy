@@ -52,7 +52,7 @@ module Bootsy
       if object.is_a?(String) || object.is_a?(Symbol)
         object
       else
-        object.class.name.underscore
+        ActiveModel::Naming.param_key(object.class)
       end
     end
 

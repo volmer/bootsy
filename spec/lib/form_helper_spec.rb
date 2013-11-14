@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Bootsy::FormHelper do
   let :form do
-    s = double(text_area: '<textarea field>', 
+    s = double(text_area: '<textarea field>',
                hidden_field: '<hidden field>').extend Bootsy::FormHelper
     s.stub(:render) {|template, variables| template+variables[:container].to_s }
     s
   end
 
-  let(:container){ double(content: 'abc').extend Bootsy::Container }
+  let(:container){ Post.new }
 
   describe '#bootsy_area' do
     subject { form.bootsy_area :object, :content }
@@ -132,6 +132,24 @@ describe Bootsy::FormHelper do
           form.should_receive(:text_area).with anything, anything, hash_including(class: ['class1', 'class2', 'bootsy_text_area'])
           subject
         end
+      end
+    end
+
+    context 'when a scoped model is passed' do
+      let(:container) do
+        contx = Module.new
+        Object.const_set 'Company', contx
+        klass = Class.new
+        klass.send(:include, ActiveModel::Model)
+        Company.const_set 'User', klass
+
+        Company::User.new
+      end
+
+      it 'properly scopes the model param key' do
+        expect(form).to receive(:text_area).with('company_user', anything, anything)
+
+        form.bootsy_area container, :content
       end
     end
   end
