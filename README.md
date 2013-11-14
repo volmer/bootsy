@@ -67,8 +67,6 @@ with it, then you should include the `Bootsy::Container` module:
 ```ruby
 class Post < ActiveRecord::Base
   include Bootsy::Container
-
-  attr_accessible :content, :title
 end
 ```
 
