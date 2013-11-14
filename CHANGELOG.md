@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.2
+
+* Fixed param key for scoped models.
+
 ## 2.0.1
 
 * Fixed Glyphicons classes.
