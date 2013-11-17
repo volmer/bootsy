@@ -13,12 +13,12 @@ describe Bootsy::FormBuilder do
 
   describe '#bootsy_area' do
     it 'calls the template\'s bootsy_area passing its arguments and the @object' do
-      subject.instance_variable_get(:@template).should_receive(:bootsy_area).with(1, :content, {op: 'op'})
-      subject.bootsy_area(:content, {op: 'op'})
+      subject.instance_variable_get(:@template).should_receive(:bootsy_area).with(1, :content, { op: 'op', object: 1 })
+      subject.bootsy_area(:content, op: 'op')
     end
 
     it 'receives an optional hash of options' do
-      subject.instance_variable_get(:@template).should_receive(:bootsy_area).with(1, :content, {})
+      subject.instance_variable_get(:@template).should_receive(:bootsy_area).with(1, :content, { object: 1 })
       subject.bootsy_area(:content)
     end
   end
