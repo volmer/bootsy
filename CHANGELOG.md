@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.3
+
+* Fixed object reference in `text_area` form helper.
+
 ## 2.0.2
 
 * Fixed param key for scoped models.
