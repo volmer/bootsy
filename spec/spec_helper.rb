@@ -34,4 +34,10 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  # Manually config FactoryGirl
+  FactoryGirl.definition_file_paths = [
+    Rails.root.join('../factories')
+  ]
+  FactoryGirl.find_definitions
 end
