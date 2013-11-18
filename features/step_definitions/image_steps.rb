@@ -39,7 +39,7 @@ Then(/^I see the image "(.*?)" in its (.*?) size inserted on the text area posit
   img_src = "/#{ size }_#{ image_file }"
   img_src = "/#{ image_file }" if size == 'original'
 
-  content =  page.evaluate_script('Bootsy.areas[0].editor.getValue()')
+  content =  page.evaluate_script('Bootsy.areas.post_content.editor.getValue()')
 
   expect(content).to include(img_src)
   expect(content).to include("align=\"#{ position.downcase }\"")

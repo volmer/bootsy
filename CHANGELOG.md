@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## `master` branch
+
+* Index editors in `Bootsy` namespace through the `textarea` `id`.
+
 ## 2.0.3
 
 * Fixed object reference in `text_area` form helper.

@@ -6,11 +6,11 @@ When(/^I go to (.*?) page$/) do |page|
   step "I am on #{page} page"
 end
 
-Given('I change the content of the text area') do
-  page.execute_script "Bootsy.areas[0].editor.fire('change')"
+Then(/^I am redirected to (.*?) page$/) do |page|
+  expect(current_path).to eq path_to(page)
 end
 
-Then(/^I see (.*?) page$/) do |page|
+Then(/^I'm still on (.*?) page$/) do |page|
   expect(current_path).to eq path_to(page)
 end
 
@@ -32,4 +32,8 @@ end
 
 When(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
   fill_in field, with: value
+end
+
+Then(/^I see "(.*?)" on the page$/) do |content|
+  expect(page).to have_content(content)
 end

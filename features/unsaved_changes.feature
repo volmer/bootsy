@@ -5,14 +5,14 @@ Feature: Unsaved changes
 
   Background:
     Given I am on the new post page
-    And I change the content of the text area
+    And I've changed the content of the text area
 
   Scenario: leave window
     When I go to the home page
     And I accept the alert prompt
-    Then I see the home page
+    Then I am redirected to the home page
 
   Scenario: stay on window
     When I go to the home page
     And I dismiss the alert prompt
-    Then I see the new post page
+    Then I'm still on the new post page
