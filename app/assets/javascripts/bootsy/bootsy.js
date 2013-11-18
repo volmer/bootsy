@@ -1,10 +1,11 @@
 window.Bootsy = window.Bootsy || {};
 
 Bootsy.Area = function($el) {
-  this.$el = $el;
-  this.modal = $el.siblings('.bootsy-modal');
-  this.locale = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
+  this.$el            = $el;
+  this.modal          = $el.siblings('.bootsy-modal');
+  this.locale         = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
   this.unsavedChanges = false;
+  this.initialized    = false;
 
   this.options = {
     locale: this.locale,
@@ -189,90 +190,96 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 
 // Init components
 Bootsy.Area.prototype.init = function() {
-  var insert = this.insertImage.bind(this);
+  var insert;
 
-  if ((this.options.image === true) && (this.options.uploader === true)) {
-    this.modal.on('click', '.bootsy-image .insert', function(e) {
-      var img, imageObject;
-      var imagePrefix = '/' + $(this).attr('data-image-size') + '_';
+  if (!this.initialized) {
+    insert = this.insertImage.bind(this);
 
-      if ($(this).data('image-size') === 'original') {
-        imagePrefix = '/';
-      }
+    if ((this.options.image === true) && (this.options.uploader === true)) {
+      this.modal.on('click', '.bootsy-image .insert', function(e) {
+        var img, imageObject;
+        var imagePrefix = '/' + $(this).attr('data-image-size') + '_';
 
-      img = $(this).parents('.bootsy-image').find('img');
+        if ($(this).data('image-size') === 'original') {
+          imagePrefix = '/';
+        }
 
-      imageObject = {
-        src: img.attr('src').replace('/thumb_', imagePrefix),
-        alt: img.attr('alt').replace('Thumb_', '')
+        img = $(this).parents('.bootsy-image').find('img');
+
+        imageObject = {
+          src: img.attr('src').replace('/thumb_', imagePrefix),
+          alt: img.attr('alt').replace('Thumb_', '')
+        };
+
+        imageObject.align = $(this).data('position');
+
+        insert(imageObject);
+      });
+
+      // Let's use the uploader, not the static image modal
+      this.options.image = false;
+      this.options.customCommand = true;
+      this.options.customCommandCallback = this.openImagesModal.bind(this);
+      this.options.customTemplates = {
+        customCommand: function(locale, options) {
+          var size = (options && options.size) ? ' btn-'+options.size : '';
+
+          return  '<li>' +
+                    '<a class="btn btn-default ' + size + '" data-wysihtml5-command="customCommand" title="' + locale.image.insert + '" tabindex="-1">' +
+                      '<span class="glyphicon glyphicon-picture"></span>' +
+                    '</a>' +
+                  '</li>';
+        }
       };
 
-      imageObject.align = $(this).data('position');
+      // In order to avoid form nesting
+      this.modal.parents('form').after(this.modal);
 
-      insert(imageObject);
-    });
+      this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
 
-    // Let's use the uploader, not the static image modal
-    this.options.image = false;
-    this.options.customCommand = true;
-    this.options.customCommandCallback = this.openImagesModal.bind(this);
-    this.options.customTemplates = {
-      customCommand: function(locale, options) {
-        var size = (options && options.size) ? ' btn-'+options.size : '';
+      this.modal.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
 
-        return  '<li>' +
-                  '<a class="btn btn-default ' + size + '" data-wysihtml5-command="customCommand" title="' + locale.image.insert + '" tabindex="-1">' +
-                    '<span class="glyphicon glyphicon-picture"></span>' +
-                  '</a>' +
-                '</li>';
-      }
-    };
+      this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
+        this.deleteImage(data.id);
+      }.bind(this));
 
-    // In order to avoid form nesting
-    this.modal.parents('form').after(this.modal);
-
-    this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
-
-    this.modal.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
-
-    this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
-      this.deleteImage(data.id);
-    }.bind(this));
-
-    this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
-      this.setImageGalleryId(data.gallery_id);
-      this.addImage(data.image);
-      this.setUploadForm(data.form);
-    }.bind(this));
-  }
-
-  this.editor = this.$el.wysihtml5($.extend(Bootsy.options, this.options)).data('wysihtml5').editor;
-
-  // Mechanism for unsaved changes alert
-  if (this.options.alertUnsavedChanges !== false) {
-    window.onbeforeunload = this.unsavedChangesAlert.bind(this);
-  }
-
-  this.$el.closest('form').submit(function(e) {
-    this.unsavedChanges = false;
-
-    return true;
-  }.bind(this));
-
-  this.editor.on('change', function() {
-    this.unsavedChanges = true;
-  }.bind(this));
-
-  this.modal.modal({ show: false });
-
-  this.modal.on('shown.bs.modal', function() {
-    if (this.modal.data('gallery-loaded') !== true) {
-      this.setImageGallery();
+      this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
+        this.setImageGalleryId(data.gallery_id);
+        this.addImage(data.image);
+        this.setUploadForm(data.form);
+      }.bind(this));
     }
-  }.bind(this));
 
-  this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
+    this.editor = this.$el.wysihtml5($.extend(Bootsy.options, this.options)).data('wysihtml5').editor;
 
-  this.hideRefreshButton();
-  this.hideEmptyAlert();
+    // Mechanism for unsaved changes alert
+    if (this.options.alertUnsavedChanges !== false) {
+      window.onbeforeunload = this.unsavedChangesAlert.bind(this);
+    }
+
+    this.$el.closest('form').submit(function(e) {
+      this.unsavedChanges = false;
+
+      return true;
+    }.bind(this));
+
+    this.editor.on('change', function() {
+      this.unsavedChanges = true;
+    }.bind(this));
+
+    this.modal.modal({ show: false });
+
+    this.modal.on('shown.bs.modal', function() {
+      if (this.modal.data('gallery-loaded') !== true) {
+        this.setImageGallery();
+      }
+    }.bind(this));
+
+    this.modal.on('hide.bs.modal', this.editor.currentView.element.focus);
+
+    this.hideRefreshButton();
+    this.hideEmptyAlert();
+
+    this.initialized = true;
+  }
 };

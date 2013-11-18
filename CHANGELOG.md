@@ -2,8 +2,10 @@
 
 ## `master` branch
 
-* Index editors in `Bootsy` namespace through the `textarea` `id`;
+* Index editors in `Bootsy` namespace through the `textarea` `id`.
 * Fixed compatibility with nested attributes. Now Bootsy can be used in `fields_for` blocks.
+* Initialize only visible `bootsy_areas`. Other elements can be initialized by manually
+  calling `Bootsy.init();`.
 
 ## 2.0.3
 
