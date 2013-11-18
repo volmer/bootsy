@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## `master` branch
+## 2.0.4
 
 * Index editors in `Bootsy` namespace through the `textarea` `id`.
 * Fixed compatibility with nested attributes. Now Bootsy can be used in `fields_for` blocks.
