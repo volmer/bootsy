@@ -1,155 +1,166 @@
 require 'spec_helper'
 
 describe Bootsy::FormHelper do
-  let :form do
-    s = double(text_area: '<textarea field>',
-               hidden_field: '<hidden field>').extend Bootsy::FormHelper
-    s.stub(:render) {|template, variables| template+variables[:container].to_s }
-    s
+  let(:view) { ActionView::Base.new }
+
+  let(:options) { {} }
+
+  before do
+    allow(view).to receive(:render).with('bootsy/images/modal', anything).and_return('bootsy-modal')
   end
 
-  let(:container){ Post.new }
-
   describe '#bootsy_area' do
-    subject { form.bootsy_area :object, :content }
+    subject { view.bootsy_area(:post, :content, options) }
 
     it 'renders a text_area with class bootsy_text_area' do
-      form.should_receive(:text_area).with :object, :content, hash_including(class: ['bootsy_text_area'])
-      should include('<textarea field>')
+      expect(view).to receive(:text_area).with(:post, :content, hash_including(class: ['bootsy_text_area']))
+
+      subject
     end
 
-    context 'when the object is a Bootsy Container' do
-      subject { form.bootsy_area container, :content }
-
-      it 'renders a hidden_field with class and name bootsy_image_gallery_id' do
-        form.should_receive(:hidden_field).with container.class.name.underscore, :bootsy_image_gallery_id, {class: 'bootsy_image_gallery_id'}
-        should include('<hidden field>')
-      end
-
-      it 'renders the upload modal' do
-        should include('bootsy/images/modal')
-        should include(container.to_s)
-      end
-    end
-
-    context 'when a non-container is passed' do
-      subject { form.bootsy_area :non_container, :content }
-
+    context 'when no object is passed' do
       it 'adds data-bootsy-uploader="false"' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
+        expect(view).to receive(:text_area).with(:post, :content, hash_including(data: hash_including('bootsy-uploader' => false)))
+
         subject
       end
 
-      it { should_not include('<hidden field>') }
-
       it 'does not render the upload modal' do
-        should_not include('bootsy/images/modal')
+        expect(subject).not_to include('bootsy-modal')
       end
     end
 
-    context 'when a specific container is passed' do
-      let(:specific){ double('specific').extend Bootsy::Container }
+    context 'with an object' do
+      let(:options) { { object: object } }
 
-      subject { form.bootsy_area container, :content, {container: specific} }
+      context 'when the object is a Bootsy Container' do
+        let(:object) { Post.new }
 
-      it 'renders the upload modal' do
-        should include('bootsy/images/modal')
-        should include(specific.to_s)
+        it 'renders a hidden_field with class and name bootsy_image_gallery_id' do
+          expect(view).to receive(:hidden_field).with(:post, :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id')
+
+          subject
+        end
+
+        it 'renders the upload modal' do
+          expect(subject).to include('bootsy-modal')
+        end
+
+        context 'when uploader: false is passed' do
+          let(:options) { { object: object, uploader: false } }
+
+          it 'adds data-bootsy-uploader="false"' do
+            expect(view).to receive(:text_area).with(:post, :content, hash_including(data: hash_including('bootsy-uploader' => false)))
+
+            subject
+          end
+
+          it 'does not render the upload modal' do
+            expect(subject).not_to include('bootsy-modal')
+          end
+        end
       end
 
-      it { should_not include('<hidden field>') }
+      context 'when object is not a Bootsy Container' do
+        let(:object) { Comment.new }
 
-      context 'when the specific container is not a Container' do
-        subject { form.bootsy_area container, :content, {container: double('non-container')} }
+        subject { view.bootsy_area(:comment, :content, options) }
 
         it 'adds data-bootsy-uploader="false"' do
-          form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
+          expect(view).to receive(:text_area).with(:comment, :content, hash_including(data: hash_including('bootsy-uploader' => false)))
+
           subject
         end
 
         it 'does not render the upload modal' do
-          should_not include('bootsy/images/modal')
+          expect(subject).not_to include('bootsy-modal')
+        end
+
+        context 'when a specific container is passed' do
+          let(:container) { Post.new }
+
+          let(:options) { { object: object, container: container } }
+
+          it 'renders the upload modal' do
+            expect(subject).to include('bootsy-modal')
+          end
+
+          context 'when the specific container is not a Container' do
+            let(:container) { Comment.new }
+
+            it 'adds data-bootsy-uploader="false"' do
+              expect(view).to receive(:text_area).with(:comment, :content, hash_including(data: hash_including('bootsy-uploader' => false)))
+
+              subject
+            end
+
+            it 'does not render the upload modal' do
+              expect(subject).not_to include('bootsy-modal')
+            end
+          end
         end
       end
     end
 
-    context 'when uploader: false is passed' do
-      subject { form.bootsy_area container, :content, uploader: false }
-
-      it 'adds data-bootsy-uploader="false"' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-uploader' => false))
-        subject
-      end
-
-      it { should_not include('<hidden field>') }
-
-      it 'does not render the upload modal' do
-        should_not include('bootsy/images/modal')
-      end
-    end
-
     context 'when editor_options are passed' do
-      subject { form.bootsy_area container, :content, editor_options: {op1: '1', op2: '2'} }
+      let(:options) do
+        { editor_options: { op1: '1', op2: '2' } }
+      end
 
       it 'passes the editor options to the text area as data-bootsy attributes' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-op1' => '1', 'bootsy-op2' => '2'))
+        expect(view).to receive(:text_area).with(:post, :content, hash_including( data: hash_including('bootsy-op1' => '1', 'bootsy-op2' => '2')))
+
         subject
       end
     end
 
     context 'when editor options are defined on the intialize file' do
-      before { Bootsy.stub editor_options: {global1: 1, global2: 2} }
+      before do
+        Bootsy.stub(editor_options: { global1: 1, global2: 2 })
+      end
 
       it 'passes them to the text area as data-bootsy attributes' do
-        form.should_receive(:text_area).with anything, anything, hash_including(data: hash_including('bootsy-global1' => 1, 'bootsy-global2' => 2))
+        expect(view).to receive(:text_area).with(:post, :content, hash_including(data: hash_including('bootsy-global1' => 1, 'bootsy-global2' => 2)))
+
         subject
       end
     end
 
     context 'when additional options are passed' do
-      subject { form.bootsy_area container, :content, op1: '1', op2: '2', data: {a: 1, b: 2} }
+      let(:options) do
+        { op1: '1', op2: '2', data: {a: 1, b: 2} }
+      end
 
       it 'resends them to the text_area' do
-        form.should_receive(:text_area).with anything, anything, hash_including(op1: '1', op2: '2', data: hash_including(a: 1, b: 2))
+        expect(view).to receive(:text_area).with(:post, :content, hash_including(op1: '1', op2: '2', data: hash_including(a: 1, b: 2)))
+
         subject
       end
     end
 
     context 'when custom HTML classes are passed' do
       context 'as a string' do
-        subject { form.bootsy_area container, :content, class: 'class1 class2' }
+        let(:options) do
+          { class: 'class1 class2' }
+        end
 
         it 'resends them to the text_area' do
-          form.should_receive(:text_area).with anything, anything, hash_including(class: ['class1 class2', 'bootsy_text_area'])
+          expect(view).to receive(:text_area).with(:post, :content, hash_including(class: ['class1 class2', 'bootsy_text_area']))
+
           subject
         end
       end
 
       context 'as an array' do
-        subject { form.bootsy_area container, :content, class: ['class1', 'class2'] }
+        let(:options) do
+          { class: ['class1', 'class2'] }
+        end
 
         it 'resends them to the text_area' do
-          form.should_receive(:text_area).with anything, anything, hash_including(class: ['class1', 'class2', 'bootsy_text_area'])
+          expect(view).to receive(:text_area).with(:post, :content, hash_including(class: ['class1', 'class2', 'bootsy_text_area']))
+
           subject
         end
-      end
-    end
-
-    context 'when a scoped model is passed' do
-      let(:container) do
-        contx = Module.new
-        Object.const_set 'Company', contx
-        klass = Class.new
-        klass.send(:include, ActiveModel::Model)
-        Company.const_set 'User', klass
-
-        Company::User.new
-      end
-
-      it 'properly scopes the model param key' do
-        expect(form).to receive(:text_area).with('company_user', anything, anything)
-
-        form.bootsy_area container, :content
       end
     end
   end

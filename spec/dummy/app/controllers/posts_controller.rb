@@ -26,9 +26,10 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
+    if params[:with_comment]
+      @post.comments << Comment.new
+
+      render(action: 'new_with_comment') and return
     end
   end
 
@@ -84,6 +85,6 @@ class PostsController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :content, :bootsy_image_gallery_id)
+    params.require(:post).permit(:title, :content, :bootsy_image_gallery_id, comments_attributes: [:content, :author])
   end
 end
