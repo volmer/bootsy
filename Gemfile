@@ -1,7 +1,7 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 # Gems used by the dummy application
-gem 'rails', '~> 4.0.1'
+gem 'rails', '~> 4.0.2'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'bootstrap-sass'
