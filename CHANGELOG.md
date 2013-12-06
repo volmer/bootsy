@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.5
+
+* Update `mini_magick` dependency to `3.7.0`.
+
 ## 2.0.4
 
 * Index editors in `Bootsy` namespace through the `textarea` `id`.
