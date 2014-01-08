@@ -66,8 +66,9 @@ module Bootsy
     end
 
     private
+
     def find_gallery
-      ImageGallery.find params[:image_gallery_id]
+      ImageGallery.find(params[:image_gallery_id])
     rescue
       ImageGallery.new
     end

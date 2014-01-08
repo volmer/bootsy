@@ -58,6 +58,12 @@ describe Bootsy::FormHelper do
           it 'does not render the upload modal' do
             expect(subject).not_to include('bootsy-modal')
           end
+
+          it 'does not pass the uploader option to the text area helper' do
+            expect(view).to receive(:text_area).with(anything, anything, hash_excluding(:uploader))
+
+            subject
+          end
         end
       end
 
@@ -85,6 +91,12 @@ describe Bootsy::FormHelper do
             expect(subject).to include('bootsy-modal')
           end
 
+          it 'does not pass the container to the text area helper' do
+            expect(view).to receive(:text_area).with(anything, anything, hash_excluding(:container))
+
+            subject
+          end
+
           context 'when the specific container is not a Container' do
             let(:container) { Comment.new }
 
@@ -109,6 +121,12 @@ describe Bootsy::FormHelper do
 
       it 'passes the editor options to the text area as data-bootsy attributes' do
         expect(view).to receive(:text_area).with(:post, :content, hash_including( data: hash_including('bootsy-op1' => '1', 'bootsy-op2' => '2')))
+
+        subject
+      end
+
+      it 'does not pass the uploader option to the text area helper' do
+        expect(view).to receive(:text_area).with(anything, anything, hash_excluding(:editor_options))
 
         subject
       end

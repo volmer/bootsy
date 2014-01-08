@@ -1,21 +1,14 @@
 module Bootsy
   module FormHelper
     def bootsy_area(object_name, method, options = {})
-      object    = options[:object]
-      container = options.delete(:container)
+      container = options[:container] || options[:object]
 
-      bootsy_options = Bootsy.editor_options.merge(options.delete(:editor_options) || {})
-      bootsy_options[:uploader] = enable_uploader?(object, options.delete(:uploader), container)
+      output = self.text_area(object_name, method, text_area_options(options))
 
-      options[:data]  = data_options(options, bootsy_options)
-      options[:class] = class_attr(options)
+      if output.present? && enable_uploader?(options)
+        output += self.render('bootsy/images/modal', container: container)
 
-      output = self.text_area(object_name, method, options)
-
-      if bootsy_options[:uploader]
-        output += self.render 'bootsy/images/modal', { container: container || object }
-
-        if container.blank? || (container == object)
+        if container.bootsy_image_gallery_id.blank?
           output += self.hidden_field(object_name, :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id')
         end
       end
@@ -25,19 +18,19 @@ module Bootsy
 
     private
 
-    def enable_uploader?(object, uploader, container)
-      if uploader == false
+    def enable_uploader?(options)
+      if options[:uploader] == false
         false
-      elsif container.is_a?(Container)
+      elsif options[:container].is_a?(Container)
         true
-      elsif container.blank? && object.is_a?(Container)
+      elsif options[:container].blank? && options[:object].is_a?(Container)
         true
       else
         false
       end
     end
 
-    def class_attr(options)
+    def tag_class(options)
       classes = if options[:class].blank?
         []
       elsif options[:class].kind_of?(Array)
@@ -49,8 +42,25 @@ module Bootsy
       classes << 'bootsy_text_area'
     end
 
-    def data_options(options, bootsy_options)
-      (options[:data] || {}).merge Hash[ bootsy_options.map { |k,v| ["bootsy-#{k}", v] } ]
+    def data_options(options)
+      (options[:data] || {}).merge Hash[ bootsy_options(options).map { |k,v| ["bootsy-#{k}", v] } ]
+    end
+
+    def bootsy_options(options)
+      Bootsy.editor_options.
+        merge(options[:editor_options] || {}).
+        merge(uploader: enable_uploader?(options))
+    end
+
+    def text_area_options(options)
+      options.except(
+        :container,
+        :uploader,
+        :editor_options
+      ).merge(
+        data: data_options(options),
+        class: tag_class(options)
+      )
     end
   end
 end
