@@ -4,6 +4,10 @@ Given('there is a post with images') do
   post.save!
 end
 
+Given('there is a post with no images') do
+  Post.create!(title: 'Test', content: 'test')
+end
+
 Then('I see the image gallery') do
   expect(page).to have_css('.bootsy-modal', visible: true)
 end

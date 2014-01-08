@@ -19,7 +19,7 @@ module Bootsy
 
         def bootsy_image_gallery_id=(value)
           if self.bootsy_image_gallery.nil? && !value.blank?
-            ig = Bootsy::ImageGallery.find value
+            ig = Bootsy::ImageGallery.find(value)
             self.bootsy_image_gallery = ig
             ig.bootsy_resource = self
             ig.save

@@ -46,6 +46,14 @@ describe Bootsy::FormHelper do
           expect(subject).to include('bootsy-modal')
         end
 
+        it 'creates an image gallery for it' do
+          expect {
+            subject
+          }.to change {
+            object.bootsy_image_gallery.present?
+          }.from(false).to(true)
+        end
+
         context 'when uploader: false is passed' do
           let(:options) { { object: object, uploader: false } }
 
@@ -95,6 +103,14 @@ describe Bootsy::FormHelper do
             expect(view).to receive(:text_area).with(anything, anything, hash_excluding(:container))
 
             subject
+          end
+
+          it 'creates an image gallery for it' do
+            expect {
+              subject
+            }.to change {
+              container.bootsy_image_gallery.present?
+            }.from(false).to(true)
           end
 
           context 'when the specific container is not a Container' do

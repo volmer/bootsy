@@ -69,8 +69,6 @@ module Bootsy
 
     def find_gallery
       ImageGallery.find(params[:image_gallery_id])
-    rescue
-      ImageGallery.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -6,9 +6,11 @@ module Bootsy
       output = self.text_area(object_name, method, text_area_options(options))
 
       if output.present? && enable_uploader?(options)
+        container.bootsy_image_gallery_id ||= Bootsy::ImageGallery.create!.id
+
         output += self.render('bootsy/images/modal', container: container)
 
-        if container.bootsy_image_gallery_id.blank?
+        if container.new_record?
           output += self.hidden_field(object_name, :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id')
         end
       end
