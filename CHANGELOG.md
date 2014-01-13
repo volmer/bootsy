@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master branch
+
+* Fixed support to foreign containers.
+
 ## 2.0.5
 
 * Update `mini_magick` dependency to `3.7.0`.
