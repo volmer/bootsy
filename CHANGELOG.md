@@ -3,6 +3,7 @@
 ## master branch
 
 * Fixed support to foreign containers.
+* Fixed scroll to top when inserting images (#40).
 
 ## 2.0.5
 

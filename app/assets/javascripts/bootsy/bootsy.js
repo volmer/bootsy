@@ -200,6 +200,8 @@ Bootsy.Area.prototype.init = function() {
         var img, imageObject;
         var imagePrefix = '/' + $(this).attr('data-image-size') + '_';
 
+        e.preventDefault();
+
         if ($(this).data('image-size') === 'original') {
           imagePrefix = '/';
         }
