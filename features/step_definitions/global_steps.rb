@@ -10,8 +10,11 @@ Then(/^I am redirected to (.*?) page$/) do |page|
   expect(current_path).to eq path_to(page)
 end
 
-Then(/^I'm still on (.*?) page$/) do |page|
-  expect(current_path).to eq path_to(page)
+Then(/^I'm still on (.*?) page$/) do |page_name|
+  expect(current_path).to eq path_to(page_name)
+
+  # TODO: find a better way to dismiss the alert prompt after the scenario is finished.
+  page.execute_script('window.onbeforeunload = null')
 end
 
 When(/^I press "(.*?)"$/) do |button|
