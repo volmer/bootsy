@@ -1,11 +1,15 @@
+/* global Bootsy */
+
 $(function(){
   var form = $('#new-remote-post');
 
   if(form.length > 0) {
-    form.hide();
+    Bootsy.areas['remote-post-area'].editor.on('load', function() {
+      form.hide();
+    });
 
     $('a[href="#new-remote-post"]').on('click', function(e){
-      form.toggle();
+      form.show();
 
       e.preventDefault();
     });
