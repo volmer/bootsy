@@ -4,6 +4,8 @@
 
 * Fixed support to foreign containers.
 * Fixed scroll to top when inserting images (#40).
+* Warn when the `bootsy:install` generator doesn't find the assets manifests.
+* Fixed compatibility with [Turbolinks](https://github.com/rails/turbolinks) (#43).
 
 ## 2.0.5
 
