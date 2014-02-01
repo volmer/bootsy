@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bootsy (2.0.5)
+    bootsy (2.0.6)
       carrierwave (~> 0.9.0)
       mini_magick (~> 3.7.0)
       remotipart (~> 1.2.1)

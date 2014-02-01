@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master branch
+## 2.0.6
 
 * Fixed support to foreign containers.
 * Fixed scroll to top when inserting images (#40).
