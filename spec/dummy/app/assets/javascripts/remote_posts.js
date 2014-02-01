@@ -2,13 +2,12 @@ $(function(){
   var form = $('#new-remote-post');
 
   if(form.length > 0) {
+    form.hide();
 
-    Bootsy.areas[0].editor.on('load', function(){
-      form.hide();
-    });
+    $('a[href="#new-remote-post"]').on('click', function(e){
+      form.toggle();
 
-    $('a[href="#new-remote-post"]').on('click', function(){
-      form.show();
+      e.preventDefault();
     });
   }
 });
