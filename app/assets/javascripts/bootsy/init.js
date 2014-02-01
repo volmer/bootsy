@@ -1,6 +1,8 @@
 /* global Bootsy */
 window.Bootsy = window.Bootsy || {};
 
+// Public: Intialize Bootsy editors in all visible `textarea`
+//         elements that has the `bootsy_text_area` class.
 Bootsy.init = function() {
   Bootsy.areas = {};
 
