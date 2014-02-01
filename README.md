@@ -16,7 +16,7 @@
 
 ## Requirements
 
-* Ruby `2.0` or `1.9.3`;
+* Ruby `2` or `1.9.3`;
 * ImageMagick or GraphicsMagick (for MiniMagick);
 * Rails `4.0`;
 * [Bootstrap `3`](http://getbootstrap.com/) properly added to your application.
