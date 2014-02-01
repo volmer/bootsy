@@ -16,12 +16,30 @@ Bootsy.Area = function($el) {
     uploader: $el.data('bootsy-uploader'),
   };
 
-  if ($el.data('bootsy-font-styles') === false) this.options['font-styles'] = false;
-  if ($el.data('bootsy-emphasis') === false) this.options.emphasis = false;
-  if ($el.data('bootsy-lists') === false) this.options.lists = false;
-  if ($el.data('bootsy-html') === true) this.options.html = true;
-  if ($el.data('bootsy-link') === false) this.options.link = false;
-  if ($el.data('bootsy-color') === false) this.options.color = false;
+  // Set default values to editor options
+  if ($el.data('bootsy-font-styles') === false) {
+    this.options['font-styles'] = false;
+  }
+
+  if ($el.data('bootsy-emphasis') === false) {
+    this.options.emphasis = false;
+  }
+
+  if ($el.data('bootsy-lists') === false) {
+    this.options.lists = false;
+  }
+
+  if ($el.data('bootsy-html') === true) {
+    this.options.html = true;
+  }
+
+  if ($el.data('bootsy-link') === false) {
+    this.options.link = false;
+  }
+
+  if ($el.data('bootsy-color') === false) {
+    this.options.color = false;
+  }
 
   // Delegate find to the modal
   this.find = this.modal.find.bind(this.modal);
