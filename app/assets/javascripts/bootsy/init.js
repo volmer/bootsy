@@ -1,3 +1,4 @@
+/* global Bootsy */
 window.Bootsy = window.Bootsy || {};
 
 Bootsy.init = function() {
