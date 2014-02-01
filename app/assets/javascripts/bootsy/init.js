@@ -18,4 +18,12 @@ Bootsy.init = function() {
   });
 };
 
-$(Bootsy.init);
+/* Initialize Bootsy on document load */
+$(function() {
+  Bootsy.init();
+
+  /* Reload Bootsy on page load when using Turbolinks. */
+  if (window.Turbolinks) {
+    document.addEventListener('page:load', Bootsy.init);
+  }
+});
