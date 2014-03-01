@@ -19,6 +19,7 @@ Feature: Use a foreign gallery
     And I am on its comment page
     When I press "Insert image"
     And I upload the image "test.jpg"
+    And I dismiss the modal
     And I press "Create Comment"
     And I click on "Edit"
     And I access its image gallery

@@ -6,6 +6,10 @@ When(/^I go to (.*?) page$/) do |page|
   step "I am on #{page} page"
 end
 
+When(/^I dismiss the modal$/) do
+  find('[data-dismiss=modal]').click
+end
+
 Then(/^I am redirected to (.*?) page$/) do |page|
   expect(current_path).to eq path_to(page)
 end
