@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.7
+
+* Updated Carrierwave dependency to `0.10.0`.
+
 ## 2.0.6
 
 * Fixed support to foreign containers.
