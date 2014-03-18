@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Do not rely on the `visible` state to check if an elemant was already initialized (#48).
+
 ## 2.0.7
 
 * Updated Carrierwave dependency to `0.10.0`.
