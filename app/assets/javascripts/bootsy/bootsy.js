@@ -7,7 +7,6 @@ Bootsy.Area = function($el) {
   this.modal          = $el.siblings('.bootsy-modal');
   this.locale         = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
   this.unsavedChanges = false;
-  this.initialized    = false;
 
   this.options = {
     locale: this.locale,
@@ -210,7 +209,7 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 Bootsy.Area.prototype.init = function() {
   var insert;
 
-  if (!this.initialized) {
+  if (!this.$el.data('bootsy-initialized')) {
     insert = this.insertImage.bind(this);
 
     if ((this.options.image === true) && (this.options.uploader === true)) {
@@ -300,6 +299,6 @@ Bootsy.Area.prototype.init = function() {
     this.hideRefreshButton();
     this.hideEmptyAlert();
 
-    this.initialized = true;
+    this.$el.data('bootsy-initialized', true);
   }
 };
