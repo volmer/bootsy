@@ -1,42 +1,42 @@
 require 'spec_helper'
 
 describe Bootsy::Container do
+  let(:post) { Post.new }
 
-
-  before :each do
-    @post_with_gallery = Post.new title: 'Test', content: 'Test'
-    @post_with_gallery.bootsy_image_gallery = FactoryGirl.create :image_gallery
-    @post_with_gallery.save!
-    @post = Post.new
+  let(:post_with_gallery) do
+    post_with_gallery = Post.new(title: 'Test', content: 'Test')
+    post_with_gallery.bootsy_image_gallery = FactoryGirl.create(:image_gallery)
+    post_with_gallery.save!
+    post_with_gallery
   end
 
   it 'adds an image gallery' do
-    @post.should respond_to(:bootsy_image_gallery)
+    expect(post).to respond_to(:bootsy_image_gallery)
   end
 
   describe '#bootsy_image_gallery' do
     it 'returns the resource which it belongs' do
-      @post_with_gallery.bootsy_image_gallery.bootsy_resource.should eq(@post_with_gallery)
+      expect(post_with_gallery.bootsy_image_gallery.bootsy_resource).to eq(post_with_gallery)
     end
   end
 
   describe '#bootsy_image_gallery_id' do
     it 'returns the gallery id if present' do
-      @post_with_gallery.bootsy_image_gallery_id.should equal(@post_with_gallery.bootsy_image_gallery.id)
+      expect(post_with_gallery.bootsy_image_gallery_id).to eq(post_with_gallery.bootsy_image_gallery.id)
     end
 
     it 'returns nil if not present' do
-      @post.bootsy_image_gallery_id.should be_nil
+      expect(post.bootsy_image_gallery_id).to be_nil
     end
 
     it 'sets an image gallery if container does not have one yet' do
       post = Post.new title: 'Test', content: 'Test'
-      g = FactoryGirl.create :image_gallery
-      post.bootsy_image_gallery_id = g.id
+      image_gallery = FactoryGirl.create(:image_gallery)
+      post.bootsy_image_gallery_id = image_gallery.id
       post.save!
 
-      post.bootsy_image_gallery.should eq(g)
-      post.bootsy_image_gallery_id.should eq(g.id)
+      expect(post.bootsy_image_gallery).to eq(image_gallery)
+      expect(post.bootsy_image_gallery_id).to eq(image_gallery.id)
     end
   end
 end
