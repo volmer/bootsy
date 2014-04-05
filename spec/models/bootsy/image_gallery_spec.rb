@@ -15,7 +15,6 @@ describe Bootsy::ImageGallery do
       expect(Bootsy::ImageGallery.all).to_not include(ig1, ig2, ig3)
     end
 
-
     it 'does not destroy orphan galleries created afther the given date' do
       ig1 = FactoryGirl.create(:image_gallery, created_at: 1.day.ago)
       ig2 = FactoryGirl.create(:image_gallery, created_at: 3.days.ago)
@@ -35,5 +34,14 @@ describe Bootsy::ImageGallery do
 
       expect(Bootsy::ImageGallery.all).to include(ig2)
     end
+  end
+
+  it 'does not autosave its bootsy resource' do
+    post = Post.new
+    gallery = described_class.new
+    gallery.bootsy_resource = post
+    gallery.save!
+
+    expect(post.errors).to be_empty
   end
 end
