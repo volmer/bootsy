@@ -4,7 +4,7 @@
 
 * Do not rely on the `visible` state to check if an elemant was already initialized (#48).
 * Do not autosave the bootsy resource when an `ImageGallery` is saved (#54).
-# Bootsy is now compatible with Simple Form `3.1`.
+* Bootsy is now compatible with Simple Form `3.1`.
 
 ## 2.0.7
 
