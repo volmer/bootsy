@@ -6,7 +6,14 @@ class BootsyInput < SimpleForm::Inputs::Base
   def input(wrapper_options = nil)
     bootsy_params = [:editor_options, :container, :uploader]
     input_html_options.merge!(input_options.select {|k,v| bootsy_params.include?(k) })
-    merged_input_options = merge_wrapper_options(input_html_options, wrapper_options)
+
+    # Check presence of `merge_wrapper_options` to keep
+    # compatibility with both Simple Form 3.0 and 3.1.
+    merged_input_options = if respond_to?(:merge_wrapper_options, true)
+      merge_wrapper_options(input_html_options, wrapper_options)
+    else
+      input_html_options
+    end
 
     @builder.bootsy_area(attribute_name, merged_input_options)
   end
