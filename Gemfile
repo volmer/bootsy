@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'sass-rails', '~> 4.0.0', '>= 4.0.2'
 gem 'bootstrap-sass'
 gem 'sqlite3', '~> 1.3'
-gem 'simple_form', '~> 3.0'
+gem 'simple_form', '~> 3.1.0.rc1'
 
 gemspec
 

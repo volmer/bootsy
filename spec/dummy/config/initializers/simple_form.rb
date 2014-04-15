@@ -43,6 +43,12 @@ SimpleForm.setup do |config|
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: :error }
+
+    ## full_messages_for
+    # If you want to display the full error message for the attribute, you can
+    # use the component :full_error, like:
+    #
+    # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -66,7 +72,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'alert alert-error'
+  config.error_notification_class = 'error_notification'
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
@@ -92,10 +98,10 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required| "#{required} #{label}" }
+  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = nil
+  # config.label_class = nil
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
@@ -139,4 +145,17 @@ SimpleForm.setup do |config|
 
   # Cache SimpleForm inputs discovery
   # config.cache_discovery = !Rails.env.development?
+
+  # Default class for inputs
+  # config.input_class = nil
+
+  # Define the default class of the input wrapper of the boolean input.
+  config.boolean_label_class = 'checkbox'
+
+  # Defines if the default input wrapper class should be included in radio
+  # collection wrappers.
+  # config.include_default_input_wrapper_class = true
+
+  # Defines which i18n scope will be used in Simple Form.
+  # config.i18n_scope = 'simple_form'
 end

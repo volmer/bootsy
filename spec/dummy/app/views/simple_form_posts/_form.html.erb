@@ -1,11 +1,8 @@
 <%= simple_form_for(@post, url: simple_form_posts_path) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :title, input_html: { class: 'form-control' } %>
+  <%= f.input :title %>
+  <%= f.input :content, as: :bootsy, input_html: { rows: 16 } %>
 
-  <%= f.input :content, as: :bootsy, input_html: { rows: 16, class: 'form-control' } %>
-
-  <div class="actions">
-    <%= f.button :submit, class: 'btn btn-primary' %>
-  </div>
+  <%= f.button :submit %>
 <% end %>
