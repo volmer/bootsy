@@ -16,5 +16,5 @@ gem 'rspec-rails', '~> 2.14'
 gem 'factory_girl_rails', '~> 4.2'
 gem 'database_cleaner', '~> 1.2'
 gem 'cucumber-rails', '~> 1.4', require: false
-gem 'shoulda-matchers', '~> 2.5'
+gem 'shoulda-matchers', '~> 2.6'
 gem 'selenium-webdriver', '~> 2.39'
