@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.0.8
 
 * Do not rely on the `visible` state to check if an elemant was already initialized (#48).
 * Do not autosave the bootsy resource when an `ImageGallery` is saved (#54).
