@@ -30,6 +30,21 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find params[:post_id]
+    @comment = @post.comments.find(params[:id])
+
+    respond_to do |format|
+      if @comment.update_attributes(comment_params)
+        format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @post, alert: 'Unable to update comment.' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params

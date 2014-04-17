@@ -8,6 +8,11 @@ Given('there is a post with no images') do
   Post.create!(title: 'Test', content: 'test')
 end
 
+Given('there is a post with a comment') do
+  post = Post.create!(title: 'Test', content: 'test')
+  Comment.create!(post: post, author: 'someone', content: 'Nice post!')
+end
+
 Then('I see the image gallery') do
   expect(page).to have_css('.bootsy-modal', visible: true)
 end
