@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Fix editor for hidden textareas in Firefox.
+
 ## 2.0.8
 
 * Do not rely on the `visible` state to check if an elemant was already initialized (#48).
