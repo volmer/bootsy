@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Fix event handling for Turbolinks on Internet Explorer (#43).
+
 ## 2.0.9
 
 * Fix editor for hidden textareas in Firefox.
