@@ -1,9 +1,9 @@
 module Bootsy
+  # Public: Define and setup Bootsy as a Rails engine.
   class Engine < Rails::Engine
-
     isolate_namespace Bootsy
 
-    config.generators do |g|                                                               
+    config.generators do |g|
       g.test_framework :rspec
       g.integration_tool :rspec
     end
@@ -21,9 +21,9 @@ module Bootsy
         orm = :activerecord
       end
 
-
-      case orm
-      when :activerecord
+      # Require Active Record models. Other ORMs must
+      # include their own Bootsy models.
+      if orm == :activerecord
         Dir[File.expand_path('../activerecord/*.rb', __FILE__)].each {|f| require f }
       end
     end
