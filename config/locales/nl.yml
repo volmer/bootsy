@@ -1,0 +1,27 @@
+nl:
+  bootsy:
+    action:
+      refresh: Ververs
+      destroy: Verwijder
+      close: Sluit
+      load: Laad
+      upload: Upload een nieuw foto
+    image_gallery: Foto Gallerij
+    image:
+      s: Foto's
+      p: Foto's
+      size: Grote
+      large: Groot
+      medium: Medium
+      small: Klein
+      original: Origineel
+      new: Nieuw foto
+      confirm:
+        destroy: Weet je zeker dat je deze foto wilt verwijderen?
+      position:
+        left: Links
+        right: Rechts
+        inline: Gedraag als letter
+    no_images_uploaded: Er zijn nog geen foto's geupload.
+    js:
+      alert_unsaved: Je hebt nog wijzigen die niet zijn opgeslagen.
