@@ -24,24 +24,24 @@
 
 ## Installation
 
-1. Add Bootsy to your Gemfile:
+1\. Add Bootsy to your Gemfile:
 ```ruby
 gem 'bootsy'
 ```
 
-2. Run the bundle command to install it:
+2\. Run the bundle command to install it:
 ```console
 bundle install
 ```
 
-3. Run the install generator:
+3\. Run the install generator:
 ```console
 rails generate bootsy:install
 ```
   It will include the javascripts and stylesheets in the assets pipeline,
   create the `bootsy.rb` initializer and add a copy of the english translations.
 
-4. Add and run migrations (if you're using ActiveRecord):
+4\. Add and run migrations (if you're using ActiveRecord):
 ```console
 rake bootsy:install:migrations
 rake db:migrate
