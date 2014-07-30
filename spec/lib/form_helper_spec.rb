@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy::FormHelper do
   let(:view) { ActionView::Base.new }

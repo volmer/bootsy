@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy do
   subject { Bootsy }
@@ -15,27 +15,40 @@ describe Bootsy do
     describe '.editor_options' do
       subject { Bootsy.editor_options }
 
-      it { should include(font_styles: true) }
-      it { should include(lists: true) }
-      it { should include(emphasis: true) }
-      it { should include(html: false) }
-      it { should include(image: true) }
-      it { should include(color: true) }
+      it { is_expected.to include(font_styles: true) }
+      it { is_expected.to include(lists: true) }
+      it { is_expected.to include(emphasis: true) }
+      it { is_expected.to include(html: false) }
+      it { is_expected.to include(image: true) }
+      it { is_expected.to include(color: true) }
     end
 
-    its(:image_versions_available) { should == [:small, :medium, :large, :original] }
+    it 'has defaults for image_versions_available' do
+      expect(subject.image_versions_available).to eq [:small, :medium, :large, :original]
+    end
 
-    its(:allow_destroy) { should == true }
+    it 'has defaults for allow_destroy' do
+      expect(subject.allow_destroy).to be true
+    end
 
-    its(:small_image) { should == {width: 160, height: 160} }
+    it 'has defaults for small_image' do
+      expect(subject.small_image).to eq({ width: 160, height: 160 })
+    end
 
-    its(:medium_image) { should == {width: 360, height: 360} }
+    it 'has defaults for medium_image' do
+      expect(subject.medium_image).to eq({ width: 360, height: 360 })
+    end
 
-    its(:large_image) { should == {width: 760, height: 760} }
+    it 'has defaults for large_image' do
+      expect(subject.large_image).to eq({ width: 760, height: 760 })
+    end
 
-    its(:original_image) { should == {} }
+    it 'has defaults for original_image' do
+      expect(subject.original_image).to be_empty
+    end
 
-    its(:store_dir) { should == 'uploads' }
-
+    it 'has defaults for store_dir' do
+      expect(subject.store_dir).to eq 'uploads'
+    end
   end
 end

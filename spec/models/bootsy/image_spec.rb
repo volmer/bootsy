@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy::Image do
   it { should belong_to(:image_gallery) }
@@ -10,7 +10,9 @@ describe Bootsy::Image do
     end
 
     it 'is required' do
-      expect(subject).to have(1).error_on(:image_file)
+      subject.valid?
+
+      expect(subject.errors[:image_file].size).to eq 1
     end
   end
 end

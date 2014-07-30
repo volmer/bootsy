@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BootsyInput do
   let(:builder){ double.as_null_object }
@@ -9,12 +9,12 @@ describe BootsyInput do
       editor_options: :some_options, uploader: :uploader_value)
   }
 
-  describe 'options enabled' do
-    its(:input_options) { should have_key(:placeholder) }
-    its(:input_options) { should have_key(:container) }
-    its(:input_options) { should have_key(:editor_options) }
-    its(:input_options) { should have_key(:maxlength) }
-    its(:input_options) { should have_key(:uploader) }
+  it 'has the proper options enabled' do
+    expect(subject.input_options).to have_key(:placeholder)
+    expect(subject.input_options).to have_key(:container)
+    expect(subject.input_options).to have_key(:editor_options)
+    expect(subject.input_options).to have_key(:maxlength)
+    expect(subject.input_options).to have_key(:uploader)
   end
 
   describe '#input' do

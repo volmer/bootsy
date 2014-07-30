@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy::ApplicationHelper do
   let(:unsaved_gallery){ FactoryGirl.build(:image_gallery) }

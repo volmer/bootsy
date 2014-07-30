@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Core Extensions' do
   describe ActionView::Helpers::FormBuilder do

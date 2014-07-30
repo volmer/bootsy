@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy::FormBuilder do
   let(:object) { Post.new }

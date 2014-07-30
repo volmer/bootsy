@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Bootsy::ImageGallery do
   it { should belong_to(:bootsy_resource) }
