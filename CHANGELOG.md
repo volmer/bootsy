@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.0.10
 
 * Fix event handling for Turbolinks on Internet Explorer (#43).
 * Fix helper inclusion when `ApplicationController` is eager loaded (#85).
