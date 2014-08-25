@@ -9,9 +9,10 @@ module Bootsy
     end
 
     config.to_prepare do
-      ActionController::Base.class_eval do
-        helper Bootsy::ApplicationHelper
-      end
+      ActionController::Base.helper(Bootsy::ApplicationHelper)
+      # Included at ApplicationController to prevent
+      # missing helpers when it is eager loaded.
+      ApplicationController.helper(Bootsy::ApplicationHelper)
     end
 
     config.after_initialize do
