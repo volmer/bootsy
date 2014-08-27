@@ -24,6 +24,7 @@ window.Bootsy.options = {
       "wysiwyg-color-teal" : 1,
       "wysiwyg-color-aqua" : 1,
       "wysiwyg-color-orange" : 1,
+      "wysiwyg-full-width": 1,
       "wysiwyg-float-left": 1,
       "wysiwyg-float-right": 1
     },

@@ -14,7 +14,7 @@
         <% end %>
 
         <ul class="dropdown-menu" role="menu">
-          <% [:left, :right, :inline].each do |position| %>
+          <% [:left, :right, :inline, :wide].each do |position| %>
             <li role="presentation">
               <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
                 data: { image_size: size.to_s, position: position.to_s} do %>
