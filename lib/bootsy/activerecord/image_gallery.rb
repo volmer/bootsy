@@ -16,5 +16,10 @@ module Bootsy
     scope :destroy_orphans, ->(time_limit) {
       where('created_at < ? AND bootsy_resource_id IS NULL', time_limit).destroy_all
     }
+    def self.destroy_orphans(time_limit)
+      Bootsy::ImageGallery.where('created_at < ? AND bootsy_resource_id IS NULL', time_limit).delete_all
+      Bootsy::Image.where('image_gallery_id IS NULL AND created_at < ?',time_limit).delete_all
+    end
+    
   end
 end
