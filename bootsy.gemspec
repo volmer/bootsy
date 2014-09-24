@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick', '~> 3.8.0'
   s.add_dependency 'carrierwave', '~> 0.10.0'
   s.add_dependency 'remotipart', '~> 1.2.1'
+  s.add_dependency 'font-awesome-rails', '~> 4.2.0.0'
 end
