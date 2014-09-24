@@ -33,7 +33,7 @@
             return "<li>" +
               "<div class='btn-group'>" +
                 "<a class='btn btn-default " + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='fa fa-list-ul'></i></a>" +
-                "<a class='btn btn-default " + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='glyphicon glyphicon-th-list'></i></a>" +
+                "<a class='btn btn-default " + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='fa fa-list-ol'></i></a>" +
                 "<a class='btn btn-default " + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='glyphicon glyphicon-indent-left'></i></a>" +
                 "<a class='btn btn-default " + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='glyphicon glyphicon-indent-right'></i></a>" +
               "</div>" +
