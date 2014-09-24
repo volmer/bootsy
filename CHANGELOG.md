@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.1.0
+
+* Added branch with Font Awesome icons instead of Glypphicons
+
 ## 2.0.10
 
 * Fix event handling for Turbolinks on Internet Explorer (#43).
