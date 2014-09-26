@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Fix orange color (#94).
+
 ## 2.0.10
 
 * Fix event handling for Turbolinks on Internet Explorer (#43).
