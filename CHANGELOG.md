@@ -3,6 +3,7 @@
 ## master
 
 * Fix orange color (#94).
+* Fix locale generator (#95).
 
 ## 2.0.10
 
