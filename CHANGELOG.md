@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.0.11
 
 * Fix orange color (#94).
 * Fix locale generator (#95).
