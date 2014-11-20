@@ -1,0 +1,9 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'spec/**/*'
+    - 'features/support/*'
+    - 'lib/tasks/cucumber.rake'
+    - 'script/*'
+Metrics/MethodLength:
+  Max: 15
