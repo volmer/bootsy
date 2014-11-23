@@ -32,7 +32,7 @@ task default: [:spec, :cucumber, 'coveralls:push']
 
 RSpec::Core::RakeTask.new(:spec)
 
-Cucumber::Rake::Task.new do |t|
+Cucumber::Rake::Task.new do |_|
   # Uncomment this line when cucumber/multi_test work with minitest.
   # t.cucumber_opts = %w{--format pretty -s}
 end

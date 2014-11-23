@@ -13,8 +13,11 @@ module Bootsy
     belongs_to :bootsy_resource, polymorphic: true, autosave: false
     has_many :images, dependent: :destroy
 
-    scope :destroy_orphans, ->(time_limit) {
-      where('created_at < ? AND bootsy_resource_id IS NULL', time_limit).destroy_all
+    scope :destroy_orphans, lambda { |time_limit|
+      where(
+        'created_at < ? AND bootsy_resource_id IS NULL',
+        time_limit
+      ).destroy_all
     }
   end
 end

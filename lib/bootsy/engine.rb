@@ -25,7 +25,9 @@ module Bootsy
       # Require Active Record models. Other ORMs must
       # include their own Bootsy models.
       if orm == :activerecord
-        Dir[File.expand_path('../activerecord/*.rb', __FILE__)].each {|f| require f }
+        Dir[File.expand_path('../activerecord/*.rb', __FILE__)].each do |f|
+          require f
+        end
       end
     end
   end

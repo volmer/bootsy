@@ -9,8 +9,9 @@ end
 
 Then(/^I( don't)? see the thumbnail "(.*?)" on the image gallery$/) do |negate, thumbnail|
   expectation = negate ? :not_to : :to
+  selector = "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src,'/thumb_#{thumbnail}')]"
 
-  expect(page).send expectation, have_selector(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src,'/thumb_#{thumbnail}')]", visible: true)
+  expect(page).send expectation, have_selector(:xpath, selector, visible: true)
 end
 
 Given(/^I upload the image "(.*?)"$/) do |image_file|
@@ -23,17 +24,20 @@ When(/^I click on the image "(.*?)"$/) do |image_name|
 end
 
 When(/^I click on the "(.*?)" option of the "(.*?)" submenu$/) do |position, submenu|
-  page.execute_script("$('.dropdown-submenu .dropdown-menu').hide();$('a:contains(#{ submenu }):visible').parent().find('.dropdown-menu').show()")
+  script = "$('.dropdown-submenu .dropdown-menu').hide();
+    $('a:contains(#{ submenu }):visible').parent().find('.dropdown-menu').show()"
+
+  page.execute_script(script)
 
   find('li.dropdown-submenu ul.dropdown-menu li a', visible: true, text: /#{ position }/).click
 end
 
 When(/^I insert the image "(.*?)" on the text$/) do |image|
-  step 'I click on the image "test.jpg"'
+  step "I click on the image \"#{image}\""
   step 'I click on the "Left" option of the "Small" submenu'
 end
 
-Then(/^I see the image "(.*?)" in its (.*?) size inserted on the text area positioned as (.*?)$/) do |image_file, size, position|
+Then(/^I see the image "(.*?)" in its (.*?) size positioned as (.*?)$/) do |image_file, size, position|
   size.downcase!
 
   img_src = "/#{ size }_#{ image_file }"

@@ -11,7 +11,7 @@ module Bootsy
 
         format.json do
           render json: {
-            images: @images.map {|image| image_markup(image) },
+            images: @images.map { |image| image_markup(image) },
             form: new_image_markup(@gallery)
           }
         end
@@ -20,25 +20,10 @@ module Bootsy
 
     def create
       @gallery = find_gallery
-      @gallery.save! unless @gallery.persisted?
+      @gallery.save!
       @image = @gallery.images.new(image_params)
 
-      respond_to do |format|
-        if @image.save
-          format.json {
-            render json: {
-              image: image_markup(@image),
-              form: new_image_markup(@gallery),
-              gallery_id: @gallery.id
-            }
-          }
-        else
-          format.json {
-            render json: @image.errors,
-            status: :unprocessable_entity
-          }
-        end
-      end
+      create_and_respond
     end
 
     def destroy
@@ -46,9 +31,9 @@ module Bootsy
       @image.destroy
 
       respond_to do |format|
-        format.json {
+        format.json do
           render json: { id: params[:id] }
-        }
+        end
 
         format.html { redirect_to images_url }
       end
@@ -86,9 +71,26 @@ module Bootsy
       )
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:image_file)
+    end
+
+    def create_and_respond
+      respond_to do |format|
+        if @image.save
+          format.json do
+            render json: {
+              image: image_markup(@image),
+              form: new_image_markup(@gallery),
+              gallery_id: @gallery.id
+            }
+          end
+        else
+          format.json do
+            render json: @image.errors, status: :unprocessable_entity
+          end
+        end
+      end
     end
   end
 end

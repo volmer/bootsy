@@ -8,6 +8,7 @@ require 'bootsy/core_ext'
 
 autoload :BootsyInput, 'bootsy/simple_form/bootsy_input'
 
+# Public: Top Bootsy module
 module Bootsy
   ## CONFIGURATION OPTIONS
 
@@ -33,15 +34,15 @@ module Bootsy
 
   # Settings for small images
   mattr_accessor :small_image
-  @@small_image = {width: 160, height: 160}
+  @@small_image = { width: 160, height: 160 }
 
   # Settings for medium images
   mattr_accessor :medium_image
-  @@medium_image = {width: 360, height: 360}
+  @@medium_image = { width: 360, height: 360 }
 
   # Settings for large images
   mattr_accessor :large_image
-  @@large_image = {width: 760, height: 760}
+  @@large_image = { width: 760, height: 760 }
 
   # Settings for the original version of images
   mattr_accessor :original_image
@@ -54,9 +55,6 @@ module Bootsy
   # Store directory (inside 'public')
   mattr_accessor :store_dir
   @@store_dir = 'uploads'
-
-
-  ## SETUP
 
   # Default way to setup Bootsy. Run rails generate bootsy:install
   # to create a fresh initializer with all configuration values.
