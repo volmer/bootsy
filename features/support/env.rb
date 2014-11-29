@@ -12,6 +12,8 @@ Coveralls.wear_merged!
 ENV["RAILS_ROOT"] = File.expand_path(File.dirname(__FILE__) + '/../../spec/dummy/')
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/dummy/config/environment')
 
+require 'active_record'
+ActiveRecord::Migrator.migrations_paths = ['spec/dummy/db/migrate']
 require 'cucumber/rails'
 
 # If you use factory girl, I had to add the following...
