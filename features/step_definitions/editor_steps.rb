@@ -7,7 +7,7 @@ When('I change the content of the text area') do
 end
 
 When(/^I set "(.*?)" to "(.*?)" on the editor options of bootsy_area$/) do |option, value|
-  Bootsy.stub(editor_options: { option => value })
+  allow(Bootsy).to receive(:editor_options).and_return(option => value)
 end
 
 When(/^I fill in the "(.*?)" editor with "(.*?)"$/) do |editor, value|

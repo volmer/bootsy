@@ -6,7 +6,7 @@ describe Bootsy do
   describe '.setup' do
     it 'yields self' do
       subject.setup do |config|
-        config.should == subject
+        expect(config).to eq subject
       end
     end
   end

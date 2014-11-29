@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
 # Gems used by the dummy application
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2.0.rc1'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'bootstrap-sass'
-gem 'sqlite3', '~> 1.3'
-gem 'simple_form', '~> 3.1.0.rc2'
+gem 'sqlite3'
+gem 'simple_form'
 
 gemspec
 

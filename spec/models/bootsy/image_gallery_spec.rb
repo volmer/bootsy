@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Bootsy::ImageGallery do
-  it { should belong_to(:bootsy_resource) }
-  it { should have_many(:images).dependent(:destroy) }
+  it { is_expected.to belong_to(:bootsy_resource) }
+  it { is_expected.to have_many(:images).dependent(:destroy) }
 
   describe '.destroy_orphans' do
     it 'destroys all orphan galleries created before the given date' do

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :image_gallery, class: Bootsy::ImageGallery do
     factory :image_gallery_with_images do
-      ignore do
+      transient do
         images_count 3
       end
 

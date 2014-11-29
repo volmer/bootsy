@@ -150,7 +150,7 @@ describe Bootsy::FormHelper do
 
     context 'when editor options are defined on the intialize file' do
       before do
-        Bootsy.stub(editor_options: { global1: 1, global2: 2 })
+        allow(Bootsy).to receive(:editor_options).and_return(global1: 1, global2: 2)
       end
 
       it 'passes them to the text area as data-bootsy attributes' do
