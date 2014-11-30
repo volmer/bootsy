@@ -5090,6 +5090,7 @@ wysihtml5.dom.parse = (function() {
     align_img: (function() {
       var mapping = {
         left:   "wysiwyg-float-left",
+        wide:   "wysiwyg-full-width",
         right:  "wysiwyg-float-right"
       };
       return function(attributeValue) {
