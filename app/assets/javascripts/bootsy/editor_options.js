@@ -72,7 +72,19 @@ window.Bootsy.options = {
       "div": 1,
       // to allow save and edit files with code tag hacks
       "code": 1,
-      "pre": 1
+      "pre": 1,
+      // this allows youtube embed codes
+      "iframe": {
+        set_attributes: {
+          "frameborder": "0",
+          "allowfullscreen": "1"
+        },
+        check_attributes: {
+          "width": "numbers",
+          "height": "numbers",
+          "src": "href"
+        }
+      }
     }
   },
   color: true,
