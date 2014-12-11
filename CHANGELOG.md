@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## mastetr
+
+* Allow youtube embed codes (#71 - thanks @markusherzog).
+
 ## 2.0.11
 
 * Fix orange color (#94).
