@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## mastetr
+## 2.0.12
 
 * Allow youtube embed codes (#71 - thanks @markusherzog).
 
