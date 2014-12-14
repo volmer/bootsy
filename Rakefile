@@ -27,7 +27,9 @@ require 'rspec/core/rake_task'
 require 'coveralls/rake/task'
 require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['app/**/*.rb', 'lib/**/*.rb']
+end
 Coveralls::RakeTask.new
 RSpec::Core::RakeTask.new(:spec)
 Cucumber::Rake::Task.new do |_|
