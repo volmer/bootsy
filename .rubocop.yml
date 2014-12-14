@@ -2,7 +2,7 @@ AllCops:
   RunRailsCops: true
   Exclude:
     - 'spec/**/*'
-    - 'features/support/*'
+    - 'features/**/*'
     - 'lib/tasks/cucumber.rake'
     - 'script/*'
 Metrics/MethodLength:

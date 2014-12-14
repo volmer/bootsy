@@ -19,3 +19,4 @@ gem 'cucumber-rails', require: false
 gem 'shoulda-matchers'
 gem 'selenium-webdriver'
 gem 'pry-rails'
+gem 'rubocop'
