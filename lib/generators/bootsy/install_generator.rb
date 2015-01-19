@@ -14,50 +14,39 @@ module Bootsy
                   'config/locales/bootsy.en.yml'
       end
 
-      def add_assets
-        assets_entries.each do |params|
-          if File.exist?(params[:original])
-            insert_into_file(params)
-          else
-            say_status('not found', "#{params[:original]} not found. You must
-              manually require Bootsy in your assets pipeline.", :red)
-          end
-        end
+      def add_javascript
+        require_asset(
+          'app/assets/javascripts/application.js',
+          "\n//= require bootsy",
+          '//= require jquery_ujs'
+        )
+      end
+
+      def add_stylesheet
+        require_asset(
+          'app/assets/stylesheets/application.css',
+          "\n *= require bootsy",
+          '*= require_self'
+        )
       end
 
       def copy_config
         template 'bootsy.rb', 'config/initializers/bootsy.rb'
       end
 
-      def insert_into_file(params)
-        if File.binread(params[:original]).include?(params[:skip_if])
-          say_status('skipped', "insert into #{params[:original]}", :yellow)
-        else
-          super(
-            params[:original],
-            params[:content],
-            params[:position]
-          )
-        end
-      end
-
       private
 
-      def assets_entries
-        [
-          {
-            original: 'app/assets/javascripts/application.js',
-            skip_if: 'require bootsy',
-            content: "\n//= require bootsy",
-            position: { after: '//= require jquery_ujs' }
-          },
-          {
-            original: 'app/assets/stylesheets/application.css',
-            skip_if: 'require bootsy',
-            content: "\n *= require bootsy",
-            position: { after: '*= require_self' }
-          }
-        ]
+      def require_asset(destination, content, after_line)
+        if File.exist?(destination)
+          if File.binread(destination).include?(content)
+            say_status('skipped', "insert into #{destination}", :yellow)
+          else
+            insert_into_file(destination, content, after: after_line)
+          end
+        else
+          say_status('not found', "#{destination} not found. You must
+            manually require Bootsy in your assets pipeline.", :red)
+        end
       end
     end
   end
