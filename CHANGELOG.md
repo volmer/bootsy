@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.13
+
+* Fix install generator (#110).
+
 ## 2.0.12
 
 * Allow youtube embed codes (#71 - thanks @markusherzog).
