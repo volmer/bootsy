@@ -4,5 +4,14 @@
 
   <%= image_tag 'bootsy/upload-loader.gif', class: 'bootsy-upload-loader' %>
 
+  <div class="input-group">
+    <%= f.url_field :remote_image_file_url, class: 'form-control', placeholder: t('bootsy.action.enter_image_url') %>
+    <span class="input-group-btn">
+      <%= f.submit t('bootsy.action.submit_upload'), class: 'btn btn-default' %>
+    </span>
+  </div>
+
+  <span class="bootsy-upload-spacer"><%= t('bootsy.action.or') %></span>
+
   <%= f.file_field :image_file, title: t('bootsy.action.upload') %>
 <% end %>
