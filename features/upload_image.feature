@@ -16,6 +16,13 @@ Feature: Upload an image
     And I press "Go"
     Then I see the thumbnail "test.jpg" on the image gallery
 
+  Scenario: Upload an invaild image
+    When I attach the file "test.fake" on "image_file"
+    Then I don't see the thumbnail "test.jpg" on the image gallery
+    Then I see "You are not allowed to upload" on the page
+    When I press "Refresh"
+    Then I don't see "You are not allowed to upload" on the page
+
   Scenario: Associate the uploaded image with the container
     When I upload the image "test.jpg"
     And I insert the image "test.jpg" on the text

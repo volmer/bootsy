@@ -101,8 +101,17 @@ Bootsy.Area.prototype.setUploadForm = function(html) {
 };
 
 // The image upload failed
-Bootsy.Area.prototype.imageUploadFailed = function() {
-  alert(Bootsy.translations[this.locale].error);
+Bootsy.Area.prototype.imageUploadFailed = function(e, xhr, status, error) {
+  this.invalidErrors = xhr.responseJSON;
+  if (Number(xhr.status) === 422 && this.invalidErrors.image_file) {
+    this.hideUploadLoadingAnimation();
+    if (this.validation) this.validation.remove();
+    this.validation = $("<p class='text-danger'>");
+    this.validation.text(this.invalidErrors.image_file[0]);
+    this.find('.bootsy-upload-form').append(this.validation);
+  } else {
+    alert(Bootsy.translations[this.locale].error);
+  }
   this.showRefreshButton();
 };
 
