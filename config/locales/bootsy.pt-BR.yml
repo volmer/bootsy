@@ -5,7 +5,10 @@ pt-BR:
       destroy: Apagar
       close: Fechar
       load: Carregar
+      or: ou
       upload: Nova imagem
+      submit_upload: Ir
+      enter_image_url: Digite uma URL da web...
     image_gallery: Galeria de Imagens
     image:
       s: Imagem

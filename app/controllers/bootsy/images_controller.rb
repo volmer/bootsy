@@ -2,8 +2,9 @@ require_dependency 'bootsy/application_controller'
 
 module Bootsy
   class ImagesController < Bootsy::ApplicationController
+    before_action :set_gallery, only: [:index, :create]
+
     def index
-      @gallery = find_gallery
       @images = @gallery.images
 
       respond_to do |format|
@@ -19,7 +20,6 @@ module Bootsy
     end
 
     def create
-      @gallery = find_gallery
       @gallery.save!
       @image = @gallery.images.new(image_params)
 
@@ -41,8 +41,8 @@ module Bootsy
 
     private
 
-    def find_gallery
-      ImageGallery.find(params[:image_gallery_id])
+    def set_gallery
+      @gallery = ImageGallery.find(params[:image_gallery_id])
     end
 
     # Private: Returns the String markup to render
@@ -72,7 +72,7 @@ module Bootsy
     end
 
     def image_params
-      params.require(:image).permit(:image_file)
+      params.require(:image).permit(:image_file, :remote_image_file_url)
     end
 
     def create_and_respond

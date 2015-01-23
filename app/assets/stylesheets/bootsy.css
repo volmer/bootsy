@@ -314,6 +314,10 @@ textarea.bootsy:required:invalid {
   padding-right: 5px;
 }
 
+.bootsy-upload-spacer {
+  padding: 0 10px 0 10px;
+}
+
 .bootsy-gallery-loader {
   display: block;
   margin: 0 auto;
