@@ -56,6 +56,10 @@ module Bootsy
   mattr_accessor :store_dir
   @@store_dir = 'uploads'
 
+  # Specify which controller to inherit from
+  mattr_accessor :base_controller
+  @@base_controller = ActionController::Base
+
   # Default way to setup Bootsy. Run rails generate bootsy:install
   # to create a fresh initializer with all configuration values.
   def self.setup

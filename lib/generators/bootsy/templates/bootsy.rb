@@ -61,4 +61,9 @@ Bootsy.setup do |config|
   # Store directory (inside 'public') for storage = :file
   #   BE CAREFUL! Changing this may break previously uploaded file paths!
   # config.store_dir = 'uploads'
+  #
+  #
+  # Specify the controller to inherit from. Using ApplicationController
+  # allows you to perform authentication from within your app.
+  # config.base_controller = ActionController::Base
 end
