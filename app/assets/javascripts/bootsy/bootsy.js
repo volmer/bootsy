@@ -100,6 +100,20 @@ Bootsy.Area.prototype.setUploadForm = function(html) {
   }.bind(this));
 };
 
+// The image upload failed
+Bootsy.Area.prototype.imageUploadFailed = function(e, xhr, status, error) {
+  this.invalidErrors = xhr.responseJSON;
+  if (Number(xhr.status) === 422 && this.invalidErrors.image_file) {
+    this.hideUploadLoadingAnimation();
+    if (this.validation) this.validation.remove();
+    this.validation = $("<p class='text-danger'>");
+    this.validation.text(this.invalidErrors.image_file[0]);
+    this.find('.bootsy-upload-form').append(this.validation);
+  } else {
+    alert(Bootsy.translations[this.locale].error);
+  }
+  this.showRefreshButton();
+};
 
 // Set image gallery
 Bootsy.Area.prototype.setImageGallery = function() {
@@ -114,7 +128,9 @@ Bootsy.Area.prototype.setImageGallery = function() {
     },
     dataType: 'json',
     success: function(data) {
+      this.hideRefreshButton();
       this.hideGalleryLoadingAnimation();
+      this.find('.bootsy-gallery .bootsy-image').remove();
 
       $.each(data.images, function(index, value) {
         this.addImage(value);
@@ -128,11 +144,7 @@ Bootsy.Area.prototype.setImageGallery = function() {
 
       this.modal.data('gallery-loaded', true);
     }.bind(this),
-    error: function() {
-      alert(Bootsy.translations[this.locale].error);
-
-      this.showRefreshButton();
-    }.bind(this)
+    error: this.imageUploadFailed.bind(this)
   });
 };
 
@@ -151,7 +163,6 @@ Bootsy.Area.prototype.deleteImage = function (id) {
     }
   }.bind(this));
 };
-
 
 // Add image to gallery
 Bootsy.Area.prototype.addImage = function(html) {
@@ -261,6 +272,8 @@ Bootsy.Area.prototype.init = function() {
       this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
         this.deleteImage(data.id);
       }.bind(this));
+
+      this.modal.on('ajax:error', '.bootsy-upload-form', this.imageUploadFailed.bind(this));
 
       this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
         this.setImageGalleryId(data.gallery_id);
