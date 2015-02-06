@@ -301,11 +301,8 @@ textarea.bootsy:required:invalid {
 .bootsy-modal .file-input-name {display: none;}  /*Hide the input file name from showing as it's not needed and ruins design*/
 
 /*Set a min-height on the modal body to prevent jumping up and down of modal when adding content*/
-/*Set a max-height on the modal body to prevent the modal running off the screen with a large # of images*/
 .bootsy-modal .modal-body {
   min-height: 120px;
-  max-height: 500px;
-  overflow: scroll;
 }
 
 .bootsy-image {
