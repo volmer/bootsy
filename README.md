@@ -113,7 +113,7 @@ You can enable and disable features as you like. For instance, if you don't want
 Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, `:image` and `:color`.
 
 
-### Alert of usaved changes
+### Alert of unsaved changes
 
 By default Bootsy alerts the user about unsaved changes if the page is closed or reloaded. You can disable 
 this feature with:
