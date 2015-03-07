@@ -6,7 +6,9 @@
 [![Code Climate](https://codeclimate.com/github/volmer/bootsy.png)](https://codeclimate.com/github/volmer/bootsy)
 [![Coverage Status](https://coveralls.io/repos/volmer/bootsy/badge.png?branch=master)](https://coveralls.io/r/volmer/bootsy)
 
-*Bootsy* is a WYSIWYG editor for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) with image uploads using [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
+*Bootsy* is a WYSIWYG editor for Rails based on 
+[Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) with image uploads using 
+[CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
 
 ### Live demo
 
@@ -16,7 +18,6 @@
 
 ## Requirements
 
-* Ruby `2` or `1.9.3`;
 * ImageMagick or GraphicsMagick (for MiniMagick);
 * Rails `4`;
 * [Bootstrap `3`](http://getbootstrap.com/) fully installed in your app.
@@ -24,28 +25,28 @@
 
 ## Installation
 
-1\. Add Bootsy to your Gemfile:
-```ruby
-gem 'bootsy'
-```
+1. Add Bootsy to your Gemfile:
+  ```ruby
+  gem 'bootsy'
+  ```
 
-2\. Run the bundle command to install it:
-```console
-bundle install
-```
+2. Run the bundle command to install it:
+  ```console
+  bundle install
+  ```
 
-3\. Run the install generator:
-```console
-rails generate bootsy:install
-```
+3. Run the install generator:
+  ```console
+  rails generate bootsy:install
+  ```
   It will include the javascripts and stylesheets in the assets pipeline,
   create the `bootsy.rb` initializer and add a copy of the english translations.
 
-4\. Add and run migrations:
-```console
-rake bootsy:install:migrations
-rake db:migrate
-```
+4. Add and run migrations:
+  ```console
+  rake bootsy:install:migrations
+  rake db:migrate
+  ```
 
 
 ## Usage
@@ -140,10 +141,14 @@ the options as you like.
 
 Bootsy defines some i18n keys. English translations are added by default to your 
 `config/locales` directory as `bootsy.en.yml`. You can use it as a template
-to translate Bootsy to your language. [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). Unless you have disabled it, it's 
-also nice to translate the alert message of unsaved changes. Just follow [this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
+to translate Bootsy to your language. 
+[Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). 
+You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions 
+[here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). Unless you have disabled it, it's 
+also nice to translate the alert message of unsaved changes. Just follow 
+[this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
 
 
 ## License
 
-MIT License. Copyright 2012-2014 Volmer Soares
+MIT License. Copyright 2012-2015 Volmer Soares
