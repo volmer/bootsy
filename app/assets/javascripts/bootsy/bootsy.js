@@ -5,8 +5,11 @@ window.Bootsy = window.Bootsy || {};
 Bootsy.Area = function($el) {
   this.$el            = $el;
   this.modal          = $el.siblings('.bootsy-modal');
-  this.locale         = $el.data('bootsy-locale') || $('html').attr('lang') || 'en';
   this.unsavedChanges = false;
+  this.locale         = $el.data('bootsy-locale') || $('html').attr('lang');
+  if (!Bootsy.translations[this.locale]) {
+    this.locale = 'en';
+  }
 
   this.options = {
     locale: this.locale,

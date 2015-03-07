@@ -27,10 +27,12 @@ Bootsy.init = function() {
 
 /* Initialize Bootsy on document load */
 $(function() {
-  Bootsy.init();
+  $(window).load(function() {
+    Bootsy.init();
 
-  /* Reload Bootsy on page load when using Turbolinks. */
-  if (window.Turbolinks) {
-    $(document).on('page:load', Bootsy.init);
-  }
+    /* Reload Bootsy on page load when using Turbolinks. */
+    if (window.Turbolinks) {
+      $(document).on('page:load', Bootsy.init);
+    }
+  });
 });
