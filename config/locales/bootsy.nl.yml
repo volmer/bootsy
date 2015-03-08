@@ -25,6 +25,6 @@ nl:
         left: Links
         right: Rechts
         inline: In de tekst
-    no_images_uploaded: Er zijn nog geen afbeeldingen geüpload
+    no_images_uploaded: Er zijn nog geen afbeeldingen geüpload.
     js:
       alert_unsaved: U heeft wijzigingen die nog niet opgeslagen zijn.
