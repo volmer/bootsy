@@ -144,9 +144,9 @@ Bootsy defines some i18n keys. English translations are added by default to your
 to translate Bootsy to your language. 
 [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). 
 You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions 
-[here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). Unless you have disabled it, it's 
-also nice to translate the alert message of unsaved changes. Just follow 
-[this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
+[here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). You also need to translate
+Bootsy's javascript messages. Just follow 
+[this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/bootsy.pt-BR.js).
 
 
 ## License
