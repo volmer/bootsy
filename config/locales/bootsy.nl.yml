@@ -1,0 +1,30 @@
+nl:
+  bootsy:
+    action:
+      refresh: Ververs
+      destroy: Verwijder
+      close: Sluit
+      load: Laad
+      or: of
+      upload: Upload nieuwe afbeelding
+      enter_image_url: Geef URL van bestaande afbeelding
+      submit_upload: Voeg toe
+    image_gallery: Collectie
+    image:
+      s: Afbeelding
+      p: Afbeeldingen
+      size: Grootte
+      large: Groot
+      medium: Middel
+      small: Klein
+      original: Origineel
+      new: Nieuwe afbeelding
+      confirm:
+        destroy: Weet u zeker dat u deze afbeelding wilt verwijderen?
+      position:
+        left: Links
+        right: Rechts
+        inline: In de tekst
+    no_images_uploaded: Er zijn nog geen afbeeldingen geüpload
+    js:
+      alert_unsaved: U heeft wijzigingen die nog niet opgeslagen zijn.
