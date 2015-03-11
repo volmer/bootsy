@@ -41,6 +41,10 @@
   ```
   It will include the javascripts and stylesheets in the assets pipeline,
   create the `bootsy.rb` initializer and add a copy of the english translations.
+  
+  **Note:** If your project uses SASS or LESS and `application.css` does not exist, 
+  you will be required to require bootsy manually using `*= require bootsy` or if you prefer 
+  to import assets yourself `@import "bootsy";`
 
 4. Add and run migrations:
   ```console
