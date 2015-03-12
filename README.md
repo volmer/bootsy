@@ -143,10 +143,11 @@ Bootsy defines some i18n keys. English translations are added by default to your
 `config/locales` directory as `bootsy.en.yml`. You can use it as a template
 to translate Bootsy to your language. 
 [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). 
-You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions 
-[here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). Unless you have disabled it, it's 
-also nice to translate the alert message of unsaved changes. Just follow 
-[this example](https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js).
+
+If you are upgrading from Bootsy 2.1.0 or earlier, please note that you can now remove
+bootsy.#{yourlocale}.js and bootstrap-wysihtml5.#{yourlocale}.js, and move its contents
+to config/locales/bootsy.#{yourlocale}.yml. You will also need to require
+bootsy/l10n after bootsy in your app/assets/javascripts/application.js .
 
 
 ## License

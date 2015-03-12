@@ -17,7 +17,7 @@ module Bootsy
       def add_javascript
         require_asset(
           'app/assets/javascripts/application.js',
-          "\n//= require bootsy",
+          "\n//= require bootsy\n//= require bootsy/l10n",
           '//= require jquery_ujs'
         )
       end
