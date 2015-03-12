@@ -1,0 +1,30 @@
+/**
+ * Translations for Bootsy
+ */
+<%
+  def tree_to_js_struct(tree, out=String.new, level=2, parent=[])
+    tree.each do |key, value|
+      if value.is_a? Hash
+        out << '  ' * level + key.to_s + ": {\n"
+        tree_to_js_struct(value, out, level + 1, parent+[key])
+        out << '  ' * level + "}\n"
+      else
+        out << "%s%s: \"%s\",\n" % ['  ' * level, key, value]
+      end
+    end
+    out
+  end
+  def tree_to_js(section, structname, locale)
+    return '' if locale == 'en'
+    tree = I18n.t(section, :locale => locale)
+    raise tree if tree.is_a? String
+    "  %s['%s'] = {\n%s\n  };\n" % [ structname, locale, tree_to_js_struct(tree)]
+  end
+
+%>
+jQuery(function(){
+<% Bootsy.locales.each do |locale| %>
+<%= tree_to_js('bootsy.js', 'Bootsy.translations', locale) %>
+<%= tree_to_js('bootsy.wysihtml5', '$.fn.wysihtml5.locale', locale) %>
+<% end %>
+});

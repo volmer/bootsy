@@ -60,6 +60,10 @@ module Bootsy
   mattr_accessor :base_controller
   @@base_controller = ActionController::Base
 
+  # Supported locales
+  mattr_accessor :locales
+  @@locales = [ 'en' ]
+
   # Default way to setup Bootsy. Run rails generate bootsy:install
   # to create a fresh initializer with all configuration values.
   def self.setup

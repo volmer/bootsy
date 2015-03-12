@@ -66,4 +66,7 @@ Bootsy.setup do |config|
   # Specify the controller to inherit from. Using ApplicationController
   # allows you to perform authentication from within your app.
   # config.base_controller = ActionController::Base
+  #
+  # Specify the locales you wish to support in your application.
+  # config.locales = [ 'en', 'pt-BR' ]
 end
