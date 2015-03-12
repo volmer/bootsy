@@ -7,7 +7,7 @@
       if value.is_a? Hash
         out << '  ' * level + key.to_s + ": {\n"
         tree_to_js_struct(value, out, level + 1, parent+[key])
-        out << '  ' * level + "}\n"
+        out << '  ' * level + "},\n"
       else
         out << "%s%s: \"%s\",\n" % ['  ' * level, key, value]
       end
