@@ -144,10 +144,14 @@ Bootsy defines some i18n keys. English translations are added by default to your
 to translate Bootsy to your language. 
 [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). 
 
+You will need to list your locales in `config/initializers/bootsy.rb` by uncommenting
+the `locales` example if you want to use a language other than English. Failure to do
+so will likely result in runtime JavaScript errors.
+
 If you are upgrading from Bootsy 2.1.0 or earlier, please note that you can now remove
-bootsy.#{yourlocale}.js and bootstrap-wysihtml5.#{yourlocale}.js, and move its contents
-to config/locales/bootsy.#{yourlocale}.yml. You will also need to require
-bootsy/l10n after bootsy in your app/assets/javascripts/application.js .
+`bootsy.#{yourlocale}.js` and `bootstrap-wysihtml5.#{yourlocale}.js`, and move its contents
+to `config/locales/bootsy.#{yourlocale}.yml`. You will also need to `//= require
+bootsy/l10n` after `bootsy` in your `app/assets/javascripts/application.js` .
 
 
 ## License
