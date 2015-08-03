@@ -3,13 +3,13 @@ require 'rails_helper'
 describe 'editor customization', type: :feature, js: true do
   let(:options) do
     {
-      font_styles: ['Font style'],
-      color: ['Text color'],
+      color: ['Black'],
       emphasis: %w(Bold Italic Underline),
-      lists: ['Unordered list', 'Ordered list', 'Indent', 'Outdent'],
-      link: ['Insert link'],
+      font_styles: ['Normal text'],
+      html: ['Edit HTML'],
       image: ['Insert image'],
-      html: ['Edit HTML']
+      link: ['Insert link'],
+      lists: ['Unordered list', 'Ordered list', 'Indent', 'Outdent']
     }
   end
 
@@ -19,8 +19,13 @@ describe 'editor customization', type: :feature, js: true do
 
       visit new_post_path
 
+      toolbar = find('ul.wysihtml5-toolbar')
+
       options[config].each do |label|
-        expect(find('ul.wysihtml5-toolbar')).to have_link(label)
+        expect(
+          toolbar.has_css?('a', text: label) ||
+          toolbar.has_css?("a[title='#{label}']")
+        ).to be(true), "expected toolbar to include #{label}"
       end
     end
   end
@@ -31,8 +36,11 @@ describe 'editor customization', type: :feature, js: true do
 
       visit new_post_path
 
+      toolbar = find('ul.wysihtml5-toolbar')
+
       options[config].each do |label|
-        expect(find('ul.wysihtml5-toolbar')).not_to have_link(label)
+        expect(toolbar).not_to have_css('a', text: label)
+        expect(toolbar).not_to have_css("a[title='#{label}']")
       end
     end
   end

@@ -8,10 +8,13 @@ describe 'YouTube support', type: :feature, js: true do
       'dITRRMHg" frameborder="0" allowfullscreen></iframe>'
     page.execute_script "Bootsy.areas.post_content.editor.setValue('#{embed}')"
 
-    expected_embed = '<iframe src="//www.youtube.com/embed/d2QdITRRMHg" allowf'\
-      'ullscreen="" frameborder="0" height="315" width="560"></iframe>'
     content = page.evaluate_script(
-      'Bootsy.areas.post_content.editor.getValue()')
-    expect(content).to include(expected_embed)
+      'Bootsy.areas.post_content.editor.getValue()'
+    )
+
+    expected_css = 'iframe[src="//www.youtube.com/embed/d2QdITRRMHg"]'\
+      '[allowfullscreen="1"][frameborder="0"][height="315"][width="560"]'
+
+    expect(Capybara.string(content)).to have_css(expected_css)
   end
 end

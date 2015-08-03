@@ -1,5 +1,15 @@
 # Bootsy Changelog
 
+## master
+
+* Move to [Bootstrap3-wysihtml5](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg).
+  **This is backwards incompatible** if you rely on previous events or functions.
+* New blockquote button - you can disable it in your initalizer.
+* **This version is backwards incompatible if you are using custom locales**:
+  New keys were added and the javascript locales structure was changed considerably.
+  Please use [this file](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/pt-BR.js)
+  as a reference and update your files accordingly.
+
 ## 2.1.0
 
 * Rescue failed gallery upload (#111 - thanks @rzane).

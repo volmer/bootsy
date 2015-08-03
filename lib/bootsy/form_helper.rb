@@ -28,23 +28,10 @@ module Bootsy
     def bootsy_area(object_name, method, options = {})
       container = options[:container] || options[:object]
 
-      output = text_area(object_name, method, text_area_options(options))
+      set_gallery_id(container, options)
 
-      if output.present? && enable_uploader?(options)
-        container.bootsy_image_gallery_id ||= Bootsy::ImageGallery.create!.id
-
-        output += render('bootsy/images/modal', container: container)
-
-        if container.new_record?
-          output += hidden_field(
-            object_name,
-            :bootsy_image_gallery_id,
-            class: 'bootsy_image_gallery_id'
-          )
-        end
-      end
-
-      output
+      text_area(object_name, method, text_area_options(options)) +
+        gallery_id_param(object_name, container, options)
     end
 
     private
@@ -75,7 +62,7 @@ module Bootsy
     end
 
     def data_options(options)
-      (options[:data] || {}).merge(
+      (options[:data] || {}).deep_merge(
         Hash[bootsy_options(options).map do |key, value|
           ["bootsy-#{key}", value]
         end]
@@ -96,6 +83,25 @@ module Bootsy
       ).merge(
         data: data_options(options),
         class: tag_class(options)
+      )
+    end
+
+    def set_gallery_id(container, options)
+      return unless enable_uploader?(options)
+
+      container.bootsy_image_gallery_id ||= Bootsy::ImageGallery.create!.id
+      options.deep_merge!(
+        data: { gallery_id: container.bootsy_image_gallery_id }
+      )
+    end
+
+    def gallery_id_param(object_name, container, options)
+      return unless enable_uploader?(options) && container.new_record?
+
+      hidden_field(
+        object_name,
+        :bootsy_image_gallery_id,
+        class: 'bootsy_image_gallery_id'
       )
     end
   end

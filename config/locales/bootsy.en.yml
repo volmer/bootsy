@@ -1,7 +1,6 @@
 en:
   bootsy:
     action:
-      refresh: Refresh
       destroy: Delete
       close: Close
       load: Load
@@ -25,6 +24,5 @@ en:
         left: Left
         right: Right
         inline: Inline
-    no_images_uploaded: There are currently no uploaded images.
     js:
       alert_unsaved: You have unsaved changes.

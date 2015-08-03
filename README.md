@@ -6,8 +6,8 @@
 [![Code Climate](https://codeclimate.com/github/volmer/bootsy.png)](https://codeclimate.com/github/volmer/bootsy)
 [![Coverage Status](https://coveralls.io/repos/volmer/bootsy/badge.png?branch=master)](https://coveralls.io/r/volmer/bootsy)
 
-*Bootsy* is a WYSIWYG editor for Rails based on 
-[Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) with image uploads using 
+*Bootsy* is a WYSIWYG editor for Rails based on
+[Bootstrap3-wysihtml5](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg) with image uploads using
 [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
 
 ### Live demo
@@ -41,9 +41,9 @@
   ```
   It will include the javascripts and stylesheets in the assets pipeline,
   create the `bootsy.rb` initializer and add a copy of the english translations.
-  
-  **Note:** If your project uses SASS or LESS and `application.css` does not exist, 
-  you will be required to require bootsy manually using `*= require bootsy` or if you prefer 
+
+  **Note:** If your project uses SASS or LESS and `application.css` does not exist,
+  you will be required to require bootsy manually using `*= require bootsy` or if you prefer
   to import assets yourself `@import "bootsy";`
 
 4. Add and run migrations:
@@ -120,7 +120,7 @@ Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, 
 
 ### Alert of unsaved changes
 
-By default Bootsy alerts the user about unsaved changes if the page is closed or reloaded. You can disable 
+By default Bootsy alerts the user about unsaved changes if the page is closed or reloaded. You can disable
 this feature with:
 ```erb
 <%= f.bootsy_area :my_attribute, editor_options: { alert_unsaved: false } %>
@@ -128,8 +128,8 @@ this feature with:
 
 ## Uploads
 
-If you don't want to have image uploads, just call `bootsy_area` in a form builder not 
-associated to a `Bootsy::Container` model. This way users will still be able to insert 
+If you don't want to have image uploads, just call `bootsy_area` in a form builder not
+associated to a `Bootsy::Container` model. This way users will still be able to insert
 images in the text area using an external image URL.
 
 
@@ -143,13 +143,13 @@ the options as you like.
 
 ## I18n
 
-Bootsy defines some i18n keys. English translations are added by default to your 
+Bootsy defines some i18n keys. English translations are added by default to your
 `config/locales` directory as `bootsy.en.yml`. You can use it as a template
-to translate Bootsy to your language. 
-[Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales). 
-You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions 
+to translate Bootsy to your language.
+[Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales).
+You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions
 [here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). You also need to translate
-Bootsy's javascript messages. Just follow 
+Bootsy's javascript messages. Just follow
 [this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/bootsy.pt-BR.js).
 
 
