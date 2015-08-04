@@ -115,7 +115,7 @@ You can enable and disable features as you like. For instance, if you don't want
 ```erb
 <%= f.bootsy_area :my_attribute, editor_options: { link: false, color: false } %>
 ```
-Available options are: `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, `:image` and `:color`.
+Available options are: `:blockquote`, `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, `:image` and `:color`.
 
 
 ### Alert of unsaved changes
@@ -147,10 +147,8 @@ Bootsy defines some i18n keys. English translations are added by default to your
 `config/locales` directory as `bootsy.en.yml`. You can use it as a template
 to translate Bootsy to your language.
 [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales).
-You also need to translate Bootstrap-wysihtml5, the underlying javascript editor. Instructions
-[here](https://github.com/jhollingworth/bootstrap-wysihtml5#i18n). You also need to translate
-Bootsy's javascript messages. Just follow
-[this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/bootsy.pt-BR.js).
+You also need to translate Bootsy's javascript messages. Just follow
+[this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/pt-BR.js).
 
 
 ## License

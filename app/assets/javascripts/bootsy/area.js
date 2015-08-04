@@ -8,9 +8,7 @@ Bootsy.Area = function($el) {
   this.$el = $el;
   this.unsavedChanges = false;
   this.locale = $el.data('bootsy-locale') || $('html').attr('lang');
-  if (!Bootsy.locales[this.locale]) {
-    this.locale = 'en';
-  }
+  if (!$.fn.wysihtml5.locale.hasOwnProperty(this.locale)) this.locale = 'en';
 
   this.options = {
     locale: this.locale,
@@ -40,7 +38,7 @@ Bootsy.Area = function($el) {
 // Alert for unsaved changes
 Bootsy.Area.prototype.unsavedChangesAlert = function () {
   if (this.unsavedChanges) {
-    return Bootsy.locales[this.locale].alertUnsaved;
+    return $.fn.wysihtml5.locale[this.locale].bootsy.alertUnsaved;
   }
 };
 

@@ -109,7 +109,7 @@ Bootsy.Modal.prototype.imageUploadFailed = function(_e, xhr, _status, error) {
     this.validation.text(invalidErrors.image_file[0]);
     this.$el.find('.bootsy-upload-form').append(this.validation);
   } else {
-    alert(Bootsy.locales[this.area.locale].error);
+    alert($.fn.wysihtml5.locale[this.area.locale].bootsy.error);
   }
 
   this.showRefreshButton();
