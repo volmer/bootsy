@@ -1,0 +1,45 @@
+window.Bootsy = window.Bootsy || {};
+
+window.Bootsy.imageTemplate = function(context) {
+  var locale = context.locale;
+  var size = (context.options.toolbar.size) ? ' btn-' + context.options.toolbar.size : '';
+  var icon = '<span class="glyphicon glyphicon-picture"></span>';
+
+  if (context.options.toolbar.fa) {
+    icon = '<span class="fa fa-file-image-o"></span>';
+  }
+
+  return  '<li>' +
+    '<div class="modal fade bootsy-modal" tabindex="-1" role="dialog" data-wysihtml5-dialog="insertImage" data-no-turbolink>'+
+      '<div class="modal-dialog" role="document">'+
+        '<div class="modal-content">'+
+          '<div class="modal-header">'+
+            '<button type="button" class="close" data-dismiss="modal" data-wysihtml5-dialog-action="cancel">' +
+              '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '<h4 class="modal-title">' + locale.image.insert + '</h4>' +
+          '</div>' +
+
+          '<div class="modal-body">' +
+            '<div class="alert alert-info bootsy-empty-alert">' +
+              locale.image.empty +
+            '</div>' +
+
+            '<div class="row bootsy-gallery"></div>' +
+
+            '<img src="<%= image_path "bootsy/gallery-loader.gif" %>" class="bootsy-gallery-loader" />' +
+
+            '<a href="#refresh-gallery" class="btn btn-default btn-sm refresh-btn">' + locale.image.refresh + '</a>' +
+          '</div>' +
+          '<input type="hidden" data-wysihtml5-dialog-field="src" value="" />' +
+          '<input type="hidden" data-wysihtml5-dialog-field="className" value="" />' +
+          '<div class="modal-footer"></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<a class="btn btn-default ' + size + '" data-wysihtml5-command="insertImage" title="' + locale.image.insert + '" tabindex="-1">' +
+      icon +
+    '</a>' +
+  '</li>';
+};

@@ -3,9 +3,11 @@
 window.Bootsy = window.Bootsy || {};
 
 Bootsy.Area = function($el) {
-  this.$el            = $el;
+  var self = this;
+
+  this.$el = $el;
   this.unsavedChanges = false;
-  this.locale         = $el.data('bootsy-locale') || $('html').attr('lang');
+  this.locale = $el.data('bootsy-locale') || $('html').attr('lang');
   if (!Bootsy.locales[this.locale]) {
     this.locale = 'en';
   }
@@ -22,6 +24,15 @@ Bootsy.Area = function($el) {
       'image': $el.data('bootsy-image'),
       'link': $el.data('bootsy-link'),
       'lists': $el.data('bootsy-lists')
+    },
+    events: {
+      load: function() {
+        self.editor = this;
+        self.onEditorLoad();
+      },
+      change: function() {
+        self.unsavedChanges = true;
+      }
     }
   };
 };
@@ -65,11 +76,8 @@ Bootsy.Area.prototype.hideRefreshButton = function() {
 // Set upload form
 Bootsy.Area.prototype.setUploadForm = function(html) {
   this.modal.find('.modal-footer').html(html);
-
   this.hideUploadLoadingAnimation();
-
   this.modal.find('.bootsy-upload-form input[type="file"]').bootstrapFileInput();
-
   this.uploadInput = this.modal.find('.bootsy-upload-form input[type="file"]');
 
   this.uploadInput.change(function() {
@@ -173,107 +181,57 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 
 Bootsy.Area.prototype.onEditorLoad = function() {};
 
-// Init components
-Bootsy.Area.prototype.init = function() {
+Bootsy.Area.prototype.setupModal = function() {
   var self = this;
 
+  this.modal = $(this.editor.toolbar.commandMapping['insertImage:null'].dialog.container);
+
+  // In order to avoid form nesting
+  this.modal.parents('form').after(this.modal);
+
+  this.modal.on('click', '.bootsy-image .insert', function() {
+    self.modal.find('[data-wysihtml5-dialog-field="src"]').val($(this).data('src'));
+    self.modal.find('[data-wysihtml5-dialog-field="className"]').val($(this).data('class-name'));
+  });
+
+  this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
+
+  this.modal.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
+
+  this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
+    this.deleteImage(data.id);
+  }.bind(this));
+
+  this.modal.on('ajax:error', '.bootsy-upload-form', this.imageUploadFailed.bind(this));
+
+  this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
+    this.setImageGalleryId(data.gallery_id);
+    this.addImage(data.image);
+    this.setUploadForm(data.form);
+  }.bind(this));
+
+  this.modal.modal({ show: false });
+
+  this.modal.on('shown.bs.modal', function() {
+    if (this.modal.data('gallery-loaded') !== true) {
+      this.setImageGallery();
+    }
+  }.bind(this));
+
+  this.hideRefreshButton();
+  this.hideEmptyAlert();
+};
+
+// Init components
+Bootsy.Area.prototype.init = function() {
   if (!this.$el.data('bootsy-initialized')) {
     if ((this.options.toolbar.image === true) && (this.options.uploader === true)) {
       this.options.customTemplates = {
-        image: function(context) {
-          var locale = context.locale;
-          var size = (context.options.toolbar.size) ? ' btn-' + context.options.toolbar.size : '';
-          var icon = '<span class="glyphicon glyphicon-picture"></span>';
-
-          if (context.options.toolbar.fa) {
-            icon = '<span class="fa fa-file-image-o"></span>';
-          }
-
-          return  '<li>' +
-            '<div class="modal fade bootsy-modal" tabindex="-1" role="dialog" data-wysihtml5-dialog="insertImage" data-no-turbolink>'+
-              '<div class="modal-dialog" role="document">'+
-                '<div class="modal-content">'+
-                  '<div class="modal-header">'+
-                    '<button type="button" class="close" data-dismiss="modal" data-wysihtml5-dialog-action="cancel">' +
-                      '<span aria-hidden="true">&times;</span>' +
-                    '</button>' +
-                    '<h4 class="modal-title">' + locale.image.insert + '</h4>' +
-                  '</div>' +
-
-                  '<div class="modal-body">' +
-                    '<div class="alert alert-info bootsy-empty-alert">' +
-                      locale.image.empty +
-                    '</div>' +
-
-                    '<div class="row bootsy-gallery"></div>' +
-
-                    '<img src="<%= image_path "bootsy/gallery-loader.gif" %>" class="bootsy-gallery-loader" />' +
-
-                    '<a href="#refresh-gallery" class="btn btn-default btn-sm refresh-btn">' + locale.image.refresh + '</a>' +
-                  '</div>' +
-                  '<input type="hidden" data-wysihtml5-dialog-field="src" value="" />' +
-                  '<input type="hidden" data-wysihtml5-dialog-field="className" value="" />' +
-                  '<div class="modal-footer"></div>' +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-
-            '<a class="btn btn-default ' + size + '" data-wysihtml5-command="insertImage" title="' + locale.image.insert + '" tabindex="-1">' +
-              icon +
-            '</a>' +
-          '</li>';
-        }
+        image: Bootsy.imageTemplate
       };
 
-      this.onEditorLoad = function(editor) {
-        this.modal = $(editor.toolbar.commandMapping['insertImage:null'].dialog.container);
-
-        this.modal.on('click', '.bootsy-image .insert', function(e) {
-          self.modal.find('[data-wysihtml5-dialog-field="src"]').val($(this).data('src'));
-          self.modal.find('[data-wysihtml5-dialog-field="className"]').val($(this).data('class-name'));
-        });
-
-        // In order to avoid form nesting
-        this.modal.parents('form').after(this.modal);
-
-        this.modal.on('click', 'a[href="#refresh-gallery"]', this.setImageGallery.bind(this));
-
-        this.modal.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
-
-        this.modal.on('ajax:success', '.destroy-btn', function(evt, data) {
-          this.deleteImage(data.id);
-        }.bind(this));
-
-        this.modal.on('ajax:error', '.bootsy-upload-form', this.imageUploadFailed.bind(this));
-
-        this.modal.on('ajax:success', '.bootsy-upload-form', function(evt, data) {
-          this.setImageGalleryId(data.gallery_id);
-          this.addImage(data.image);
-          this.setUploadForm(data.form);
-        }.bind(this));
-
-        this.modal.modal({ show: false });
-
-        this.modal.on('shown.bs.modal', function() {
-          if (this.modal.data('gallery-loaded') !== true) {
-            this.setImageGallery();
-          }
-        }.bind(this));
-
-        this.hideRefreshButton();
-        this.hideEmptyAlert();
-      };
+      this.onEditorLoad = this.setupModal;
     }
-
-    this.options.events = {
-      load: function() {
-        self.editor = this;
-        self.onEditorLoad(this);
-      },
-      change: function() {
-        self.unsavedChanges = true;
-      }
-    };
 
     this.$el.wysihtml5($.extend(true, Bootsy.options, this.options));
 
