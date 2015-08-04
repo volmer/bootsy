@@ -7,7 +7,7 @@ window.Bootsy.locales = {
       refresh: 'Refresh'
     },
     alertUnsaved: 'You have unsaved changes.',
-    error: 'Something went very wrong. Please try again later.'
+    error: 'Something went wrong. Please try again later.'
   }
 };
 

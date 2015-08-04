@@ -2,8 +2,9 @@
 //= require bootsy/vendor/polyfill
 //= require bootsy/vendor/bootstrap3-wysihtml5.all
 //= require bootsy/vendor/bootstrap.file-input
-//= require bootsy/bootsy
+//= require bootsy/area
 //= require bootsy/editor_options
 //= require bootsy/image_template
 //= require bootsy/init
 //= require bootsy/locales
+//= require bootsy/modal
