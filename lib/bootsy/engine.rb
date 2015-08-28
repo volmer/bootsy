@@ -16,19 +16,19 @@ module Bootsy
     end
 
     config.after_initialize do
-      if defined?(BOOTSY_ORM)
-        orm = BOOTSY_ORM
-      else
-        orm = :activerecord
-      end
 
-      # Require Active Record models. Other ORMs must
-      # include their own Bootsy models.
-      if orm == :activerecord
+      if Object.const_defined?("ActiveRecord")
         Dir[File.expand_path('../activerecord/*.rb', __FILE__)].each do |f|
           require f
         end
       end
+
+      if Object.const_defined?("Mongoid")
+        Dir[File.expand_path('../mongoid/*.rb', __FILE__)].each do |f|
+          require f
+        end
+      end
+
     end
   end
 end
