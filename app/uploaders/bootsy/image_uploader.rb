@@ -4,8 +4,17 @@ module Bootsy
 
     storage Bootsy.storage
 
+    def filename
+      "#{secure_token}.#{file.extension}" if original_filename.present?
+    end
+
+    def secure_token
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    end
+
     def store_dir
-      "#{Bootsy.store_dir}/#{model.class.to_s.underscore}/#{model.id}"
+      "/SHRINK/bootsy/#{model.id}"
     end
 
     process resize_to_limit: [1160, 2000]
