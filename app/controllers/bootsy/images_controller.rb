@@ -41,13 +41,14 @@ module Bootsy
 
     def send_image
       @image = Image.find(params[:id])
-      path = @image.image_file.thumb.url
-      send_file path, :disposition => 'inline'
-    end
-
-    def send_sized_image
-      @image = Image.find(params[:id])
-      path = @image.image_file.url
+      if params[:size]
+        size = params[:size].to_sym
+        file = @image.image_file
+        file = @image.image_file.versions[size] if size != :original
+        path = file.url
+      else
+        path = @image.image_file.thumb.url
+      end
       send_file path, :disposition => 'inline'
     end
 
