@@ -39,6 +39,11 @@ module Bootsy
       end
     end
 
+    def send_image
+      @image = Image.find(params[:id])
+      send_file :path => @image.image_file.thumb.url
+    end
+
     private
 
     def set_gallery

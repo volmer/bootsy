@@ -2,7 +2,7 @@ module Bootsy
   class ImageUploader < CarrierWave::Uploader::Base
     include CarrierWave::MiniMagick
 
-    storage Bootsy.storage
+    storage :file
 
     def filename
       "#{secure_token}.#{file.extension}" if original_filename.present?
