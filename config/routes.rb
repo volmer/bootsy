@@ -12,6 +12,7 @@ Bootsy::Engine.routes.draw do
   resources :images do
   	member do
   		get 'send_image'
+      get 'send_sized_image'
   	end
   end
 end

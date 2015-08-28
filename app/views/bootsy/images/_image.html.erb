@@ -16,10 +16,10 @@
         <ul class="dropdown-menu" role="menu">
           <% [:left, :right, :inline].each do |position| %>
             <li role="presentation">
-              <% file = image.image_file %>
-              <% file = image.image_file.versions[size] if size != :original %>
+              <% file = send_sized_image_image_path(image) %>
+              <% file = send_sized_image_image_path(image)[size] if size != :original %>
               <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
-                data: { src: send_file file.url, :disposition => 'inline', class_name: "wysiwyg-float-#{position}", wysihtml5_dialog_action: 'save' } do %>
+                data: { src: file, class_name: "wysiwyg-float-#{position}", wysihtml5_dialog_action: 'save' } do %>
                 <%= t position, scope: 'bootsy.image.position' %>
               <% end %>
             </li>

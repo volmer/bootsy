@@ -45,6 +45,12 @@ module Bootsy
       send_file path, :disposition => 'inline'
     end
 
+    def send_sized_image
+      @image = Image.find(params[:id])
+      path = @image.image_file.url
+      send_file path, :disposition => 'inline'
+    end
+
     private
 
     def set_gallery
