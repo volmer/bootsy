@@ -42,7 +42,7 @@ module Bootsy
     def send_image
       @image = Image.find(params[:id])
       path = @image.image_file.thumb.url
-      send_file path
+      send_file path, :disposition => 'inline'
     end
 
     private
