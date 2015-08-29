@@ -6,5 +6,5 @@
 //= require bootsy/editor_options
 //= require bootsy/image_template
 //= require bootsy/init
-//= require bootsy/locales
+//= require bootsy/locales/en
 //= require bootsy/modal

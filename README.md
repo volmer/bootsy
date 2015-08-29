@@ -143,12 +143,15 @@ the options as you like.
 
 ## I18n
 
-Bootsy defines some i18n keys. English translations are added by default to your
+Bootsy defines some I18n keys. English translations are added by default to your
 `config/locales` directory as `bootsy.en.yml`. You can use it as a template
 to translate Bootsy to your language.
 [Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales).
-You also need to translate Bootsy's javascript messages. Just follow
-[this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/pt-BR.js).
+
+You also need to translate Bootsy on the JavaScript side. Just follow
+[this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/en.js).
+Bootsy will try to guess the locale based on the `lang` attribute of the page's `<html>` tag.
+You can set the locale directly by setting a `data-bootsy-locale` attribute on your `<textarea>`.
 
 
 ## License

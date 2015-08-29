@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Gems used by the dummy application
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'bootstrap-sass'
