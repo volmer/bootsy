@@ -1,0 +1,30 @@
+zh-CN:
+  bootsy:
+    action:
+      refresh: 刷新
+      destroy: 删除
+      close: 关闭
+      load: 载入中...
+      or: 或者
+      upload: 上传新图片
+      submit_upload: 提交
+      enter_image_url: 在这里输入图片的地址
+    image_gallery: 图片库
+    image:
+      s: Image
+      p: Images
+      size: 图片大小
+      large: 大
+      medium: 中
+      small: 小
+      original: 原大小
+      new: 新的图片
+      confirm:
+        destroy: 你确认要删除图片吗？
+      position:
+        left: 左边
+        right: 右边
+        inline: 内联
+    no_images_uploaded: 当前没有图片。
+    js:
+      alert_unsaved: 您有未保存的更改。
