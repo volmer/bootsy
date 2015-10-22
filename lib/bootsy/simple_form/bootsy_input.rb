@@ -19,6 +19,6 @@ class BootsyInput < SimpleForm::Inputs::Base
         input_html_options
       end
 
-    @builder.bootsy_area(attribute_name, merged_input_options)
+    @builder.bootsy_editor(attribute_name, merged_input_options)
   end
 end

@@ -1,11 +1,30 @@
 body {
-  padding-bottom: 40px;
+  font-family: Helvetica, sans-serif;
+  color: #333;
 }
 
-#main-container {
-  margin-top: 20px;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.sidebar-nav {
-  padding: 9px 0;
+header {
+  border-bottom: 1px solid #eee;
+  padding: 20px 0 10px;
+  margin: 0 0 20px;
+
+  a {
+    font-size: 20px;
+  }
+}
+
+footer {
+  border-top: 1px solid #eee;
+  padding: 20px 0 40px;
+  margin: 40px 0 0;
+}
+
+a, a:hover, a:visited {
+  color: #2f75c4;
+  text-decoration: none;
 }

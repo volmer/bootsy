@@ -11,8 +11,8 @@ module Bootsy
     # options - The Hash of options used to enable/disable features of
     #           the editor (default: {}).
     #           Available options are:
-    def bootsy_area(method, options = {})
-      @template.bootsy_area(@object_name, method, objectify_options(options))
+    def bootsy_editor(method, options = {})
+      @template.bootsy_editor(@object_name, method, objectify_options(options))
     end
   end
 end

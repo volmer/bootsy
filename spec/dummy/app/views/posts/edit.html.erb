@@ -1,8 +1,6 @@
-<div class="page-header">
-  <h1>Editing post</h1>
-</div>
+<h1>Editing post</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Cancel', @post, class: 'btn btn-default' %>
-<%= link_to 'Destroy', @post, method: :delete, class: 'btn btn-default', data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Cancel', @post %>
+<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
