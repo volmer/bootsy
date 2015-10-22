@@ -22,9 +22,6 @@ ActiveRecord::Migrator.migrations_paths = ['spec/dummy/db/migrate']
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
@@ -54,12 +51,4 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
-
-  config.include(FactoryGirl::Syntax::Methods)
-
-  # Manually config FactoryGirl
-  FactoryGirl.definition_file_paths = [
-    Rails.root.join('../factories')
-  ]
-  FactoryGirl.find_definitions
 end
