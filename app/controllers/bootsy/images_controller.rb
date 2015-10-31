@@ -39,6 +39,19 @@ module Bootsy
       end
     end
 
+    def send_image
+      @image = Image.find(params[:id])
+      if params[:size]
+        size = params[:size].to_sym
+        file = @image.image_file
+        file = @image.image_file.versions[size] if size != :original
+        path = file.url
+      else
+        path = @image.image_file.thumb.url
+      end
+      send_file path, :disposition => 'inline'
+    end
+
     private
 
     def set_gallery

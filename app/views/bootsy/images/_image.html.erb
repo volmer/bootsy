@@ -1,5 +1,5 @@
 <div class="bootsy-image dropdown col-sm-2" data-id="<%= image.id %>">
-  <%= link_to image_tag(image.image_file.thumb.url), '#', class: 'thumbnail',
+  <%= link_to image_tag(send_image_image_path(image)), '#', class: 'thumbnail',
     data: { toggle: 'dropdown' } %>
 
   <ul class="dropdown-menu" role="menu">
@@ -16,10 +16,8 @@
         <ul class="dropdown-menu" role="menu">
           <% [:left, :right, :inline].each do |position| %>
             <li role="presentation">
-              <% file = image.image_file %>
-              <% file = image.image_file.versions[size] if size != :original %>
               <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
-                data: { src: file.url, class_name: "wysiwyg-float-#{position}", wysihtml5_dialog_action: 'save' } do %>
+                data: { src: send_image_image_path(image, :size => size), class_name: "wysiwyg-float-#{position}", wysihtml5_dialog_action: 'save' } do %>
                 <%= t position, scope: 'bootsy.image.position' %>
               <% end %>
             </li>

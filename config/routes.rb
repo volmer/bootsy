@@ -8,4 +8,10 @@ Bootsy::Engine.routes.draw do
   file_routes << :destroy if Bootsy.allow_destroy
 
   resources :images, only: file_routes
+
+  resources :images do
+  	member do
+  		get 'send_image'
+  	end
+  end
 end
