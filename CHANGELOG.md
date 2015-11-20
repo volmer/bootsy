@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.2.0
 
 * Move to [Bootstrap3-wysihtml5](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg).
   **This is backwards incompatible** if you rely on previous events or functions.
