@@ -37,7 +37,7 @@
 
 3. Run the install generator:
   ```console
-  rails generate bootsy:install
+  bundle exec rails generate bootsy:install
   ```
   It will include the javascripts and stylesheets in the assets pipeline,
   create the `bootsy.rb` initializer and add a copy of the english translations.
@@ -48,8 +48,8 @@
 
 4. Add and run migrations:
   ```console
-  rake bootsy:install:migrations
-  rake db:migrate
+  bundle exec rake bootsy:install:migrations
+  bundle exec rake db:migrate
   ```
 
 
