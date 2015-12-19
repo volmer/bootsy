@@ -1,4 +1,4 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
-@import 'main';
-@import 'bootsy';
+/*
+ *= require bootsy
+ */
+ @import 'main';

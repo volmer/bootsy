@@ -1,5 +1,7 @@
 en:
   bootsy:
+    errors:
+      file_too_large: 'You cannot upload a file greater than %{limit} MB'
     action:
       destroy: Delete
       close: Close

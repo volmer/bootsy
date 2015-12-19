@@ -13,16 +13,17 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div>
     <%= f.label :author %>
-    <%= f.text_field :author, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.bootsy_area :content, rows: 8, class: 'form-control', container: comment.post %>
+    <%= f.text_field :author %>
   </div>
 
-  <div class="actions">
-    <%= f.submit class: 'btn btn-default' %>
+  <div>
+    <%= f.label :content %>
+    <div>
+      <%= f.bootsy_editor :content, container: comment.post %>
+    </div>
   </div>
+
+  <%= f.submit %>
 <% end %>
