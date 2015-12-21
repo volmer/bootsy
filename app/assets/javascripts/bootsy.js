@@ -1,11 +1,7 @@
 //= require jquery.remotipart
-//= require bootsy/vendor/polyfill
-//= require bootsy/vendor/wysihtml5
-//= require bootsy/vendor/bootstrap-wysihtml5
+//= require bootsy/vendor/trix
 //= require bootsy/vendor/bootstrap.file-input
 //= require bootsy/area
-//= require bootsy/editor_options
-//= require bootsy/image_template
 //= require bootsy/init
 //= require bootsy/locales/en
 //= require bootsy/modal

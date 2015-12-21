@@ -1,8 +1,11 @@
 /**
- * Brazilian portuguese translation for bootstrap-wysihtml5 and Bootsy
+ * Brazilian portuguese translation for Bootsy
  */
-(function($){
-  $.fn.wysihtml5.locale['pt-BR'] = {
+
+window.Bootsy = window.Bootsy || {};
+
+Bootsy.locale = {
+  'pt-BR': {
     font_styles: {
       normal: 'Texto normal',
       h1: 'Título 1',
@@ -50,5 +53,5 @@
       alertUnsaved: 'As suas modificações ainda não foram gravadas.',
       error: 'Algo deu errado. Por favor, tente novamente.'
     }
-  };
-}(jQuery));
+  }
+};

@@ -21,19 +21,15 @@ Bootsy.Modal = function(area) {
       imagePrefix = '/';
     }
 
-    img = $(this).parents('.bootsy-image').find('img');
-
-    imageObject = {
-      src: img.attr('src').replace('/thumb_', imagePrefix),
-      alt: img.attr('alt').replace('Thumb_', '')
-    };
-
-    imageObject.align = $(this).data('position');
+    img = $(this).parents('.bootsy-image').find('img').clone();
+    img.attr('src', img.attr('src').replace('/thumb_', imagePrefix));
+    img.attr('alt', img.attr('alt').replace('Thumb_', ''));
+    img.attr('data-align', $(this).data('position'));
 
     self.$el.modal('hide');
 
     insert = self.area.insertImage.bind(self.area);
-    insert(imageObject);
+    insert($('<div>').append(img).html());
   });
 
   this.$el.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
@@ -134,7 +130,7 @@ Bootsy.Modal.prototype.imageUploadFailed = function(_e, xhr, _status, error) {
     this.validation.text(invalidErrors.image_file[0]);
     this.$el.find('.bootsy-upload-form').append(this.validation);
   } else {
-    alert($.fn.wysihtml5.locale[this.area.locale].bootsy.error);
+    alert(Bootsy.locale[this.area.locale].bootsy.error);
   }
 
   this.showRefreshButton();

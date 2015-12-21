@@ -63,6 +63,7 @@ describe 'image upload', type: :feature, js: true do
       text: /Left/
     ).click
     fill_in 'Title', with: 'Awesome post'
+    sleep 1
     click_on 'Create Post'
     click_on 'Edit'
     click_on 'Insert image'

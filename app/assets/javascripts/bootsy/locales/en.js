@@ -1,8 +1,11 @@
 /**
- * English translations for bootstrap-wysihtml5 and Bootsy
+ * English translations for Bootsy
  */
-(function($){
-  $.fn.wysihtml5.locale['en'] = {
+
+window.Bootsy = window.Bootsy || {};
+
+Bootsy.locale = {
+  en: {
     font_styles: {
       normal: 'Normal text',
       h1: 'Heading 1',
@@ -50,5 +53,5 @@
       alertUnsaved: 'You have unsaved changes.',
       error: 'Something went wrong. Please try again later.'
     }
-  };
-}(jQuery));
+  }
+};

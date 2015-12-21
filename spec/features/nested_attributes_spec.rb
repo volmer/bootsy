@@ -5,10 +5,11 @@ describe 'nested attributes', type: :feature, js: true do
     visit root_path
     click_on 'New post with comment'
     fill_in 'Title', with: 'My post'
-    page.execute_script "Bootsy.areas.post_content.editor.setValue('Content')"
+    page.execute_script 'document.querySelector("trix-editor.post-content")'\
+      '.editor.insertString("Content")'
     fill_in 'Author', with: 'Comment author'
-    page.execute_script 'Bootsy.areas.post_comments_attributes_0_content.'\
-      "editor.setValue('My comment')"
+    page.execute_script 'document.querySelector("trix-editor.comment-content")'\
+      '.editor.insertString("My comment")'
     click_on 'Create Post'
 
     expect(page).to have_content('My post')

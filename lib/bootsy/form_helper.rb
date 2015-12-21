@@ -1,6 +1,8 @@
 module Bootsy
   # Public: Module to include Bootsy in `ActionView::Base`.
   module FormHelper
+    mattr_accessor(:id_count, instance_accessor: false) { 0 }
+
     # Public: Return a textarea element with proper attributes to
     # be loaded as a WYSIWYG editor.
     #
@@ -30,8 +32,11 @@ module Bootsy
 
       set_gallery_id(container, options)
 
-      text_area(object_name, method, text_area_options(options)) +
-        modal(options, container) +
+      trix_options = trix_options(options)
+
+      content_tag('trix-editor', '', trix_options) +
+        form_input(object_name, method, options, trix_options) +
+        modal(container, options) +
         gallery_id_param(object_name, container, options)
     end
 
@@ -60,6 +65,7 @@ module Bootsy
         end
 
       classes << 'bootsy_text_area'
+      classes << 'trix-content'
     end
 
     def data_options(options)
@@ -76,13 +82,15 @@ module Bootsy
         .merge(uploader: enable_uploader?(options))
     end
 
-    def text_area_options(options)
+    def trix_options(options)
       options.except(
+        :object,
         :container,
         :uploader,
         :editor_options
       ).merge(
         data: data_options(options),
+        input: input_id,
         class: tag_class(options)
       )
     end
@@ -106,9 +114,19 @@ module Bootsy
       )
     end
 
-    def modal(options, container)
+    def input_id
+      "trix-editor-#{Bootsy::FormHelper.id_count += 1}"
+    end
+
+    def modal(container, options)
       return unless enable_uploader?(options)
       render('bootsy/images/modal', container: container)
+    end
+
+    def form_input(object_name, method, options, trix_options)
+      hidden_options = { id: trix_options[:input] }
+      hidden_options[:object] = options[:object] if options[:object]
+      hidden_field(object_name, method, hidden_options)
     end
   end
 end

@@ -8,15 +8,13 @@ Bootsy.init = function() {
     Bootsy.areas = {};
   }
 
-  $('textarea.bootsy_text_area').each(function(index) {
+  $('trix-editor').each(function(index) {
     if (!$(this).data('bootsy-initialized')) {
       var area = new Bootsy.Area($(this));
-      var areaIdx = $(this).attr('id') || index;
+      var areaIdx = $(this).attr('input') || index;
 
       /* There's always people who let elements share ids */
-      if(Bootsy.areas[areaIdx] !== undefined) {
-        areaIdx = $(this).attr('id') + index;
-      }
+      if(Bootsy.areas[areaIdx] !== undefined) { areaIdx = areaIdx + index; }
 
       area.init();
 

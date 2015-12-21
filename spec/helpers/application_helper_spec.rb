@@ -14,6 +14,14 @@ describe Bootsy::ApplicationHelper do
     it { is_expected.to include('href="#refresh-gallery"') }
   end
 
+  describe '#refresh_btn' do
+    subject { helper.refresh_btn }
+
+    it { is_expected.to include('class="btn btn-default btn-sm refresh-btn"') }
+    it { is_expected.to include('Refresh') }
+    it { is_expected.to include('href="#refresh-gallery"') }
+  end
+
   describe '#resource_or_nil' do
     context 'argument is nil' do
       subject { helper.resource_or_nil nil }

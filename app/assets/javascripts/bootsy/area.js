@@ -3,12 +3,11 @@
 window.Bootsy = window.Bootsy || {};
 
 Bootsy.Area = function($el) {
-  var self = this;
-
   this.$el = $el;
+  this.editor = $el[0].editor;
   this.unsavedChanges = false;
   this.locale = $el.data('bootsy-locale') || $('html').attr('lang');
-  if (!$.fn.wysihtml5.locale.hasOwnProperty(this.locale)) this.locale = 'en';
+  if (!Bootsy.locale.hasOwnProperty(this.locale)) this.locale = 'en';
 
   this.options = {
     locale: this.locale,
@@ -20,25 +19,20 @@ Bootsy.Area = function($el) {
     html: $el.data('bootsy-html'),
     image: $el.data('bootsy-image'),
     link: $el.data('bootsy-link'),
-    lists: $el.data('bootsy-lists'),
-    events: {
-      change: function() {
-        self.unsavedChanges = true;
-      }
-    }
+    lists: $el.data('bootsy-lists')
   };
 };
 
 // Alert for unsaved changes
 Bootsy.Area.prototype.unsavedChangesAlert = function () {
   if (this.unsavedChanges) {
-    return $.fn.wysihtml5.locale[this.locale].bootsy.alertUnsaved;
+    return Bootsy.locale[this.locale].bootsy.alertUnsaved;
   }
 };
 
 // Clear everything
 Bootsy.Area.prototype.clear = function () {
-  this.editor.clear();
+  this.$el.editor.loadHTML();
   this.setImageGalleryId('');
   this.modal.$el.data('gallery-loaded', false);
 };
@@ -52,14 +46,26 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 Bootsy.Area.prototype.init = function() {
   if (!this.$el.data('bootsy-initialized')) {
     if ((this.options.image === true) && (this.options.uploader === true)) {
+      var buttonHTML = '<button type="button" class="insert-image" title="Insert image" data-action="x-insert-image">Insert image</button>';
+      var toolbar = $('#' + this.$el.attr('toolbar'));
+      toolbar.find(".button_group.block_tools").append(buttonHTML);
+
       this.modal = new Bootsy.Modal(this);
-      this.options.image = false;
-      this.options.customCommand = true;
-      this.options.customCommandCallback = this.modal.show.bind(this.modal);
-      this.options.customTemplates = { customCommand: Bootsy.imageTemplate };
     }
 
-    this.editor = this.$el.wysihtml5($.extend(true, {}, Bootsy.options, this.options)).data('wysihtml5').editor;
+    this.$el.on('trix-change', function(event) {
+      self.unsavedChanges = true;
+    }.bind(this));
+
+    this.$el.on('trix-file-accept', function(event) {
+      event.preventDefault();
+    });
+
+    this.$el.on('trix-action-invoke', function($event) {
+      if ($event.originalEvent.actionName === "x-insert-image") {
+        this.modal.show();
+      }
+    }.bind(this));
 
     // Mechanism for unsaved changes alert
     if (this.options.alertUnsavedChanges !== false) {
@@ -78,12 +84,5 @@ Bootsy.Area.prototype.init = function() {
 
 // Insert image in the text
 Bootsy.Area.prototype.insertImage = function(image) {
-  this.editor.currentView.element.focus();
-
-  if (this.caretBookmark) {
-    this.editor.composer.selection.setBookmark(this.caretBookmark);
-    this.caretBookmark = null;
-  }
-
-  this.editor.composer.commands.exec('insertImage', image);
+  this.editor.insertHTML(image);
 };

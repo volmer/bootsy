@@ -15,8 +15,8 @@ describe 'hidden editor', type: :feature, js: true do
     visit post_path(post)
 
     click_on 'Edit comment'
-    page.execute_script "Bootsy.areas['comment_content'].editor."\
-      "setValue('Edited content')"
+    page.execute_script 'document.querySelector("trix-editor").editor'\
+      '.insertString("Edited content")'
     click_on 'Update Comment'
 
     expect(page).to have_content('Comment was successfully updated')

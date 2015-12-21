@@ -33,12 +33,13 @@ describe 'image insertion', type: :feature, js: true do
       page.execute_script(script)
       find('li.dropdown-submenu ul.dropdown-menu li a', text: position).click
 
-      content = page.evaluate_script(
-        'Bootsy.areas.post_content.editor.getValue()')
+      content = page.find('trix-editor').value
+
       img_src = "/#{size.downcase}_test.jpg"
       img_src = 'test.jpg' if size == 'Original'
+
       expect(content).to include(img_src)
-      expect(content).to include("align=\"#{position.downcase}\"")
+      expect(content).to include("data-align=\"#{position.downcase}\"")
     end
   end
 end
