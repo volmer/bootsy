@@ -1,5 +1,13 @@
 # Bootsy Changelog
 
+## 2.2.1
+
+* Rollback to [jhollingworth/bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5).
+
+  Sadly, Bootsrap3-wysihtml5 has proven to be just another unreliable fork that,
+  apart from an initial enthusiasm, ended up as any other fork of the original
+  library: abandoned and unresponsive.
+
 ## 2.2.0
 
 * Move to [Bootstrap3-wysihtml5](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg).
