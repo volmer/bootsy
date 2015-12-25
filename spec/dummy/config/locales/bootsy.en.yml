@@ -5,7 +5,10 @@ en:
       destroy: Delete
       close: Close
       load: Load
+      or: or
       upload: Upload New Image
+      submit_upload: Go
+      enter_image_url: Enter a URL from the web...
     image_gallery: Image Gallery
     image:
       s: Image

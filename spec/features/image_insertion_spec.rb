@@ -24,7 +24,7 @@ describe 'image insertion', type: :feature, js: true do
       click_on 'Insert image'
       attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
 
-      find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img").click
+      find('.bootsy-gallery img').click
       size = size_position.first
       position = size_position.last
       script = "$('.dropdown-submenu .dropdown-menu').hide(); "\
@@ -34,14 +34,11 @@ describe 'image insertion', type: :feature, js: true do
       find('li.dropdown-submenu ul.dropdown-menu li a', text: position).click
 
       content = page.evaluate_script(
-        'Bootsy.areas.post_content.editor.getValue()'
-      )
-
+        'Bootsy.areas.post_content.editor.getValue()')
       img_src = "/#{size.downcase}_test.jpg"
-      img_src = '/test.jpg' if size == 'Original'
-      image_css = "img.wysiwyg-float-#{position.downcase}[src$='#{img_src}']"
-
-      expect(Capybara.string(content)).to have_css(image_css)
+      img_src = 'test.jpg' if size == 'Original'
+      expect(content).to include(img_src)
+      expect(content).to include("align=\"#{position.downcase}\"")
     end
   end
 end

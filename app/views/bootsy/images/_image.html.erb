@@ -16,10 +16,8 @@
         <ul class="dropdown-menu" role="menu">
           <% [:left, :right, :inline].each do |position| %>
             <li role="presentation">
-              <% file = image.image_file %>
-              <% file = image.image_file.versions[size] if size != :original %>
               <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
-                data: { src: file.url, class_name: "wysiwyg-float-#{position}", wysihtml5_dialog_action: 'save' } do %>
+                data: { image_size: size.to_s, position: position.to_s} do %>
                 <%= t position, scope: 'bootsy.image.position' %>
               <% end %>
             </li>

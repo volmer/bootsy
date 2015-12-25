@@ -2,18 +2,38 @@
 
 window.Bootsy = window.Bootsy || {};
 
-Bootsy.Modal = function(el, area) {
+Bootsy.Modal = function(area) {
   var self = this;
 
-  this.$el = $(el);
+  this.$el = area.$el.siblings('.bootsy-modal');
   this.area = area;
 
   // In order to avoid form nesting
   this.$el.parents('form').after(this.$el);
 
-  this.$el.on('click', '.bootsy-image .insert', function() {
-    self.$el.find('[data-wysihtml5-dialog-field="src"]').val($(this).data('src'));
-    self.$el.find('[data-wysihtml5-dialog-field="className"]').val($(this).data('class-name'));
+  this.$el.on('click', '.bootsy-image .insert', function(event) {
+    var img, imageObject;
+    var imagePrefix = '/' + $(this).attr('data-image-size') + '_';
+
+    event.preventDefault();
+
+    if ($(this).data('image-size') === 'original') {
+      imagePrefix = '/';
+    }
+
+    img = $(this).parents('.bootsy-image').find('img');
+
+    imageObject = {
+      src: img.attr('src').replace('/thumb_', imagePrefix),
+      alt: img.attr('alt').replace('Thumb_', '')
+    };
+
+    imageObject.align = $(this).data('position');
+
+    self.$el.modal('hide');
+
+    insert = self.area.insertImage.bind(self.area);
+    insert(imageObject);
   });
 
   this.$el.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));
@@ -42,6 +62,11 @@ Bootsy.Modal = function(el, area) {
 
   this.hideRefreshButton();
   this.hideEmptyAlert();
+};
+
+// Show modal
+Bootsy.Modal.prototype.show = function() {
+  this.$el.modal('show');
 };
 
 // Gallery loading

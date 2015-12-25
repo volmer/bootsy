@@ -1,8 +1,18 @@
 require 'rails_helper'
 
 describe Bootsy::ApplicationHelper do
-  let(:unsaved_gallery){ FactoryGirl.build(:image_gallery) }
-  let(:saved_gallery){ FactoryGirl.create(:image_gallery) }
+  let(:unsaved_gallery) { FactoryGirl.build(:image_gallery) }
+  let(:saved_gallery) { FactoryGirl.create(:image_gallery) }
+
+  describe '#refresh_btn' do
+    subject { helper.refresh_btn }
+
+    it { is_expected.to include('class="btn btn-default btn-sm refresh-btn"') }
+
+    it { is_expected.to include('Refresh') }
+
+    it { is_expected.to include('href="#refresh-gallery"') }
+  end
 
   describe '#resource_or_nil' do
     context 'argument is nil' do

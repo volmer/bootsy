@@ -7,8 +7,7 @@ describe 'remote form', type: :feature, js: true do
     fill_in 'Title', with: 'Awesome post'
     click_on 'Insert image'
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
-    find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src"\
-      ", '/thumb_test.jpg')]").click
+    find('.bootsy-gallery img[src$="/thumb_test.jpg"]').click
     script = "$('.dropdown-submenu .dropdown-menu').hide(); "\
       "$('a:contains(Small):visible').parent()."\
       "find('.dropdown-menu').show()"
@@ -20,8 +19,10 @@ describe 'remote form', type: :feature, js: true do
       visible: true,
       text: /Left/
     ).click
-    click_on 'Create Post'
-    expect(page).to have_selector(
-      :xpath, "//div[@id='posts']//img[contains(@src,'/small_test.jpg')]")
+
+    sleep 1
+    click_button 'Create Post'
+
+    expect(page).to have_css('#posts img[src$="/small_test.jpg"]')
   end
 end

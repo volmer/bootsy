@@ -5,7 +5,9 @@ $('link[rel="stylesheet"]').each(function () {
   pageStylesheets.push($(this).attr('href'));
 });
 
-window.Bootsy.options = $.extend(true, $.fn.wysihtml5.defaultOptions, {
+window.Bootsy.options = {};
+
+$.extend(true, window.Bootsy.options, $.fn.wysihtml5.defaultOptions, {
   parserRules: {
     classes: {
       "wysiwyg-float-left": 1,
@@ -40,8 +42,6 @@ window.Bootsy.options = $.extend(true, $.fn.wysihtml5.defaultOptions, {
       }
     }
   },
-  toolbar: {
-    color: true
-  },
+  color: true,
   stylesheets: pageStylesheets
 });

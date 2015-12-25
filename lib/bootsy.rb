@@ -15,14 +15,13 @@ module Bootsy
   # Default editor options
   mattr_accessor :editor_options
   @@editor_options = {
-    blockquote: true,
-    color: true,
-    emphasis: true,
     font_styles: true,
+    emphasis: true,
+    lists: true,
     html: false,
-    image: true,
     link: true,
-    lists: true
+    image: true,
+    color: true
   }
 
   # Image versions available

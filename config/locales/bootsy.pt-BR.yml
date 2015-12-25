@@ -1,6 +1,7 @@
 pt-BR:
   bootsy:
     action:
+      refresh: Atualizar
       destroy: Apagar
       close: Fechar
       load: Carregar
@@ -24,5 +25,6 @@ pt-BR:
         left: Esquerda
         right: Direita
         inline: Mesma linha
+    no_images_uploaded: Não existem imagens salvas.
     js:
       alert_unsaved: As suas modificações ainda não foram gravadas.

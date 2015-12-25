@@ -31,6 +31,7 @@ module Bootsy
       set_gallery_id(container, options)
 
       text_area(object_name, method, text_area_options(options)) +
+        modal(options, container) +
         gallery_id_param(object_name, container, options)
     end
 
@@ -103,6 +104,11 @@ module Bootsy
         :bootsy_image_gallery_id,
         class: 'bootsy_image_gallery_id'
       )
+    end
+
+    def modal(options, container)
+      return unless enable_uploader?(options)
+      render('bootsy/images/modal', container: container)
     end
   end
 end

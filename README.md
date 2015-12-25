@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/volmer/bootsy/badge.png?branch=master)](https://coveralls.io/r/volmer/bootsy)
 
 *Bootsy* is a WYSIWYG editor for Rails based on
-[Bootstrap3-wysihtml5](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg) with image uploads using
+[Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) with image uploads using
 [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
 
 ### Live demo

@@ -4,6 +4,10 @@ describe Bootsy::FormHelper do
   let(:view) { ActionView::Base.new }
   let(:options) { {} }
 
+  before do
+    allow(view).to receive(:render).with('bootsy/images/modal', anything).and_return('bootsy-modal')
+  end
+
   describe '#bootsy_area' do
     subject { view.bootsy_area(:post, :content, options) }
 
@@ -35,6 +39,10 @@ describe Bootsy::FormHelper do
           expect(view).to receive(:hidden_field).with(:post, :bootsy_image_gallery_id, class: 'bootsy_image_gallery_id').and_call_original
 
           subject
+        end
+
+        it 'renders the upload modal' do
+          expect(subject).to include('bootsy-modal')
         end
 
         it 'creates an image gallery for it' do
@@ -91,6 +99,10 @@ describe Bootsy::FormHelper do
           let(:container) { Post.new }
 
           let(:options) { { object: object, container: container } }
+
+          it 'renders the upload modal' do
+            expect(subject).to include('bootsy-modal')
+          end
 
           it 'does not pass the container to the text area helper' do
             expect(view).to receive(:text_area).with(anything, anything, hash_excluding(:container)).and_call_original

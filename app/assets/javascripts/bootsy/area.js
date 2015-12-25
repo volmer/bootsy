@@ -14,20 +14,14 @@ Bootsy.Area = function($el) {
     locale: this.locale,
     alertUnsavedChanges: $el.data('bootsy-alert-unsaved'),
     uploader: $el.data('bootsy-uploader'),
-    toolbar: {
-      'color': $el.data('bootsy-color'),
-      'emphasis': $el.data('bootsy-emphasis'),
-      'font-styles': $el.data('bootsy-font-styles'),
-      'html': $el.data('bootsy-html'),
-      'image': $el.data('bootsy-image'),
-      'link': $el.data('bootsy-link'),
-      'lists': $el.data('bootsy-lists')
-    },
+    color: $el.data('bootsy-color'),
+    emphasis: $el.data('bootsy-emphasis'),
+    'font-styles': $el.data('bootsy-font-styles'),
+    html: $el.data('bootsy-html'),
+    image: $el.data('bootsy-image'),
+    link: $el.data('bootsy-link'),
+    lists: $el.data('bootsy-lists'),
     events: {
-      load: function() {
-        self.editor = this;
-        self.onEditorLoad();
-      },
       change: function() {
         self.unsavedChanges = true;
       }
@@ -54,26 +48,18 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
   this.$el.siblings('.bootsy_image_gallery_id').val(id);
 };
 
-Bootsy.Area.prototype.onEditorLoad = function() {};
-
-Bootsy.Area.prototype.setupModal = function() {
-  this.modal = new Bootsy.Modal(
-    this.editor.toolbar.commandMapping['insertImage:null'].dialog.container, this
-  );
-};
-
 // Init components
 Bootsy.Area.prototype.init = function() {
   if (!this.$el.data('bootsy-initialized')) {
-    if ((this.options.toolbar.image === true) && (this.options.uploader === true)) {
-      this.options.customTemplates = {
-        image: Bootsy.imageTemplate
-      };
-
-      this.onEditorLoad = this.setupModal;
+    if ((this.options.image === true) && (this.options.uploader === true)) {
+      this.modal = new Bootsy.Modal(this);
+      this.options.image = false;
+      this.options.customCommand = true;
+      this.options.customCommandCallback = this.modal.show.bind(this.modal);
+      this.options.customTemplates = { customCommand: Bootsy.imageTemplate };
     }
 
-    this.$el.wysihtml5($.extend(true, Bootsy.options, this.options));
+    this.editor = this.$el.wysihtml5($.extend(true, {}, Bootsy.options, this.options)).data('wysihtml5').editor;
 
     // Mechanism for unsaved changes alert
     if (this.options.alertUnsavedChanges !== false) {
@@ -88,4 +74,16 @@ Bootsy.Area.prototype.init = function() {
 
     this.$el.data('bootsy-initialized', true);
   }
+};
+
+// Insert image in the text
+Bootsy.Area.prototype.insertImage = function(image) {
+  this.editor.currentView.element.focus();
+
+  if (this.caretBookmark) {
+    this.editor.composer.selection.setBookmark(this.caretBookmark);
+    this.caretBookmark = null;
+  }
+
+  this.editor.composer.commands.exec('insertImage', image);
 };
