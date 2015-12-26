@@ -24,7 +24,6 @@ Bootsy.Modal = function(area) {
     img = $(this).parents('.bootsy-image').find('img').clone();
     img.attr('src', img.attr('src').replace('/thumb_', imagePrefix));
     img.attr('alt', img.attr('alt').replace('Thumb_', ''));
-    img.attr('data-align', $(this).data('position'));
 
     self.$el.modal('hide');
 

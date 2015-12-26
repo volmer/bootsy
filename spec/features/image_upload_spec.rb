@@ -51,18 +51,13 @@ describe 'image upload', type: :feature, js: true do
 
   it 'associates the uploaded image with the resource' do
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
-    find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src"\
-      ", '/thumb_test.jpg')]").click
-    script = "$('.dropdown-submenu .dropdown-menu').hide(); "\
-      "$('a:contains(Small):visible').parent()."\
-      "find('.dropdown-menu').show()"
-    page.execute_script(script)
-    find(
-      'li.dropdown-submenu ul.dropdown-menu li a',
-      visible: true,
-      text: /Left/
-    ).click
+
+    find('.bootsy-gallery img').click
+
+    click_on 'Small'
+
     fill_in 'Title', with: 'Awesome post'
+
     sleep 1
     click_on 'Create Post'
     click_on 'Edit'

@@ -8,17 +8,7 @@ describe 'remote form', type: :feature, js: true do
     click_on 'Insert image'
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
     find('.bootsy-gallery img[src$="/thumb_test.jpg"]').click
-    script = "$('.dropdown-submenu .dropdown-menu').hide(); "\
-      "$('a:contains(Small):visible').parent()."\
-      "find('.dropdown-menu').show()"
-
-    page.execute_script(script)
-
-    find(
-      'li.dropdown-submenu ul.dropdown-menu li a',
-      visible: true,
-      text: /Left/
-    ).click
+    click_on 'Small'
 
     sleep 1
     click_button 'Create Post'

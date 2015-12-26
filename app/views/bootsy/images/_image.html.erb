@@ -2,41 +2,22 @@
   <%= link_to image_tag(image.image_file.thumb.url), '#', class: 'thumbnail',
     data: { toggle: 'dropdown' } %>
 
-  <ul class="dropdown-menu" role="menu">
-    <li role="presentation" class="dropdown-header"><%= t 'bootsy.image.size' %></li>
+  <ul class="dropdown-menu">
+    <li class="dropdown-header"><%= t 'bootsy.image.size' %></li>
 
     <% Bootsy.image_versions_available.each do |size| %>
-      <li role="presentation" class="dropdown dropdown-submenu">
-        <%= link_to '#', tabindex: '-1', role: 'menuitem', data: { toggle: 'dropdown' } do %>
-          <i class="icon-picture"></i>
-
-          <%= t size, scope: 'bootsy.image' %>
-        <% end %>
-
-        <ul class="dropdown-menu" role="menu">
-          <% [:left, :right, :inline].each do |position| %>
-            <li role="presentation">
-              <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
-                data: { image_size: size.to_s, position: position.to_s} do %>
-                <%= t position, scope: 'bootsy.image.position' %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
+      <li>
+        <%= link_to t(size, scope: 'bootsy.image'), '#', class: 'insert', data: { image_size: size } %>
       </li>
     <% end %>
 
     <% if Bootsy.allow_destroy %>
-      <li role="presentation" class="divider"></li>
+      <li role="separator" class="divider"></li>
 
       <li role="presentation">
-        <%= link_to image, method: :delete, remote: true,
-          data: { confirm: t('bootsy.image.confirm.destroy'), type: 'json' },
-          tabindex: '-1', role: 'menuitem', class: 'destroy-btn' do %>
-          <i class="icon-trash"></i>
-
-          <%= t('bootsy.action.destroy') %>
-        <% end %>
+        <%= link_to t('bootsy.action.destroy'), image, method: :delete,
+          remote: true, class: 'destroy-btn',
+          data: { confirm: t('bootsy.image.confirm.destroy'), type: 'json' } %>
       </li>
     <% end %>
   </ul>
