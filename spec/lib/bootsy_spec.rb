@@ -13,14 +13,9 @@ describe Bootsy do
 
   describe 'default values' do
     describe '.editor_options' do
-      subject { Bootsy.editor_options }
-
-      it { is_expected.to include(font_styles: true) }
-      it { is_expected.to include(lists: true) }
-      it { is_expected.to include(emphasis: true) }
-      it { is_expected.to include(html: false) }
-      it { is_expected.to include(image: true) }
-      it { is_expected.to include(color: true) }
+      it 'is an empty hash' do
+        expect(Bootsy.editor_options).to eq({})
+      end
     end
 
     it 'has defaults for image_versions_available' do

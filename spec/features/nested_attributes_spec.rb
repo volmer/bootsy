@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'nested attributes', type: :feature, js: true do
+  before do
+    allow(Bootsy).to receive(:editor_options).and_return(alert_unsaved: false)
+  end
+
   it 'is compatible with the editor' do
     visit root_path
     click_on 'New post with comment'

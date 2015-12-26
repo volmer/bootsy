@@ -2,15 +2,18 @@
 Bootsy.setup do |config|
   # Default editor options
   #   You can also override them locally by passing an
-  #   editor_options hash to bootsy_area
+  #   editor options hash to bootsy_area.
   # config.editor_options = {
-  #   font_styles: true,
-  #   emphasis: true,
-  #   lists: true,
-  #   html: false,
+  #   alert_unsaved: true,
+  #   bold: true,
+  #   italic: true,
+  #   strike: true,
   #   link: true,
-  #   image: true,
-  #   color: true
+  #   quote: true,
+  #   code: true,
+  #   list: true,
+  #   undo: true,
+  #   redo: true
   # }
   #
   # Image versions available

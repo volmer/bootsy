@@ -109,14 +109,15 @@ You can use `bootsy` as an input type in `SimpleForm::FormBuilder` instances. Ex
 You can customize Bootsy through a hash of `editor_options`:
 
 
-### Enable/disable features
+### Enable/disable toolbar buttons
 
-You can enable and disable features as you like. For instance, if you don't want link and color features:
+You can enable and disable toolbar buttons as you like. For instance, if you
+don't want link and code buttons:
+
 ```erb
-<%= f.bootsy_area :my_attribute, editor_options: { link: false, color: false } %>
+<%= f.bootsy_area :my_attribute, editor_options: { link: false, code: false } %>
 ```
-Available options are: `:blockquote`, `:font_styles`, `:emphasis`, `:lists`, `:html`, `:link`, `:image` and `:color`.
-
+You can see all [available options here](https://github.com/volmer/bootsy/blob/master/lib/generators/bootsy/templates/bootsy.rb#L6).
 
 ### Alert of unsaved changes
 

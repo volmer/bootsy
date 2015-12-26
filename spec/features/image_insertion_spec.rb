@@ -5,6 +5,10 @@ describe 'image insertion', type: :feature, js: true do
     %w(Small Medium Large Original)
   end
 
+  before do
+    allow(Bootsy).to receive(:editor_options).and_return(alert_unsaved: false)
+  end
+
   it 'can be performed' do
     sizes.each do |size|
       visit new_post_path

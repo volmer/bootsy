@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'simple form', type: :feature, js: true do
+  before do
+    allow(Bootsy).to receive(:editor_options).and_return(alert_unsaved: false)
+  end
+
   it 'is compatible with Bootsy' do
     visit new_simple_form_post_path
     click_on 'Insert image'

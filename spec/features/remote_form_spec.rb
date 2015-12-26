@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'remote form', type: :feature, js: true do
+  before do
+    allow(Bootsy).to receive(:editor_options).and_return(alert_unsaved: false)
+  end
+
   it 'works with Bootsy' do
     visit posts_path
     click_on 'New remote post'

@@ -8,6 +8,8 @@ describe 'image upload', type: :feature, js: true do
   end
 
   before do
+    allow(Bootsy).to receive(:editor_options).and_return(alert_unsaved: false)
+
     visit new_post_path
     click_on 'Insert image'
 

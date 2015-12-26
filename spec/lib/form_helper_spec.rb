@@ -32,9 +32,9 @@ describe Bootsy::FormHelper do
     end
 
     context 'when no object is passed' do
-      it 'adds data-bootsy-uploader="false"' do
+      it 'adds data-uploader="false"' do
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-uploader="false".*></trix-editor>})
+          %r{<trix-editor .*data-uploader="false".*></trix-editor>})
       end
 
       it 'does not render the upload modal' do
@@ -81,9 +81,9 @@ describe Bootsy::FormHelper do
         context 'when uploader: false is passed' do
           let(:options) { { object: object, uploader: false } }
 
-          it 'adds data-bootsy-uploader="false"' do
+          it 'adds data-uploader="false"' do
             expect(subject).to match(
-              %r{<trix-editor .*data-bootsy-uploader="false".*></trix-editor>})
+              %r{<trix-editor .*data-uploader="false".*></trix-editor>})
           end
 
           it 'does not render the upload modal' do
@@ -95,9 +95,9 @@ describe Bootsy::FormHelper do
       context 'when object is not a Bootsy Container' do
         let(:object) { Comment.new }
 
-        it 'adds data-bootsy-uploader="false"' do
+        it 'adds data-uploader="false"' do
           expect(subject).to match(
-            %r{<trix-editor .*data-bootsy-uploader="false".*></trix-editor>})
+            %r{<trix-editor .*data-uploader="false".*></trix-editor>})
         end
 
         it 'does not render the upload modal' do
@@ -133,9 +133,9 @@ describe Bootsy::FormHelper do
           context 'when the specific container is not a Container' do
             let(:container) { Comment.new }
 
-            it 'adds data-bootsy-uploader="false"' do
+            it 'adds data-uploader="false"' do
               expect(subject).to match(
-                %r{<trix-editor .*data-bootsy-uploader="false".*></trix-editor>})
+                %r{<trix-editor .*data-uploader="false".*></trix-editor>})
             end
 
             it 'does not render the upload modal' do
@@ -146,17 +146,17 @@ describe Bootsy::FormHelper do
       end
     end
 
-    context 'when editor_options are passed' do
+    context 'when editor options are passed' do
       let(:options) do
         { editor_options: { op1: '1', op2: '2' } }
       end
 
-      it 'forwards them to the trix editor as data-bootsy attributes' do
+      it 'forwards them to the trix editor as data attributes' do
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-op1="1".*></trix-editor>})
+          %r{<trix-editor .*data-op1="1".*></trix-editor>})
 
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-op2="2".*></trix-editor>})
+          %r{<trix-editor .*data-op2="2".*></trix-editor>})
       end
     end
 
@@ -165,12 +165,12 @@ describe Bootsy::FormHelper do
         allow(Bootsy).to receive(:editor_options).and_return(g1: 1, g2: 2)
       end
 
-      it 'forwards them to the trix editor as data-bootsy attributes' do
+      it 'forwards them to the trix editor as data attributes' do
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-g1="1".*></trix-editor>})
+          %r{<trix-editor .*data-g1="1".*></trix-editor>})
 
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-g2="2".*></trix-editor>})
+          %r{<trix-editor .*data-g2="2".*></trix-editor>})
       end
     end
 
@@ -193,9 +193,9 @@ describe Bootsy::FormHelper do
           %r{<trix-editor .*data-b="2".*></trix-editor>})
       end
 
-      it 'forwards the uploader option as a Bootsy data attribute' do
+      it 'forwards the uploader option as a data attribute' do
         expect(subject).to match(
-          %r{<trix-editor .*data-bootsy-uploader="false".*></trix-editor>})
+          %r{<trix-editor .*data-uploader="false".*></trix-editor>})
       end
     end
 

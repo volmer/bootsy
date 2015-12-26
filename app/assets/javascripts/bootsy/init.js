@@ -5,20 +5,14 @@ window.Bootsy = window.Bootsy || {};
 //         elements that has the `bootsy_text_area` class.
 Bootsy.init = function() {
   if (!Bootsy.areas) {
-    Bootsy.areas = {};
+    Bootsy.areas = [];
   }
 
   $('trix-editor').each(function(index) {
     if (!$(this).data('bootsy-initialized')) {
       var area = new Bootsy.Area($(this));
-      var areaIdx = $(this).attr('input') || index;
-
-      /* There's always people who let elements share ids */
-      if(Bootsy.areas[areaIdx] !== undefined) { areaIdx = areaIdx + index; }
-
       area.init();
-
-      Bootsy.areas[areaIdx] = area;
+      Bootsy.areas.push(area);
     }
   });
 };

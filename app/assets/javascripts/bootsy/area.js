@@ -5,21 +5,15 @@ window.Bootsy = window.Bootsy || {};
 Bootsy.Area = function($el) {
   this.$el = $el;
   this.editor = $el[0].editor;
+  this.toolbar = $('#' + this.$el.attr('toolbar'));
   this.unsavedChanges = false;
-  this.locale = $el.data('bootsy-locale') || $('html').attr('lang');
+  this.locale = $el.data('locale') || $('html').attr('lang');
   if (!Bootsy.locale.hasOwnProperty(this.locale)) this.locale = 'en';
 
   this.options = {
     locale: this.locale,
-    alertUnsavedChanges: $el.data('bootsy-alert-unsaved'),
-    uploader: $el.data('bootsy-uploader'),
-    color: $el.data('bootsy-color'),
-    emphasis: $el.data('bootsy-emphasis'),
-    'font-styles': $el.data('bootsy-font-styles'),
-    html: $el.data('bootsy-html'),
-    image: $el.data('bootsy-image'),
-    link: $el.data('bootsy-link'),
-    lists: $el.data('bootsy-lists')
+    alertUnsavedChanges: $el.data('alert-unsaved'),
+    uploader: $el.data('uploader')
   };
 };
 
@@ -44,17 +38,18 @@ Bootsy.Area.prototype.setImageGalleryId = function(id) {
 
 // Init components
 Bootsy.Area.prototype.init = function() {
+  this.setupToolbar();
+
   if (!this.$el.data('bootsy-initialized')) {
-    if ((this.options.image === true) && (this.options.uploader === true)) {
+    if (this.options.uploader === true) {
       var buttonHTML = '<button type="button" class="insert-image" title="Insert image" data-action="x-insert-image">Insert image</button>';
-      var toolbar = $('#' + this.$el.attr('toolbar'));
-      toolbar.find(".button_group.block_tools").append(buttonHTML);
+      this.toolbar.find(".button_group.block_tools").append(buttonHTML);
 
       this.modal = new Bootsy.Modal(this);
     }
 
     this.$el.on('trix-change', function(event) {
-      self.unsavedChanges = true;
+      this.unsavedChanges = true;
     }.bind(this));
 
     this.$el.on('trix-file-accept', function(event) {
@@ -86,3 +81,16 @@ Bootsy.Area.prototype.init = function() {
 Bootsy.Area.prototype.insertImage = function(image) {
   this.editor.insertHTML(image);
 };
+
+// Disables/enables toolbar buttons
+Bootsy.Area.prototype.setupToolbar = function() {
+  $.each(this.$el.data(), function(key, value) {
+    var button = this.toolbar.find('button[data-action="' + key + '"]');
+
+    if(button.length == 0) {
+      button = this.toolbar.find('button.' + key);
+    }
+
+    if(value == false) { button.hide(); }
+  }.bind(this));
+}

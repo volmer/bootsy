@@ -1,16 +1,19 @@
 # Use this setup block to configure all options available in Bootsy.
 Bootsy.setup do |config|
-  # Default editor options
-  #   You can also override them locally by passing an
-  #   editor_options hash to bootsy_area
-  # config.editor_options = {
-  #   font_styles: true,
-  #   emphasis: true,
-  #   lists: true,
-  #   html: false,
+  # Default toolbar options
+  #   You can also override them locally by passing a
+  #   toolbar hash to bootsy_area.
+  # config.toolbar = {
+  #   bold: true,
+  #   italic: true,
+  #   strike: true,
   #   link: true,
-  #   image: true,
-  #   color: true
+  #   quote: true,
+  #   code: true,
+  #   list: true,
+  #   block_level: true,
+  #   undo: true,
+  #   redo: true
   # }
   #
   # Image versions available

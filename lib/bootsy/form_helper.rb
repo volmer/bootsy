@@ -69,17 +69,11 @@ module Bootsy
     end
 
     def data_options(options)
-      (options[:data] || {}).deep_merge(
-        Hash[bootsy_options(options).map do |key, value|
-          ["bootsy-#{key}", value]
-        end]
-      )
-    end
-
-    def bootsy_options(options)
-      Bootsy.editor_options
+      bootsy_options =
+        Bootsy.editor_options
         .merge(options[:editor_options] || {})
         .merge(uploader: enable_uploader?(options))
+      (options[:data] || {}).deep_merge(bootsy_options)
     end
 
     def trix_options(options)
