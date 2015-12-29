@@ -6,48 +6,31 @@ window.Bootsy = window.Bootsy || {};
 Bootsy.locale = Bootsy.locale || {};
 
 Bootsy.locale['en'] = {
-  font_styles: {
-    normal: 'Normal text',
-    h1: 'Heading 1',
-    h2: 'Heading 2',
-    h3: 'Heading 3'
-  },
-  emphasis: {
+  trix: {
     bold: 'Bold',
+    bullets: 'Bullets',
+    byte: 'Byte',
+    bytes: 'Bytes',
+    captionPlaceholder: 'Type a caption here…',
+    code: 'Code',
+    editCaption: 'Edit caption',
+    indent: 'Increase Level',
     italic: 'Italic',
-    underline: 'Underline',
-    small: 'Small'
-  },
-  lists: {
-    unordered: 'Unordered list',
-    ordered: 'Ordered list',
-    outdent: 'Outdent',
-    indent: 'Indent'
-  },
-  link: {
-    insert: 'Insert link',
-    cancel: 'Cancel',
-    target: 'Open link in new window'
-  },
-  image: {
-    insert: 'Insert image',
-    cancel: 'Cancel'
-  },
-  html: {
-    edit: 'Edit HTML'
-  },
-  colours: {
-    black: 'Black',
-    silver: 'Silver',
-    gray: 'Grey',
-    maroon: 'Maroon',
-    red: 'Red',
-    purple: 'Purple',
-    green: 'Green',
-    olive: 'Olive',
-    navy: 'Navy',
-    blue: 'Blue',
-    orange: 'Orange'
+    link: 'Link',
+    numbers: 'Numbers',
+    outdent: 'Decrease Level',
+    quote: 'Quote',
+    redo: 'Redo',
+    remove: 'Remove',
+    strike: 'Strikethrough',
+    undo: 'Undo',
+    unlink: 'Unlink',
+    urlPlaceholder: 'Enter a URL…',
+    GB: 'GB',
+    KB: 'KB',
+    MB: 'MB',
+    PB: 'PB',
+    TB: 'TB'
   },
   bootsy: {
     alertUnsaved: 'You have unsaved changes.',

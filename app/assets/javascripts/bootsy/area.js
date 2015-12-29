@@ -67,6 +67,8 @@ Bootsy.Area.prototype.init = function() {
       window.onbeforeunload = this.unsavedChangesAlert.bind(this);
     }
 
+    Trix.config.lang = Bootsy.locale['pt-BR'].trix;
+
     this.$el.closest('form').submit(function() {
       this.unsavedChanges = false;
 

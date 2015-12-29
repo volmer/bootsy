@@ -11,7 +11,10 @@ Bootsy.setup do |config|
   #   link: true,
   #   quote: true,
   #   code: true,
-  #   list: true,
+  #   bullets: true,
+  #   numbers: true,
+  #   decrease_block_level: true,
+  #   increase_block_level: true,
   #   undo: true,
   #   redo: true
   # }

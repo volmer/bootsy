@@ -108,6 +108,14 @@ You can use `bootsy` as an input type in `SimpleForm::FormBuilder` instances. Ex
 
 You can customize Bootsy through a hash of `editor_options`:
 
+### Alert of unsaved changes
+
+By default Bootsy alerts the user about unsaved changes if the page is closed or
+reloaded. You can disable this feature with:
+
+```erb
+<%= f.bootsy_area :my_attribute, editor_options: { alert_unsaved: false } %>
+```
 
 ### Enable/disable toolbar buttons
 
@@ -117,15 +125,9 @@ don't want link and code buttons:
 ```erb
 <%= f.bootsy_area :my_attribute, editor_options: { link: false, code: false } %>
 ```
+
 You can see all [available options here](https://github.com/volmer/bootsy/blob/master/lib/generators/bootsy/templates/bootsy.rb#L6).
 
-### Alert of unsaved changes
-
-By default Bootsy alerts the user about unsaved changes if the page is closed or reloaded. You can disable
-this feature with:
-```erb
-<%= f.bootsy_area :my_attribute, editor_options: { alert_unsaved: false } %>
-```
 
 ## Uploads
 
@@ -151,10 +153,10 @@ to translate Bootsy to your language.
 
 You also need to translate Bootsy on the JavaScript side. Just follow
 [this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/en.js).
-Bootsy will try to guess the locale based on the `lang` attribute of the page's `<html>` tag.
-You can set the locale directly by setting a `data-bootsy-locale` attribute on your `<textarea>`.
+Bootsy will try to guess the locale based on the `lang` attribute of the page's
+`<html>` tag.
 
 
 ## License
 
-MIT License. Copyright 2012-2015 Volmer Soares
+MIT License. Copyright 2012-2016 Volmer Soares
