@@ -22,18 +22,30 @@ Bootsy.Modal = function(area) {
     }
 
     img = $(this).parents('.bootsy-image').find('img');
+    doc = $(this).parents('.bootsy-image').find('a[data-type=document]')
 
-    imageObject = {
-      src: img.attr('src').replace('/thumb_', imagePrefix),
-      alt: img.attr('alt').replace('Thumb_', '')
-    };
+    if (img && img.attr('src')){
+      imageObject = {
+        align: $(this).data('position'),
+        src: img.attr('src').replace('/thumb_', imagePrefix),
+        alt: img.attr('alt').replace('Thumb_', '')
+      }
+      insert = self.area.insertImage.bind(self.area);
+      insert(imageObject);
+    }
 
-    imageObject.align = $(this).data('position');
+    else if (doc){
+      documentObject = {
+        align: $(this).data('position'),
+        url: doc.attr('title')
+      }
+      insert = self.area.insertDocument.bind(self.area);
+      insert(documentObject);
+    }
 
     self.$el.modal('hide');
 
-    insert = self.area.insertImage.bind(self.area);
-    insert(imageObject);
+
   });
 
   this.$el.on('ajax:before', '.destroy-btn', this.showGalleryLoadingAnimation.bind(this));

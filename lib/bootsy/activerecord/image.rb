@@ -8,5 +8,9 @@ module Bootsy
     mount_uploader :image_file, ImageUploader
 
     validates_presence_of :image_file, :image_gallery_id
+
+    def is_image?
+      content_type.start_with? 'image'
+    end
   end
 end

@@ -51,10 +51,16 @@ module Bootsy
     # image - The `Bootsy::Image` instance that will
     #         be rendered.
     def image_markup(image)
+      template = image.is_image? ? 'bootsy/images/_image' : 'bootsy/images/_document'
+      asset_base = [80, 443].include?(request.port) ? "#{request.scheme}://#{request.host}" : "#{request.scheme}://#{request.host}:#{request.port}"
+
       render_to_string(
-        file: 'bootsy/images/_image',
+        file: template,
         formats: [:html],
-        locals: { image: image }
+        locals: {
+          image: image,
+          asset_base: asset_base  # bootstrap-wysihtml5 requires a full URL to create the link
+        }
       )
     end
 
