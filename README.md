@@ -1,3 +1,8 @@
+# This is a FORK
+- A fork of [Bootsy](https://github.com/volmer/bootsy)
+- Main difference is ability to upload XLS, XLSX, PDF, CSV, DOC, DOCX documents as well as images
+
+
 # Bootsy
 
 [![Gem Version](https://badge.fury.io/rb/bootsy.png)](http://badge.fury.io/rb/bootsy)

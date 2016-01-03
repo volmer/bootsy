@@ -87,3 +87,18 @@ Bootsy.Area.prototype.insertImage = function(image) {
 
   this.editor.composer.commands.exec('insertImage', image);
 };
+
+Bootsy.Area.prototype.insertDocument = function(doc){
+  this.editor.currentView.element.focus();
+
+  if (this.caretBookmark) {
+    this.editor.composer.selection.setBookmark(this.caretBookmark);
+    this.caretBookmark = null;
+  }
+
+  this.editor.composer.commands.exec("createLink", {
+      href: doc.url,
+      target: "_blank",
+      rel: "nofollow"
+  });
+}
