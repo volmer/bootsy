@@ -157,9 +157,21 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
   background: orange !important;
 }
 
+figure[align="right"] {
+    float: right;
+}
+
+figure figcaption {
+    text-align: center;
+}
+
 /*
   Bootsy
 */
+
+.bootsy-image-caption {
+    margin-top: 30px;
+}
 
 .wysiwyg-color-black {
   color: black;
