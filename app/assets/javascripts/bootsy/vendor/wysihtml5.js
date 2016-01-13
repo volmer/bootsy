@@ -7339,6 +7339,7 @@ wysihtml5.commands.bold = {
 
       var doc     = composer.doc,
           image   = this.state(composer),
+          figureNode = document.createElement("figure"),
           textNode,
           i,
           parent;
@@ -7363,6 +7364,18 @@ wysihtml5.commands.bold = {
 
       image = doc.createElement(NODE_NAME);
 
+        figureNode.appendChild(image);
+
+        if (value.caption) {
+            var caption = document.createElement('figcaption');
+            caption.innerHTML = value.caption;
+            figureNode.appendChild(caption);
+        }
+
+       if (value.hasOwnProperty('align')) {
+           figureNode.setAttribute('align', value.align);
+       }
+
       for (i in value) {
         if (i === "className") {
           i = "class";
@@ -7370,13 +7383,13 @@ wysihtml5.commands.bold = {
         image.setAttribute(i, value[i]);
       }
 
-      composer.selection.insertNode(image);
+      composer.selection.insertNode(figureNode);
       if (wysihtml5.browser.hasProblemsSettingCaretAfterImg()) {
         textNode = doc.createTextNode(wysihtml5.INVISIBLE_SPACE);
         composer.selection.insertNode(textNode);
         composer.selection.setAfter(textNode);
       } else {
-        composer.selection.setAfter(image);
+        composer.selection.setAfter(figureNode);
       }
     },
 
@@ -8605,7 +8618,7 @@ wysihtml5.views.View = Base.extend(
       var target  = that.selection.getSelectedNode(true),
           keyCode = event.keyCode,
           parent;
-      if (target && target.nodeName === "IMG" && (keyCode === wysihtml5.BACKSPACE_KEY || keyCode === wysihtml5.DELETE_KEY)) { // 8 => backspace, 46 => delete
+      if (target && target.nodeName === "FIGURE" && (keyCode === wysihtml5.BACKSPACE_KEY || keyCode === wysihtml5.DELETE_KEY)) { // 8 => backspace, 46 => delete
         parent = target.parentNode;
         // delete the <img>
         parent.removeChild(target);

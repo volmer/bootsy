@@ -1,5 +1,8 @@
 en:
   bootsy:
+    fields:
+      caption_placeholder: Enter an image caption...
+
     action:
       refresh: Refresh
       destroy: Delete
