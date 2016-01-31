@@ -292,6 +292,10 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
   content: "";
 }
 
+.bootsy img {
+  margin: 8px;
+}
+
 textarea.bootsy:required:invalid {
   color: inherit;
 }
