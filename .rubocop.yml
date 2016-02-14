@@ -1,7 +1,13 @@
 AllCops:
-  RunRailsCops: true
+  TargetRubyVersion: 2.3
   Exclude:
     - 'spec/**/*'
     - 'script/*'
 Metrics/MethodLength:
   Max: 15
+
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

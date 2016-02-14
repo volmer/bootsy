@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.description = 'A beautiful WYSIWYG editor with image uploads for Rails.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*'] +
-    ['MIT-LICENSE', 'Rakefile', 'README.md']
+  s.files =
+    Dir['{app,config,db,lib}/**/*'] + ['MIT-LICENSE', 'Rakefile', 'README.md']
 
   s.add_dependency 'mini_magick', '~> 4.3'
   s.add_dependency 'carrierwave', '~> 0.10'

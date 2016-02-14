@@ -16,11 +16,7 @@ module Bootsy
     end
 
     config.after_initialize do
-      if defined?(BOOTSY_ORM)
-        orm = BOOTSY_ORM
-      else
-        orm = :activerecord
-      end
+      orm = defined?(BOOTSY_ORM) ? BOOTSY_ORM : :activerecord
 
       # Require Active Record models. Other ORMs must
       # include their own Bootsy models.
