@@ -58,7 +58,7 @@ describe 'image upload', type: :feature, js: true do
       "find('.dropdown-menu').show()"
     page.execute_script(script)
     find(
-      'li.dropdown-submenu ul.dropdown-menu li a',
+      '.dropdown-submenu .dropdown-menu a',
       visible: true,
       text: /Left/
     ).click

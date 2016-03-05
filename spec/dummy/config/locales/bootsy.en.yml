@@ -6,7 +6,7 @@ en:
       close: Close
       load: Load
       or: or
-      upload: Upload New Image
+      upload: Upload new image
       submit_upload: Go
       enter_image_url: Enter a URL from the web...
     image_gallery: Image Gallery

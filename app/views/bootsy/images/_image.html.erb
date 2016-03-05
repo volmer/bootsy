@@ -1,43 +1,31 @@
 <div class="bootsy-image dropdown col-sm-2" data-id="<%= image.id %>">
-  <%= link_to image_tag(image.image_file.thumb.url), '#', class: 'thumbnail',
+  <%= link_to image_tag(image.image_file.thumb.url, class: 'img-thumbnail'), '#',
     data: { toggle: 'dropdown' } %>
 
-  <ul class="dropdown-menu" role="menu">
-    <li role="presentation" class="dropdown-header"><%= t 'bootsy.image.size' %></li>
+  <div class="dropdown-menu" role="menu">
+    <h6 class="dropdown-header"><%= t 'bootsy.image.size' %></h6>
 
     <% Bootsy.image_versions_available.each do |size| %>
-      <li role="presentation" class="dropdown dropdown-submenu">
-        <%= link_to '#', tabindex: '-1', role: 'menuitem', data: { toggle: 'dropdown' } do %>
-          <i class="icon-picture"></i>
+      <div class="dropdown dropdown-submenu">
+        <%= link_to t(size, scope: 'bootsy.image'), '#', class: 'dropdown-item',
+          data: { toggle: 'dropdown' } %>
 
-          <%= t size, scope: 'bootsy.image' %>
-        <% end %>
-
-        <ul class="dropdown-menu" role="menu">
+        <div class="dropdown-menu">
           <% [:left, :right, :inline].each do |position| %>
-            <li role="presentation">
-              <%= link_to '#', class: 'insert', tabindex: '-1', role: 'menuitem',
-                data: { image_size: size.to_s, position: position.to_s} do %>
-                <%= t position, scope: 'bootsy.image.position' %>
-              <% end %>
-            </li>
+            <%= link_to t(position, scope: 'bootsy.image.position'), '#',
+              class: 'insert dropdown-item',
+              data: { image_size: size.to_s, position: position.to_s } %>
           <% end %>
-        </ul>
-      </li>
+        </div>
+      </div>
     <% end %>
 
     <% if Bootsy.allow_destroy %>
-      <li role="presentation" class="divider"></li>
+      <div class="dropdown-divider"></div>
 
-      <li role="presentation">
-        <%= link_to image, method: :delete, remote: true,
-          data: { confirm: t('bootsy.image.confirm.destroy'), type: 'json' },
-          tabindex: '-1', role: 'menuitem', class: 'destroy-btn' do %>
-          <i class="icon-trash"></i>
-
-          <%= t('bootsy.action.destroy') %>
-        <% end %>
-      </li>
+      <%= link_to t('bootsy.action.destroy'), image, method: :delete, remote: true,
+        data: { confirm: t('bootsy.image.confirm.destroy'), type: 'json' },
+        class: 'dropdown-item destroy-btn' %>
     <% end %>
   </ul>
 </div>

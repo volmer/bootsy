@@ -15,7 +15,7 @@ describe 'remote form', type: :feature, js: true do
     page.execute_script(script)
 
     find(
-      'li.dropdown-submenu ul.dropdown-menu li a',
+      '.dropdown-submenu .dropdown-menu a',
       visible: true,
       text: /Left/
     ).click

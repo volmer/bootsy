@@ -19,7 +19,7 @@
 
 * ImageMagick or GraphicsMagick (for MiniMagick);
 * Rails `4`;
-* [Bootstrap `3`](http://getbootstrap.com/) fully installed in your app.
+* [Bootstrap `4`](http://getbootstrap.com/) and [Font Awesome](http://fortawesome.github.io/Font-Awesome/) fully installed in your app.
 
 
 ## Installation
@@ -155,4 +155,4 @@ You can set the locale directly by setting a `data-bootsy-locale` attribute on y
 
 ## License
 
-MIT License. Copyright 2012-2015 Volmer Soares
+MIT License. Copyright 2012-2016 Volmer Soares

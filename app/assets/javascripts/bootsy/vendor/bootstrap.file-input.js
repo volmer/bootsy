@@ -41,7 +41,7 @@ $.fn.bootstrapFileInput = function() {
 
     // Now we're going to replace that input field with a Bootstrap button.
     // The input will actually still be there, it will just be float above and transparent (done with the CSS).
-    $elem.replaceWith('<a class="file-input-wrapper btn btn-default ' + className + '">'+buttonWord+input+'</a>');
+    $elem.replaceWith('<a class="file-input-wrapper btn btn-secondary ' + className + '">'+buttonWord+input+'</a>');
   })
 
   // After we have found all of the file inputs let's apply a listener for tracking the mouse movement.

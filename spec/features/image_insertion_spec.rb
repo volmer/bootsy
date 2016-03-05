@@ -31,7 +31,7 @@ describe 'image insertion', type: :feature, js: true do
         "$('a:contains(#{size}):visible').parent()."\
         "find('.dropdown-menu').show()"
       page.execute_script(script)
-      find('li.dropdown-submenu ul.dropdown-menu li a', text: position).click
+      find('.dropdown-submenu .dropdown-menu a', text: position).click
 
       content = page.evaluate_script(
         'Bootsy.areas.post_content.editor.getValue()')

@@ -7,7 +7,7 @@ describe Bootsy::ApplicationHelper do
   describe '#refresh_btn' do
     subject { helper.refresh_btn }
 
-    it { is_expected.to include('class="btn btn-default btn-sm refresh-btn"') }
+    it { is_expected.to include('class="btn btn-secondary btn-sm refresh-btn"') }
 
     it { is_expected.to include('Refresh') }
 
