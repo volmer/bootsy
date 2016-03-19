@@ -14,7 +14,23 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+module WaitForAjax
+  def wait_for_ajax timeout = Capybara.default_max_wait_time * 3
+    Timeout.timeout(timeout) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
+  end
+end
+
 RSpec.configure do |config|
+
+  config.include WaitForAjax, type: :feature
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

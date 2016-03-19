@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'foreign gallery', type: :feature, js: true do
   it 'is possible' do
@@ -20,6 +21,8 @@ describe 'foreign gallery', type: :feature, js: true do
 
     click_on 'Insert image'
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+    wait_for_ajax
+
     find('[data-dismiss=modal]').click
     click_on 'Create Comment'
     click_on 'Edit'
