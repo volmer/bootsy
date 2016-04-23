@@ -134,6 +134,7 @@ Bootsy.Modal.prototype.imageUploadFailed = function(_e, xhr, _status, error) {
     this.validation.text(invalidErrors.image_file[0]);
     this.$el.find('.bootsy-upload-form').append(this.validation);
   } else {
+    this.hideGalleryLoadingAnimation();
     alert($.fn.wysihtml5.locale[this.area.locale].bootsy.error);
   }
 
@@ -149,6 +150,7 @@ Bootsy.Modal.prototype.addImage = function(html) {
 
 // Set image gallery
 Bootsy.Modal.prototype.requestImageGallery = function() {
+  this.hideRefreshButton();
   this.showGalleryLoadingAnimation();
 
   $.ajax({

@@ -7,7 +7,7 @@ gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'sqlite3'
 gem 'simple_form'
-gem 'sprockets-rails', '~> 2.3'
+gem 'sprockets-rails'
 
 gemspec
 

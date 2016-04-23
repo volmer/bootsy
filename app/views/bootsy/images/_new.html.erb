@@ -2,7 +2,7 @@
   html: { multipart: true, class: 'bootsy-upload-form form-inline' }, data: { type: 'json' }) do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-  <%= image_tag 'bootsy/upload-loader.gif', class: 'bootsy-upload-loader' %>
+  <%= render 'bootsy/images/loader', image_class: 'bootsy-upload-loader' %>
 
   <div class="input-group">
     <%= f.url_field :remote_image_file_url, class: 'form-control', placeholder: t('bootsy.action.enter_image_url') %>

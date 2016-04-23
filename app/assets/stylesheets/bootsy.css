@@ -310,8 +310,7 @@ textarea.bootsy:required:invalid {
 }
 
 .bootsy-upload-loader {
-  display: inline-block;
-  padding-right: 5px;
+  margin: 0 10px -10px 0;
 }
 
 .bootsy-upload-spacer {
