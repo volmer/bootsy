@@ -17,7 +17,7 @@ gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
 gem 'capybara'
-gem 'selenium-webdriver'
+gem 'poltergeist'
 gem 'pry-rails'
 gem 'rubocop'
 gem 'sham_rack', require: false

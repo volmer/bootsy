@@ -15,8 +15,9 @@ describe 'image deletion', type: :feature, js: true do
   it 'can be performed' do
     find(:xpath, selector).click
 
-    click_link 'Delete'
-    page.driver.browser.switch_to.alert.accept
+    page.accept_confirm 'Are you sure you want to delete this image?' do
+      click_link 'Delete'
+    end
 
     expect(page).not_to have_selector(:xpath, selector, visible: true)
     expect(page).to have_content('There are currently no uploaded images.')
@@ -25,8 +26,9 @@ describe 'image deletion', type: :feature, js: true do
   it 'can be interrupted' do
     find(:xpath, selector).click
 
-    click_link 'Delete'
-    page.driver.browser.switch_to.alert.dismiss
+    page.dismiss_confirm 'Are you sure you want to delete this image?' do
+      click_link 'Delete'
+    end
 
     expect(page).to have_selector(:xpath, selector, visible: true)
   end

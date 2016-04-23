@@ -8,8 +8,8 @@ describe 'YouTube support', type: :feature, js: true do
       'dITRRMHg" frameborder="0" allowfullscreen></iframe>'
     page.execute_script "Bootsy.areas.post_content.editor.setValue('#{embed}')"
 
-    expected_embed = '<iframe src="//www.youtube.com/embed/d2QdITRRMHg" allowf'\
-      'ullscreen="" frameborder="0" height="315" width="560"></iframe>'
+    expected_embed = '<iframe width="560" height="315" src="//www.youtube.com'\
+      '/embed/d2QdITRRMHg" frameborder="0" allowfullscreen=""></iframe>'
     content = page.evaluate_script(
       'Bootsy.areas.post_content.editor.getValue()')
     expect(content).to include(expected_embed)

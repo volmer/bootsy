@@ -4,6 +4,9 @@ require File.expand_path('../../spec/dummy/config/environment', __FILE__)
 require 'rspec/rails'
 require 'coveralls'
 require 'database_cleaner'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 Coveralls.wear_merged!
 
