@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.2.2
+
+* Fix compatibility with Sprockets 3.0.
+
 ## 2.2.1
 
 * Rollback to [jhollingworth/bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5).
