@@ -12,7 +12,6 @@ gem 'sprockets-rails'
 gemspec
 
 # Development dependencies
-gem 'coveralls', require: false
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
