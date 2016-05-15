@@ -18,7 +18,6 @@
 ## Requirements
 
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails >= 4;
 * [Bootstrap 3](http://getbootstrap.com/) fully installed in your app.
 
 
