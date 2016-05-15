@@ -1,5 +1,5 @@
-<%= form_for([bootsy, resource_or_nil(gallery), image], remote: true,
-  html: { multipart: true, class: 'bootsy-upload-form form-inline' }, data: { type: 'json' }) do |f| %>
+<%= form_for([bootsy, resource_or_nil(gallery), image],
+  html: { multipart: true, class: 'bootsy-upload-form form-inline' }, format: 'json') do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
   <%= render 'bootsy/images/loader', image_class: 'bootsy-upload-loader' %>
@@ -13,5 +13,5 @@
 
   <span class="bootsy-upload-spacer"><%= t('bootsy.action.or') %></span>
 
-  <%= f.file_field :image_file, title: t('bootsy.action.upload') %>
+  <%= f.file_field :image_file, title: t('bootsy.action.upload'), accept: 'image/*' %>
 <% end %>

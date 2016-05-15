@@ -1,5 +1,4 @@
 require 'carrierwave'
-require 'remotipart'
 require 'bootsy/engine'
 require 'bootsy/container'
 require 'bootsy/form_helper'

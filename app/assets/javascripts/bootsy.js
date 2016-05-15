@@ -1,4 +1,3 @@
-//= require jquery.remotipart
 //= require bootsy/vendor/polyfill
 //= require bootsy/vendor/wysihtml5
 //= require bootsy/vendor/bootstrap-wysihtml5

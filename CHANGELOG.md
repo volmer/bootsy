@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Bootsy no longer depends on Remotipart.
+
 ## 2.2.2
 
 * Fix compatibility with Sprockets 3.0.

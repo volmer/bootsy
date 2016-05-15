@@ -71,8 +71,8 @@ module Bootsy
     end
 
     def bootsy_options(options)
-      Bootsy.editor_options.merge(options[:editor_options] || {}).merge(
-        uploader: enable_uploader?(options))
+      Bootsy.editor_options.merge(options[:editor_options] || {})
+            .merge(uploader: enable_uploader?(options))
     end
 
     def text_area_options(options)
