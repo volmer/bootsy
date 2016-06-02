@@ -1,6 +1,7 @@
 # Bootsy Changelog
 
 ## master
+* Fix bug when image uploader are rendered with main app layout (#211)
 
 * Bootsy no longer depends on Remotipart.
 
