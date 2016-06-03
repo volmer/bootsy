@@ -54,7 +54,8 @@ module Bootsy
       render_to_string(
         file: 'bootsy/images/_image',
         formats: [:html],
-        locals: { image: image }
+        locals: { image: image },
+        layout: false
       )
     end
 
@@ -67,7 +68,8 @@ module Bootsy
       render_to_string(
         file: 'bootsy/images/_new',
         formats: [:html],
-        locals: { gallery: gallery, image: gallery.images.new }
+        locals: { gallery: gallery, image: gallery.images.new },
+        layout: false
       )
     end
 
