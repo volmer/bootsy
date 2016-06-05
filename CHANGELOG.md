@@ -1,9 +1,11 @@
 # Bootsy Changelog
 
 ## master
-* Fix bug when image uploader are rendered with main app layout (#211)
 
 * Bootsy no longer depends on Remotipart.
+* Fix bug where modal is rendered with the app layout (#211 - thanks @StGalant).
+* Removed install generator. Users now need to create the initializer and locale
+  files manually when needed.
 
 ## 2.2.2
 

@@ -18,8 +18,8 @@
 ## Requirements
 
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails `4`;
-* [Bootstrap `3`](http://getbootstrap.com/) fully installed in your app.
+* Rails >= 4;
+* [Bootstrap 3](http://getbootstrap.com/) fully installed in your app.
 
 
 ## Installation
@@ -34,16 +34,21 @@
   bundle install
   ```
 
-3. Run the install generator:
-  ```console
-  bundle exec rails generate bootsy:install
-  ```
-  It will include the javascripts and stylesheets in the assets pipeline,
-  create the `bootsy.rb` initializer and add a copy of the english translations.
+3. Require Bootsy in the asset pipeline:
 
-  **Note:** If your project uses SASS or LESS and `application.css` does not exist,
-  you will be required to require bootsy manually using `*= require bootsy` or if you prefer
-  to import assets yourself `@import "bootsy";`
+  In your `app/assets/javascripts/application.js`, put this **after**
+  requiring jQuery and Bootstrap:
+
+  ```javascript
+  //= require bootsy
+  ```
+
+  In your `app/assets/stylesheets/application.css`, put this line **after**
+  requiring Bootstrap:
+
+  ```css
+  *= require bootsy
+  ```
 
 4. Add and run migrations:
   ```console
@@ -135,17 +140,16 @@ images in the text area using an external image URL.
 ## Configuration
 
 You can set the default editor options, image sizes available (small, medium,
-large and/or its original), dimensions and more. Take a look at Bootsy's initalizer
-file `/config/initializers/bootsy.rb` in your app and feel free to uncomment and change
-the options as you like.
+large and/or its original), dimensions and more. Create a copy of [Bootsy's initalizer
+file](https://github.com/volmer/bootsy/tree/master/config/initializers/bootsy.rb)
+in your `config/initializers` and feel free to uncomment and change the options
+as you like.
 
 
 ## I18n
 
-Bootsy defines some I18n keys. English translations are added by default to your
-`config/locales` directory as `bootsy.en.yml`. You can use it as a template
-to translate Bootsy to your language.
-[Here are some examples](https://github.com/volmer/bootsy/tree/master/config/locales).
+You can translate Bootsy to your own language. Simply create a locale file for
+it in your `config/locales` directory similar to [Bootsy's master English file](https://github.com/volmer/bootsy/tree/master/config/locales/bootsy.en.yml).
 
 You also need to translate Bootsy on the JavaScript side. Just follow
 [this example](https://github.com/volmer/bootsy/blob/master/app/assets/javascripts/bootsy/locales/en.js).
@@ -155,4 +159,4 @@ You can set the locale directly by setting a `data-bootsy-locale` attribute on y
 
 ## License
 
-MIT License. Copyright 2012-2015 Volmer Soares
+MIT License. Copyright 2012-2016 Volmer Soares
