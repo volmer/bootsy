@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.3.0
 
 * Bootsy no longer depends on Remotipart.
 * Fix bug where modal is rendered with the app layout (#211 - thanks @StGalant).
