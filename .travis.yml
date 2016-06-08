@@ -1,4 +1,6 @@
 language: ruby
+rvm:
+  - 2.3.1
 before_script:
   - 'cd spec/dummy'
   - 'bundle exec rake db:test:prepare'
