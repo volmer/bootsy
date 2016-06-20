@@ -24,14 +24,23 @@
 
 ## Installation
 
-1. Add Bootsy to your Gemfile:
+1. Add Bootsy to your Gemfile and `bundle install` it:
   ```ruby
   gem 'bootsy'
   ```
 
-2. Run the bundle command to install it:
   ```console
   bundle install
+  ```
+
+2. Mount Bootsy at the beginning of your `config/routes.rb`:
+  ```ruby
+  Rails.application.routes.draw do
+    mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+
+    ...
+
+  end
   ```
 
 3. Require Bootsy in the asset pipeline:
