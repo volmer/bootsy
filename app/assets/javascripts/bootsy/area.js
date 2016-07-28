@@ -24,6 +24,7 @@ Bootsy.Area = function($el) {
     events: {
       change: function() {
         self.unsavedChanges = true;
+        $el.trigger('change');
       }
     }
   };
