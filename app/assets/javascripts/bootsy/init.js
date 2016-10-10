@@ -31,8 +31,6 @@ $(function() {
     Bootsy.init();
 
     /* Reload Bootsy on page load when using Turbolinks. */
-    if (window.Turbolinks) {
-      $(document).on('page:load', Bootsy.init);
-    }
+    document.addEventListener('turbolinks:load', Bootsy.init);
   });
 });

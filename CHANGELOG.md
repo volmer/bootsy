@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## master
+
+* Bootsy now supports Turbolinks 5 and up.
+
 ## 2.3.0
 
 * Bootsy no longer depends on Remotipart.
