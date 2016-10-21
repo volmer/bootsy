@@ -1,6 +1,6 @@
 # Bootsy Changelog
 
-## master
+## 2.3.1
 
 * Bootsy now supports Turbolinks 5 and up.
 
