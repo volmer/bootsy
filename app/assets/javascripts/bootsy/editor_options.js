@@ -20,6 +20,8 @@ $.extend(true, window.Bootsy.options, $.fn.wysihtml5.defaultOptions, {
           "title": "alt"
         }
       },
+      "p": {},
+      "br": {},
       "img": {
         "check_attributes": {
           "src": "src"
