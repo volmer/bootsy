@@ -28,3 +28,12 @@ pt-BR:
     no_images_uploaded: Não existem imagens salvas.
     js:
       alert_unsaved: As suas modificações ainda não foram gravadas.
+  errors:
+    messages:
+      carrierwave_processing_error: não pode ser processado
+      carrierwave_integrity_error: não é um tipo de arquivo permitido
+      carrierwave_download_error: não pôde ser baixado
+      extension_whitelist_error: "Não é permitido o upload de arquivos %{extension}, tipos permitidos: %{allowed_types}"
+      mini_magick_processing_error: "Não foi possível processar com MiniMagick. Erro original: %{e}"
+      min_size_error: "Arquivo deve ser maior que %{min_size}"
+      max_size_error: "Arquivo deve ser menor que %{max_size}"
