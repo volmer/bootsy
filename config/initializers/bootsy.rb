@@ -66,4 +66,9 @@ Bootsy.setup do |config|
   # Specify the controller to inherit from. Using ApplicationController
   # allows you to perform authentication from within your app.
   # config.base_controller = ActionController::Base
+  #
+  #
+  # If you don't want to use the Bootsy default uploader (file / fog), you
+  # can specify your own:
+  # config.uploader = 'YourUploader'
 end
