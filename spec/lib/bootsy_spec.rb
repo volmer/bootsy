@@ -50,5 +50,9 @@ describe Bootsy do
     it 'has defaults for store_dir' do
       expect(subject.store_dir).to eq 'uploads'
     end
+
+    it 'has defaults for mailer' do
+      expect(subject.uploader).to eq "Bootsy::ImageUploader"
+    end
   end
 end

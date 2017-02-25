@@ -59,6 +59,9 @@ module Bootsy
   mattr_accessor :base_controller
   @@base_controller = ActionController::Base
 
+  mattr_accessor :uploader
+  @@uploader = 'Bootsy::ImageUploader'
+
   # Default way to setup Bootsy. Run rails generate bootsy:install
   # to create a fresh initializer with all configuration values.
   def self.setup
