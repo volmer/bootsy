@@ -3,15 +3,15 @@ Bootsy.setup do |config|
   # Default editor options
   #   You can also override them locally by passing an
   #   editor_options hash to bootsy_area
-  # config.editor_options = {
-  #   font_styles: true,
-  #   emphasis: true,
-  #   lists: true,
-  #   html: false,
-  #   link: true,
-  #   image: true,
-  #   color: true
-  # }
+  config.editor_options = {
+    # font_styles: true,
+    # emphasis: true,
+    # lists: true,
+    # html: false,
+    # link: true,
+    # image: true,
+    # color: true
+  }
   #
   # Image versions available
   #  Possible values: :small, :medium, :large and/or :original
@@ -66,4 +66,9 @@ Bootsy.setup do |config|
   # Specify the controller to inherit from. Using ApplicationController
   # allows you to perform authentication from within your app.
   # config.base_controller = ActionController::Base
+  #
+  #
+  # If you don't want to use the Bootsy default uploader (file / fog), you
+  # can specify your own:
+  # config.uploader = 'YourUploader'
 end

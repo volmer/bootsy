@@ -24,7 +24,7 @@ Bootsy.Modal = function(area) {
     img = $(this).parents('.bootsy-image').find('img');
 
     imageObject = {
-      src: img.attr('src').replace('/thumb_', imagePrefix),
+      src: img.attr('src').replace('c_fill,h_50,w_50', 'c_fill,w_800'),
       alt: img.attr('alt').replace('Thumb_', '')
     };
 
