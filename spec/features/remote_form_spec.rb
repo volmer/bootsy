@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'remote form', type: :feature, js: true do
   it 'works with Bootsy' do
@@ -7,6 +8,7 @@ describe 'remote form', type: :feature, js: true do
     fill_in 'Title', with: 'Awesome post'
     click_on 'Insert image'
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+    wait_for_ajax
     find('.bootsy-gallery img[src$="/thumb_test.jpg"]').click
     script = "$('.dropdown-submenu .dropdown-menu').hide(); "\
       "$('a:contains(Small):visible').parent()."\

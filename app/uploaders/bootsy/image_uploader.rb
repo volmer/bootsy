@@ -35,5 +35,15 @@ module Bootsy
     def extension_white_list
       %w(jpg jpeg gif png)
     end
+
+    after :remove, :delete_empty_upstream_dirs
+
+    def delete_empty_upstream_dirs
+      path = File.expand_path(store_dir, root)
+      Dir.delete(path) # fails if path not empty dir
+
+    rescue SystemCallError
+      true # nothing, the dir is not empty
+    end
   end
 end

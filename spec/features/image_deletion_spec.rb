@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'image deletion', type: :feature, js: true do
   let(:selector) do
@@ -10,6 +11,7 @@ describe 'image deletion', type: :feature, js: true do
     visit new_post_path
     click_on 'Insert image'
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+    wait_for_ajax
   end
 
   it 'can be performed' do

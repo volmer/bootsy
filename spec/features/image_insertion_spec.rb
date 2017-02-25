@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'image insertion', type: :feature, js: true do
   let(:size_positions) do
@@ -23,6 +24,7 @@ describe 'image insertion', type: :feature, js: true do
       visit new_post_path
       click_on 'Insert image'
       attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+      wait_for_ajax
 
       find('.bootsy-gallery img').click
       size = size_position.first

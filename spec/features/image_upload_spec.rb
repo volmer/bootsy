@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'sham_rack'
+require 'spec_helper'
 
 describe 'image upload', type: :feature, js: true do
   let(:thumb_selector) do
@@ -18,6 +19,7 @@ describe 'image upload', type: :feature, js: true do
 
   it 'works with local files' do
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+    wait_for_ajax
 
     expect(page).to have_selector(:xpath, thumb_selector, visible: true)
   end
@@ -25,17 +27,21 @@ describe 'image upload', type: :feature, js: true do
   it 'works with remote files' do
     fill_in 'image[remote_image_file_url]', with: 'http://stubhost.com/test.jpg'
     click_on 'Go'
+    wait_for_ajax
 
     expect(page).to have_selector(:xpath, thumb_selector, visible: true)
   end
 
   it 'handles invalid images' do
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.fake'
+    wait_for_ajax
 
     expect(page).not_to have_selector(
       :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true)
     expect(page).to have_content('You are not allowed to upload')
     click_on 'Refresh'
+    wait_for_ajax
+
     expect(page).not_to have_content('You are not allowed to upload')
   end
 
@@ -43,6 +49,7 @@ describe 'image upload', type: :feature, js: true do
     fill_in 'image[remote_image_file_url]',
             with: 'http://stubhost.com/test.fake'
     click_on 'Go'
+    wait_for_ajax
 
     expect(page).not_to have_selector(
       :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true)
@@ -51,6 +58,8 @@ describe 'image upload', type: :feature, js: true do
 
   it 'associates the uploaded image with the resource' do
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.jpg'
+    wait_for_ajax
+
     find(:xpath, "//div[contains(@class, 'bootsy-gallery')]//img[contains(@src"\
       ", '/thumb_test.jpg')]").click
     script = "$('.dropdown-submenu .dropdown-menu').hide(); "\

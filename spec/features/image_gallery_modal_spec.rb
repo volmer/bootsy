@@ -1,10 +1,12 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'image gallery modal', type: :feature, js: true do
   it 'is accessible with a new resource' do
     visit new_post_path
 
     click_on 'Insert image'
+    wait_for_ajax
 
     expect(page).to have_css('.bootsy-modal', visible: true)
     expect(page).not_to have_css('.bootsy-image', visible: true)
