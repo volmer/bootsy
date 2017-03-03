@@ -6,7 +6,7 @@ require 'bootsy/version'
 Gem::Specification.new do |s|
   s.name        = 'bootsy'
   s.version     = Bootsy::VERSION
-  s.authors     = ['Volmer Soares']
+  s.authors     = ['Volmer Campos Soares']
   s.email       = ['rubygems@radicaos.com']
   s.homepage    = 'http://github.com/volmer/bootsy'
   s.summary     = 'A beautiful WYSIWYG editor with image uploads for Rails.'
