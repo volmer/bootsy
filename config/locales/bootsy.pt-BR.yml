@@ -28,3 +28,9 @@ pt-BR:
     no_images_uploaded: Não existem imagens salvas.
     js:
       alert_unsaved: As suas modificações ainda não foram gravadas.
+    errors:
+      messages:
+        carrierwave_processing_error: Impossível redimensionar imagem.
+        carrierwave_integrity_error: Não é uma imagem.
+        carrierwave_download_error: Não foi possível baixar a imagem.
+        extension_whitelist_error: "Arquivos %{extension} não são permitidos. Tipos permitidos: %{allowed_types}"
