@@ -1,5 +1,11 @@
 # Bootsy Changelog
 
+## 2.4.0
+
+* Full compatibility with Rails 5 (#244 thanks @dnswus).
+* jQuery 3.0 support (#259 - thanks @adeelejaz).
+* Update CarrierWave to 1.0 (#256 - thanks @adeelejaz).
+
 ## 2.3.1
 
 * Bootsy now supports Turbolinks 5 and up.
