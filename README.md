@@ -167,4 +167,4 @@ You can set the locale directly by setting a `data-bootsy-locale` attribute on y
 
 ## License
 
-MIT License. Copyright 2012-2016 Volmer Soares
+MIT License. Copyright 2012-2017 Volmer Campos Soares
