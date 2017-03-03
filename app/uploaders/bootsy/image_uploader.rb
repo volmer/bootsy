@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   class ImageUploader < CarrierWave::Uploader::Base
     include CarrierWave::MiniMagick

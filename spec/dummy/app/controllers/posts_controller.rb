@@ -1,90 +1,74 @@
+# frozen_string_literal: true
 class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.json
   def index
     @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
-    end
   end
 
-  # GET /posts/new
-  # GET /posts/new.json
   def new
     @post = Post.new
 
-    if params[:with_comment]
-      @post.comments << Comment.new
+    return unless params[:with_comment]
 
-      render(action: 'new_with_comment') and return
-    end
+    @post.comments << Comment.new
+    render 'new_with_comment'
   end
 
-  # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
     @post = Post.new(post_params)
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: { post: render_to_string(file: 'posts/_post', formats: [:html], layout: false, locals: { post: @post }) } }
+        format.html { redirect_to @post, notice: 'Post was created.' }
+        format.json { render json: { post: post_view_string } }
       else
-        format.html { render action: "new" }
+        format.html { render 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /posts/1
-  # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      if @post.update_attributes(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update_attributes(post_params)
+      redirect_to @post, notice: 'Post was updated.'
+    else
+      render 'edit'
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
 
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    redirect_to posts_url
   end
 
   private
-  # Never trust parameters from the scary internet, only allow the white list through.
+
   def post_params
-    params.require(:post).permit(:title, :content, :bootsy_image_gallery_id, comments_attributes: [:content, :author])
+    params.require(:post).permit(
+      :title,
+      :content,
+      :bootsy_image_gallery_id,
+      comments_attributes: [:content, :author]
+    )
+  end
+
+  def post_view_string
+    render_to_string(
+      file: 'posts/_post',
+      formats: [:html],
+      layout: false,
+      locals: { post: @post }
+    )
   end
 end

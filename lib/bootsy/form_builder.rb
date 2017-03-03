@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   # Public: Convenience module to include Bootsy
   # in `ActionView::Helpers::FormBuilder`.

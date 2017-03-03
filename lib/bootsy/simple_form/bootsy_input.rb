@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'simple_form'
 
 # Public: A SimpleForm Input to wrap Bootsy areas

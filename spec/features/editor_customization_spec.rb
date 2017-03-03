@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe 'editor customization', type: :feature, js: true do
@@ -47,7 +48,8 @@ describe 'editor customization', type: :feature, js: true do
 
   it 'allows disabling unsaved changes prompt' do
     allow(Bootsy).to receive(
-      :editor_options).and_return('alert-unsaved' => false)
+      :editor_options
+    ).and_return('alert-unsaved' => false)
     visit new_post_path
 
     page.execute_script "Bootsy.areas.post_content.editor.fire('change')"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Use this setup block to configure all options available in Bootsy.
 Bootsy.setup do |config|
   # Default editor options

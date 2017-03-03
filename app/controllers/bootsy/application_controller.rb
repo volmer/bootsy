@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   class ApplicationController < Bootsy.base_controller
     # Prevent CSRF attacks by raising an exception.

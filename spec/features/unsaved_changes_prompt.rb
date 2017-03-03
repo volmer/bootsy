@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe 'unsaved changes prompt', type: :feature, js: true do
@@ -8,7 +9,8 @@ describe 'unsaved changes prompt', type: :feature, js: true do
   end
 
   after do
-    page.execute_script "if(Bootsy.areas.post_content) { Bootsy.areas.post_content.unsavedChanges = false; }"
+    page.execute_script 'if(Bootsy.areas.post_content) { '\
+      'Bootsy.areas.post_content.unsavedChanges = false; }'
   end
 
   it 'can be accepted' do

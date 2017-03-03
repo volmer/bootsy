@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   # Public: Define and setup Bootsy as a Rails engine.
   class Engine < Rails::Engine

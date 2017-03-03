@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   # Public: A model that groups all images related to a
   # Bootsy container (also called a resource).

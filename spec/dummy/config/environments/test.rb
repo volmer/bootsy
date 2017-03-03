@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.configure do
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that

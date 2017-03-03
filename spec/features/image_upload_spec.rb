@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'sham_rack'
 
@@ -33,7 +34,8 @@ describe 'image upload', type: :feature, js: true do
     attach_file 'image[image_file]', Rails.root.to_s + '/public/test.fake'
 
     expect(page).not_to have_selector(
-      :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true)
+      :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true
+    )
     expect(page).to have_content('You are not allowed to upload')
     click_on 'Refresh'
     expect(page).not_to have_content('You are not allowed to upload')
@@ -45,7 +47,8 @@ describe 'image upload', type: :feature, js: true do
     click_on 'Go'
 
     expect(page).not_to have_selector(
-      :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true)
+      :xpath, "//div[contains(@class, 'bootsy-gallery')]//img", visible: true
+    )
     expect(page).to have_content('You are not allowed to upload')
   end
 

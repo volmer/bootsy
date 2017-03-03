@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   # Public: Methods and attributes to turn any
   # model into a Bootsy Container.

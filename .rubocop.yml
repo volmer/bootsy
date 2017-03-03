@@ -1,13 +1,14 @@
 AllCops:
   TargetRubyVersion: 2.4
   Exclude:
-    - 'spec/**/*'
-    - 'script/*'
+    - spec/dummy/db/**/*
+
 Metrics/MethodLength:
   Max: 15
 
 Rails:
   Enabled: true
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe 'YouTube support', type: :feature, js: true do
@@ -11,7 +12,8 @@ describe 'YouTube support', type: :feature, js: true do
     expected_embed = '<iframe width="560" height="315" src="//www.youtube.com'\
       '/embed/d2QdITRRMHg" frameborder="0" allowfullscreen=""></iframe>'
     content = page.evaluate_script(
-      'Bootsy.areas.post_content.editor.getValue()')
+      'Bootsy.areas.post_content.editor.getValue()'
+    )
     expect(content).to include(expected_embed)
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 # To ensure this feature there is the ability to
@@ -19,7 +20,7 @@ describe 'hidden editor', type: :feature, js: true do
       "setValue('Edited content')"
     click_on 'Update Comment'
 
-    expect(page).to have_content('Comment was successfully updated')
+    expect(page).to have_content('Comment was updated')
     expect(page).to have_content('Edited content')
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   module ApplicationHelper
     def refresh_btn

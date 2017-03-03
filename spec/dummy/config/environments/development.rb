@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

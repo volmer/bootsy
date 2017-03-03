@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Bootsy::Container do
@@ -16,13 +17,15 @@ describe Bootsy::Container do
 
   describe '#bootsy_image_gallery' do
     it 'returns the resource which it belongs' do
-      expect(post_with_gallery.bootsy_image_gallery.bootsy_resource).to eq(post_with_gallery)
+      expect(post_with_gallery.bootsy_image_gallery.bootsy_resource)
+        .to eq(post_with_gallery)
     end
   end
 
   describe '#bootsy_image_gallery_id' do
     it 'returns the gallery id if present' do
-      expect(post_with_gallery.bootsy_image_gallery_id).to eq(post_with_gallery.bootsy_image_gallery.id)
+      expect(post_with_gallery.bootsy_image_gallery_id)
+        .to eq(post_with_gallery.bootsy_image_gallery.id)
     end
 
     it 'returns nil if not present' do
@@ -43,7 +46,8 @@ describe Bootsy::Container do
     it 'does not set an image gallery if container already has a gallery' do
       post_with_gallery.bootsy_image_gallery_id = image_gallery.id
 
-      expect(post_with_gallery.bootsy_image_gallery_id).not_to eq(image_gallery.id)
+      expect(post_with_gallery.bootsy_image_gallery_id)
+        .not_to eq(image_gallery.id)
     end
   end
 end

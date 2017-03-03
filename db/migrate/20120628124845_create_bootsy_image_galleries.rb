@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateBootsyImageGalleries < ActiveRecord::Migration
   def change
     create_table :bootsy_image_galleries do |t|

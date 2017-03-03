@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Bootsy
   # Public: Model to reference the actual image stored trough Bootsy.
   # It contains the CarrierWave uploader and belongs to a

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe 'image insertion', type: :feature, js: true do
@@ -34,7 +35,8 @@ describe 'image insertion', type: :feature, js: true do
       find('li.dropdown-submenu ul.dropdown-menu li a', text: position).click
 
       content = page.evaluate_script(
-        'Bootsy.areas.post_content.editor.getValue()')
+        'Bootsy.areas.post_content.editor.getValue()'
+      )
       img_src = "/#{size.downcase}_test.jpg"
       img_src = 'test.jpg' if size == 'Original'
       expect(content).to include(img_src)

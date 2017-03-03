@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Bootsy::Engine.routes.draw do
   resources :image_galleries, only: [] do
     resources :images, only: [:index, :create, :destroy]
