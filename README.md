@@ -5,6 +5,8 @@
 [![Dependency Status](https://gemnasium.com/volmer/bootsy.svg)](https://gemnasium.com/volmer/bootsy)
 [![Code Climate](https://codeclimate.com/github/volmer/bootsy.svg)](https://codeclimate.com/github/volmer/bootsy)
 
+### Disclaimer: this project is no longer maintained.
+
 *Bootsy* is a WYSIWYG editor for Rails based on
 [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) with image uploads using
 [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
