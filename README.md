@@ -168,6 +168,26 @@ Bootsy will try to guess the locale based on the `lang` attribute of the page's 
 You can set the locale directly by setting a `data-bootsy-locale` attribute on your `<textarea>`.
 
 
+## Contributing
+
+### Running the tests
+
+Before sending a pull request, you'll want to run the tests.  The first time you'll need to create and
+migrate the dummy rails app's sqlite db.
+
+  ```console
+  cd spec/dummy
+  bundle exec rake db:create RAILS_ENV=test
+  bundle exec rake db:migrate RAILS_ENV=test
+  cd ../..
+  ```
+
+ Then run rubocop/tests with:
+
+ ```console
+ bundle exec rake
+ ```
+
 ## License
 
 MIT License. Copyright 2012-2017 Volmer Campos Soares
