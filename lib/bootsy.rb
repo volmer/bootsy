@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'carrierwave'
-require 'bootsy/engine'
+require 'bootsy/engine' if defined?(Rails)
 require 'bootsy/container'
 require 'bootsy/form_helper'
 require 'bootsy/form_builder'
