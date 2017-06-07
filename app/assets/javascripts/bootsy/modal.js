@@ -99,6 +99,7 @@ Bootsy.Modal = function(area) {
 
 // Show modal
 Bootsy.Modal.prototype.show = function() {
+  this.$el.appendTo('body');
   this.$el.modal('show');
 };
 

@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 class Comment < ActiveRecord::Base
-  belongs_to :post, optional: true
+  if Rails::VERSION::STRING.split(".").first.to_i >= 5
+    belongs_to :post, optional: true
+  else
+    belongs_to :post
+  end
 end

@@ -11,8 +11,13 @@ module Bootsy
   # that do not point to resources older than the given time
   # limit.
   class ImageGallery < ActiveRecord::Base
-    belongs_to :bootsy_resource, polymorphic: true, autosave: false,
-                                 optional: true
+    if Rails::VERSION::STRING.split(".").first.to_i >= 5
+      belongs_to :bootsy_resource, polymorphic: true, autosave: false,
+                                   optional: true
+    else
+      belongs_to :bootsy_resource, polymorphic: true, autosave: false
+    end
+    
     has_many :images, dependent: :destroy
 
     scope :destroy_orphans, lambda { |time_limit|
