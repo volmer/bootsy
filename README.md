@@ -2,8 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/bootsy.svg)](http://badge.fury.io/rb/bootsy)
 [![Build Status](https://secure.travis-ci.org/volmer/bootsy.svg?branch=master)](http://travis-ci.org/volmer/bootsy)
-[![Dependency Status](https://gemnasium.com/volmer/bootsy.svg)](https://gemnasium.com/volmer/bootsy)
-[![Code Climate](https://codeclimate.com/github/volmer/bootsy.svg)](https://codeclimate.com/github/volmer/bootsy)
 
 ### Disclaimer: this project is no longer maintained.
 
